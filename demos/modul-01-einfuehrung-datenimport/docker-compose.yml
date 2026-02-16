@@ -1,0 +1,108 @@
+# ============================================
+# Elastic Stack Demo - Modul 01: Einführung
+#   & Datenimport
+# ============================================
+# Zentrale Instanz für den gesamten
+# Schulungstag. Alle Teilnehmer verbinden
+# sich mit dieser Elasticsearch/Kibana-
+# Installation.
+#
+# Starten:   docker compose up -d
+# Stoppen:   docker compose down
+# Logs:      docker compose logs -f demo-kibana
+# Reset:     docker compose down -v && docker compose up -d
+
+services:
+  # ------------------------------------------
+  # Elasticsearch 8.17.0 (Single-Node)
+  # ------------------------------------------
+  # Security ist für die Schulung deaktiviert,
+  # damit die Teilnehmer ohne Authentifizierung
+  # auf die REST API zugreifen können.
+  # In Produktion niemals so betreiben!
+  demo-elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.10
+    container_name: demo-elasticsearch
+    environment:
+      # Single-Node-Modus (kein Cluster)
+      discovery.type: single-node
+      # Security deaktivieren (nur für Schulung!)
+      xpack.security.enabled: "false"
+      # JVM Heap Size auf 2 GB setzen
+      ES_JAVA_OPTS: "-Xms2g -Xmx2g"
+      # Cluster-Name für bessere Erkennbarkeit
+      cluster.name: schulung-cluster
+    ports:
+      - "9200:9200"
+    volumes:
+      - demo_es_data:/usr/share/elasticsearch/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 30s
+    networks:
+      - demo-network
+
+  # ------------------------------------------
+  # Kibana 8.17.0
+  # ------------------------------------------
+  # Kibana verbindet sich mit Elasticsearch
+  # und stellt die Web-Oberfläche bereit.
+  demo-kibana:
+    image: docker.elastic.co/kibana/kibana:9.1.10
+    container_name: demo-kibana
+    environment:
+      # Verbindung zu Elasticsearch
+      ELASTICSEARCH_HOSTS: http://demo-elasticsearch:9200
+      # Telemetrie deaktivieren
+      TELEMETRY_ENABLED: "false"
+    ports:
+      - "5601:5601"
+    depends_on:
+      demo-elasticsearch:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:5601/api/status || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 45s
+    networks:
+      - demo-network
+
+  # ------------------------------------------
+  # Einmalig: Sample eCommerce Daten laden
+  # ------------------------------------------
+  # Wartet bis Kibana bereit ist und lädt
+  # dann den eCommerce-Beispieldatensatz
+  # über die Kibana API.
+  demo-setup:
+    image: curlimages/curl:8.11.1
+    container_name: demo-setup
+    depends_on:
+      demo-kibana:
+        condition: service_healthy
+    restart: "no"
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        echo "Lade eCommerce-Beispieldaten..."
+        curl -sf -X POST \
+          http://demo-kibana:5601/api/sample_data/ecommerce \
+          -H "kbn-xsrf: true" \
+          -H "Content-Type: application/json"
+        echo ""
+        echo "Beispieldaten erfolgreich geladen."
+    networks:
+      - demo-network
+
+volumes:
+  demo_es_data:
+    name: demo-es-data
+
+networks:
+  demo-network:
+    name: demo-network
