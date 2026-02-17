@@ -21,7 +21,7 @@ services:
   # auf die REST API zugreifen können.
   # In Produktion niemals so betreiben!
   demo-elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:9.1.10
+    image: docker.elastic.co/elasticsearch/elasticsearch:9.3.0
     container_name: demo-elasticsearch
     environment:
       # Single-Node-Modus (kein Cluster)
