@@ -174,9 +174,11 @@ customer_first_name: Mary and (category: "Women's Clothing" or category: "Women'
 ### Schritt 1 -- Suche speichern
 
 1. Gib eine KQL-Abfrage ein, z.B.:
+
    ```
    taxful_total_price > 200
    ```
+
 2. Klicke auf **Save** (Disketten-Icon oben)
 3. Gib als Name ein:
    `Hochpreisige Bestellungen (>200)`

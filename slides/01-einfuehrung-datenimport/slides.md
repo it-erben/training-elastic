@@ -46,7 +46,7 @@ denen "Umsatz" vorkommt.
 **Mit Index (Stichwortverzeichnis):** Du schlägst hinten nach und findest sofort
 alle Seitenzahlen.
 
-> Genau so funktioniert eine Suchmaschine: Sie baut vorab einen Index auf, 
+> Genau so funktioniert eine Suchmaschine: Sie baut vorab einen Index auf,
 > damit Suchen blitzschnell gehen -- egal wie viele Daten vorhanden sind.
 
 ---
@@ -65,7 +65,7 @@ table { font-size: 0.85em; }
 | Tippfehler               | Kein Ergebnis             | Trotzdem Treffer möglich    |
 | Sortierung               | Nach Spalte               | Nach Relevanz               |
 
-> **Merke:** Eine Suchmaschine ersetzt keine Datenbank -- sie ergänzt sie. 
+> **Merke:** Eine Suchmaschine ersetzt keine Datenbank -- sie ergänzt sie.
 > Viele Unternehmen nutzen beides zusammen.
 
 ---
@@ -104,7 +104,7 @@ Aus den drei Bestellungen entsteht dieser Index:
 | 1099    | Bestellung 2               |
 | 499     | Bestellung 3               |
 
-> Suchst du jetzt nach "silber", schaut Elasticsearch nur in diese Tabelle und 
+> Suchst du jetzt nach "silber", schaut Elasticsearch nur in diese Tabelle und
 > liefert sofort Bestellung 1 und 3 -- ohne jedes Dokument einzeln durchzulesen.
 
 ---
@@ -163,7 +163,7 @@ Elasticsearch ist ein JSON-Dokument:
 }
 ```
 
-> Keine Zeilen und Spalten wie in Excel -- stattdessen Schlüssel-Wert-Paare. 
+> Keine Zeilen und Spalten wie in Excel -- stattdessen Schlüssel-Wert-Paare.
 > Das ist flexibler, weil jedes Dokument unterschiedliche Felder haben kann.
 
 ---
@@ -173,7 +173,6 @@ Elasticsearch ist ein JSON-Dokument:
 <style scoped>
 section { font-size: 1.8em; }
 </style>
-
 
 Die wichtigsten Begriffe im Überblick:
 
@@ -278,7 +277,7 @@ Kibana ist die Komponente, mit der man in der Datenanalyse am meisten arbeitet:
 - **Dev Tools:** Direkte Anfragen an Elasticsearch
   (für Fortgeschrittene)
 
-> In den nächsten Modulen wirst du Kibana intensiv kennenlernen. Heute schauen 
+> In den nächsten Modulen wirst du Kibana intensiv kennenlernen. Heute schauen
 > wir uns zunächst an, wie die Daten überhaupt nach Elasticsearch gelangen.
 
 ---
@@ -330,7 +329,7 @@ laufen und Daten einsammeln:
 - **April 2021:** Amazon (AWS) erstellte einen Fork namens **OpenSearch** unter der Apache-2.0-Lizenz
 - **Seitdem:** Zwei getrennte Produkte, die sich unabhängig weiterentwickeln
 
-> **Warum ist das relevant?** Je nach Unternehmen und Cloud-Anbieter triffst du 
+> **Warum ist das relevant?** Je nach Unternehmen und Cloud-Anbieter triffst du
 > auf das eine oder das andere Produkt.
 
 ---
@@ -565,7 +564,6 @@ Falsche Feldtypen führen zu Problemen bei der Analyse:
 <style scoped>
 section { font-size: 1.8em; }
 </style>
-
 
 So sollte das Mapping für die Bestelldaten der Mustertech GmbH aussehen:
 
