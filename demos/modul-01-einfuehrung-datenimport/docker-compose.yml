@@ -51,7 +51,7 @@ services:
   # Kibana verbindet sich mit Elasticsearch
   # und stellt die Web-Oberfläche bereit.
   demo-kibana:
-    image: docker.elastic.co/kibana/kibana:9.1.10
+    image: docker.elastic.co/kibana/kibana:9.3.0
     container_name: demo-kibana
     environment:
       # Verbindung zu Elasticsearch
