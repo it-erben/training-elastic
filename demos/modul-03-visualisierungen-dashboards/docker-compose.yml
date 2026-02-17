@@ -44,7 +44,7 @@ services:
   # Kibana 8.17.0
   # ------------------------------------------
   demo-kibana:
-    image: docker.elastic.co/kibana/kibana:8.17.0
+    image: docker.elastic.co/kibana/kibana:8.19.11
     container_name: demo-kibana
     environment:
       ELASTICSEARCH_HOSTS: http://demo-elasticsearch:9200
