@@ -67,7 +67,7 @@ services:
   # Einmalig: Sample eCommerce Daten laden
   # ------------------------------------------
   demo-setup:
-    image: curlimages/curl:8.11.1
+    image: curlimages/curl:8.18.0
     container_name: demo-setup
     depends_on:
       demo-kibana:

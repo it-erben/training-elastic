@@ -79,7 +79,7 @@ services:
   # dann den eCommerce-Beispieldatensatz
   # über die Kibana API.
   demo-setup:
-    image: curlimages/curl:8.11.1
+    image: curlimages/curl:8.18.0
     container_name: demo-setup
     depends_on:
       demo-kibana:
