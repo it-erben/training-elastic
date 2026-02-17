@@ -53,7 +53,9 @@ Die folgenden Felder wirst du in den Übungen verwenden:
 Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 **Visualize Library**.
 
-### Aufgabe 1.1: Metrik -- Gesamtumsatz
+![Visualize Library -- Übersicht](images/visualize-library.png)
+
+### Aufgabe 1.1: Metrik - Gesamtumsatz
 
 1. Navigiere zu **Analytics > Visualize Library**
 2. Klicke auf **Create visualization** und wähle **Lens**
@@ -65,21 +67,23 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 6. Ändere die Funktion von "Median" auf **Sum**
 7. Speichere als: `Gesamtumsatz` mit "Add To Dashboard -> None".
 
-### Aufgabe 1.2: Metrik -- Anzahl Bestellungen
+![Metrik -- Gesamtumsatz in Lens](images/metrik-gesamtumsatz.png)
+
+### Aufgabe 1.2: Metrik - Anzahl Bestellungen
 
 1. Neue Lens-Visualisierung, Typ **Metric**
 2. Ziehe ein `order_id` Feld in **Primary metric**
 3. Ändere die Funktion auf **Count**
 4. Speichere als: `Anzahl Bestellungen`, mit "Add To Dashboard -> None".
 
-### Aufgabe 1.3: Metrik -- Durchschnittlicher Bestellwert
+### Aufgabe 1.3: Metrik - Durchschnittlicher Bestellwert
 
 1. Neue Lens-Visualisierung, Typ **Metric**
 2. Ziehe `taxful_total_price` in **Primary metric**
 3. Ändere die Funktion auf **Average**
 4. Speichere als: `Durchschn. Bestellwert`, mit "Add To Dashboard -> None".
 
-### Aufgabe 1.4: Balkendiagramm -- Top Produktkategorien
+### Aufgabe 1.4: Balkendiagramm - Top Produktkategorien
 
 1. Neue Lens-Visualisierung, Typ **Bar -> Unstacked**
 2. Vertikale Achse: `order_id` mit Funktion **Count**
@@ -87,19 +91,21 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
    **Top values**, Number of values: `5`
 4. Speichere als: `Top Produktkategorien`, mit "Add To Dashboard -> None".
 
-### Aufgabe 1.5: Liniendiagramm -- Umsatz über Zeit
+### Aufgabe 1.5: Liniendiagramm - Umsatz über Zeit
 
 1. Neue Lens-Visualisierung, Typ **Line**
 2. X-Achse: `order_date` (Date histogram, Auto)
 3. Y-Achse: `taxful_total_price` mit Funktion **Sum**
 4. Speichere als: `Umsatz über Zeit`, mit "Add To Dashboard -> None".
 
-### Aufgabe 1.6: Kreisdiagramm -- Bestellungen nach Region
+### Aufgabe 1.6: Kreisdiagramm - Bestellungen nach Region
 
 1. Neue Lens-Visualisierung, Typ **Pie**
 2. Slice by: `geoip.continent_name` (Top values, Number of values: `7`)
 3. Metrik: **Count**
 4. Speichere als: `Bestellungen nach Region`, mit "Add To Dashboard -> None".
+
+![Kreisdiagramm -- Bestellungen nach Region](images/kreisdiagramm.png)
 
 ---
 
@@ -113,9 +119,13 @@ geeignet für ein Geschäftsführungs-Meeting.
 1. Navigiere zu **Analytics > Dashboard**
 2. Klicke auf **Create dashboard**
 
+![Dashboard -- Edit-Modus mit Toolbar](images/dashboard-editmode.png)
+
 ### Schritt 2.2: KPI-Zeile aufbauen
 
 Füge über **Add from library** die drei Metriken hinzu:
+
+![Add from library -- Gespeicherte Visualisierungen](images/add-from-library.png)
 
 - `Gesamtumsatz`
 - `Anzahl Bestellungen`
@@ -168,6 +178,8 @@ controlling@mustertech.de
 2. Titel: `Überblick - Geschäftsführung`
 3. Beschreibung: "KPIs und Trends für das Management-Meeting"
 
+![Dashboard -- Fertiges Überblick-Dashboard](images/dashboard-fertig.png)
+
 ---
 
 ## Teil 3: Controls und Interaktivität
@@ -178,6 +190,9 @@ filtern können.
 ### Aufgabe 3.1: Kategorie-Filter hinzufügen
 
 1. Klicke auf **Controls** in der Toolbar
+
+![Controls -- Menü](images/controls-button.png)
+
 2. Klicke auf **Add control** im Controls-Panel
 3. Konfiguriere:
     - Feld: `category.keyword`

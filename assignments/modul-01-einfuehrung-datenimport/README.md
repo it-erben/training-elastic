@@ -33,6 +33,8 @@ http://<trainer-url>:5601
 Nach dem Öffnen von Kibana siehst du die Startseite (Home). Nimm dir einen
 Moment, um die Hauptbereiche zu identifizieren:
 
+![Kibana Startseite](images/kibana-startseite.png)
+
 | Bereich        | Position                 | Beschreibung                            |
 |:---------------|:-------------------------|:----------------------------------------|
 | **Hauptmenü**  | Links (Hamburger-Symbol) | Navigation zu allen Kibana-Bereichen    |
@@ -43,6 +45,8 @@ Moment, um die Hauptbereiche zu identifizieren:
 
 Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 öffnen. Mache dich mit den wichtigsten Bereichen vertraut:
+
+![Hauptmenü](images/hauptmenue.png)
 
 | Menüpunkt                         | Funktion                                |
 |:----------------------------------|:----------------------------------------|
@@ -59,9 +63,13 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 2. Schaue dir die linke Navigation an -- hier findest du unter anderem:
     - **Data Views** (ehemals Index Patterns)
     - **Index Management**
+
+![Stack Management](images/stack-management.png)
 3. Klicke auf **Index Management**
 4. Du siehst die aktuell vorhandenen Indizes -- vermutlich noch keine
    E-Commerce-Daten
+
+![Index Management](images/index-management.png)
 
 > **Merke:** Stack Management ist die zentrale Anlaufstelle
 > für die Verwaltung deiner Elasticsearch-Daten in Kibana.
@@ -101,6 +109,8 @@ Ein Data View definiert:
 2. Klicke in der linken Navigation auf **Data Views**
 3. Du siehst eine Liste aller vorhandenen Data Views
 
+![Data Views -- Liste](images/data-views-liste.png)
+
 **Beobachte:** Jeder Data View zeigt:
 
 - seinen **Namen**
@@ -111,6 +121,8 @@ Ein Data View definiert:
 
 1. Klicke auf **kibana_sample_data_ecommerce**
 2. Du siehst die **Feld-Übersicht** des Data Views
+
+![Data View -- Feldliste](images/data-view-felder.png)
 
 Auf dieser Seite kannst du ablesen:
 
@@ -185,6 +197,8 @@ Suche in der Feldliste nach dem Feld
 - `customer_full_name.keyword` -- Typ **Keyword**
 
 Das ist ein sogenanntes **Multi-Field-Mapping**:
+
+![Data View -- keyword vs. text](images/keyword-vs-text.png)
 
 | Variante                     | Typ     | Einsatz                                                          |
 |:-----------------------------|:--------|:-----------------------------------------------------------------|

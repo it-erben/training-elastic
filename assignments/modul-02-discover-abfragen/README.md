@@ -24,6 +24,8 @@ Am Ende dieser Übung hast du:
 
 Mache dich mit den Bereichen der Discover-Ansicht vertraut:
 
+![Discover -- Übersicht](images/discover-uebersicht.png)
+
 | Bereich               | Position             | Beschreibung                     |
 |:----------------------|:---------------------|:---------------------------------|
 | **Data View Auswahl** | Oben links           | Auswahl des Datensatzes          |
@@ -41,6 +43,8 @@ Feld (z.B. `category`), um eine Vorschau der häufigsten Werte zu sehen.
 
 **Aufgabe:** Klicke auf das Feld `manufacturer` und notiere die drei häufigsten
 Hersteller.
+
+![Feldliste -- Wertvorschau](images/feldliste-vorschau.png)
 
 ---
 
@@ -76,6 +80,8 @@ Beobachte, wie sich das Histogramm und die Trefferzahl ändern.
     - Setze den Zeitraum auf **Last 24 hours**
     - Wechsle zu **Last 30 days**
 3. Beobachte jeweils die Änderung im Histogramm
+
+![Zeitfilter -- Quick Select](images/zeitfilter.png)
 
 > **Tipp:** Der Zeitfilter ist der wichtigste Filter in
 > Kibana. Wenn du keine Daten siehst, prüfe immer zuerst
@@ -117,6 +123,8 @@ Drücke `Enter` oder klicke auf **Update**.
 **Erwartetes Ergebnis:** Nur Bestellungen mit einem Gesamtpreis über 100 EUR
 werden angezeigt.
 
+![KQL -- Preisfilter](images/kql-preis-filter.png)
+
 **Aufgabe:** Notiere die ungefähre Anzahl der Treffer
 (sichtbar oben links, z.B. "X hits").
 
@@ -149,6 +157,8 @@ category: "Men's Clothing" AND taxful_total_price > 50
 
 **Erwartetes Ergebnis:** Nur Bestellungen aus der Kategorie
 "Men's Clothing" mit einem Preis über 50 EUR.
+
+![KQL -- Kombinierte Abfrage](images/kql-kombiniert.png)
 
 **Aufgabe:** Vergleiche die Trefferzahl mit der Suche nur nach der Kategorie (
 ohne Preisfilter). Wie viel Prozent der Bestellungen in "Men's Clothing" liegen
@@ -205,6 +215,8 @@ der Suchleiste.
     - Wert: `Europe`
     - Klicke auf **Save**
 
+![Filter -- Dialog](images/filter-leiste.png)
+
 **Erwartetes Ergebnis:** Nur europäische Bestellungen aus der Kategorie "Women's
 Clothing" werden angezeigt.
 
@@ -241,6 +253,8 @@ Feldliste auf das **Plus-Symbol** (+) neben dem jeweiligen Feld:
 **Erwartetes Ergebnis:** Die Dokumentenliste zeigt jetzt eine übersichtliche
 Tabelle mit vier Spalten.
 
+![Spalten konfiguriert](images/spalten-konfiguriert.png)
+
 ### Schritt 5.2: Spaltenreihenfolge ändern
 
 Du kannst die Reihenfolge der Spalten anpassen:
@@ -269,6 +283,8 @@ Betrag und den Kundennamen.
 2. Klicke oben rechts auf **Share**
 3. Wähle **CSV Reports** oder **Download CSV**
 4. Klicke auf **Generate CSV** / **Download**
+
+![CSV Export -- Share-Dialog](images/csv-export.png)
 
 Die CSV-Datei wird generiert und kann heruntergeladen werden.
 

@@ -59,6 +59,12 @@ table { font-size: 0.85em; }
 
 ---
 
+# Die Discover-Oberfläche - Kibana
+
+![h:450 center](images/discover-uebersicht.png)
+
+---
+
 <style scoped>
 section { font-size: 1.8em; }
 </style>
@@ -107,6 +113,12 @@ oben rechts in der Oberfläche.
 | Dashboards mit Auto-Refresh | Reproduzierbare Auswertungen |
 
 ---
+
+# Zeitfilter - Quick Menu
+
+![h:450 center](images/zeitfilter.png)
+
+---
 <style scoped>
 section { font-size: 1.8em; }
 </style>
@@ -131,7 +143,7 @@ Das Histogramm oben in Discover zeigt die
 # Kibana Query Language (KQL)
 
 KQL ist die Abfragesprache in Kibana. Sie ist speziell für Analysten
-konzipiert -- einfach und ausdrucksstark.
+konzipiert.
 
 **Grundprinzip:**
 
@@ -306,7 +318,7 @@ Das Sternchen `*` steht für beliebig viele Zeichen:
 | `customer.email: *@firma.de` | Alle Firmen-E-Mails              |
 | `product.sku: LPT-*`         | Alle Laptop-Artikelnummern       |
 
-**Existenzprüfung** -- hat ein Feld überhaupt einen Wert?
+**Existenzprüfung** - hat ein Feld überhaupt einen Wert?
 
 ```
 customer.phone: *
@@ -319,7 +331,7 @@ Findet alle Dokumente, bei denen das Feld
 
 ---
 
-# KQL -- Übersicht der Syntax
+# KQL - Übersicht der Syntax
 
 <style scoped>
 table { font-size: 0.6em; }
@@ -339,6 +351,14 @@ code { font-size: 0.85em; }
 | Wildcard      | `*`           | `name: Sam*`              |
 | Klammern      | `()`          | `(a: 1 OR a: 2) AND b: 3` |
 | Existenz      | `feld: *`     | `phone: *`                |
+
+---
+
+# KQL in Aktion
+
+`customer_gender: FEMALE AND taxful_total_price > 100`
+
+![h:450 center](images/kql-abfrage.png)
 
 ---
 <style scoped>
@@ -361,6 +381,12 @@ Neben KQL-Abfragen bietet Kibana eine
 3. **Manuell:** Klicke auf "Add filter" in der Filter-Leiste
 
 > Filter und KQL-Abfragen ergänzen sich. Nutze Filter für häufig wechselnde Bedingungen und KQL für komplexere Abfragen.
+
+---
+
+# Filter hinzufügen - Dialog
+
+![h:450 center](images/filter-dialog.png)
 
 ---
 
@@ -414,7 +440,7 @@ Alle drei Bedingungen müssen gleichzeitig erfüllt sein.
 
 ---
 
-# Filter vs. KQL -- Wann was nutzen?
+# Filter vs. KQL - Wann was nutzen?
 
 <style scoped>
 table { font-size: 0.82em; }
@@ -516,6 +542,12 @@ Klicke auf einen Pfeil links neben einem Dokument, um es aufzuklappen.
 
 ---
 
+# Dokumente im Detail - Kibana
+
+![h:450 center](images/dokument-detail.png)
+
+---
+
 # Verfügbare Felder - Die Seitenleiste
 
 Die linke Seitenleiste zeigt alle verfügbaren Felder des aktuellen Data Views.
@@ -531,6 +563,12 @@ Die linke Seitenleiste zeigt alle verfügbaren Felder des aktuellen Data Views.
 
 Klicke auf ein Feld, um eine Schnellübersicht der häufigsten Werte zu sehen. So
 erkennst du z. B. sofort die beliebtesten Produktkategorien.
+
+---
+
+# Verfügbare Felder - Feldstatistiken
+
+![w:1200 center](images/feld-statistik.png)
 
 ---
 <style scoped>
@@ -579,7 +617,7 @@ Speichere häufig genutzte Abfragen, um sie schnell wiederzuverwenden:
 - "Retouren letzte 30 Tage"
 - "Bestellungen ohne Versandbestätigung"
 
-> Gespeicherte Suchen können auch in Dashboards eingebettet werden -- dazu mehr in Modul 03.
+> Gespeicherte Suchen können auch in Dashboards eingebettet werden - dazu mehr in Modul 03.
 
 ---
 
@@ -587,7 +625,7 @@ Speichere häufig genutzte Abfragen, um sie schnell wiederzuverwenden:
 
 **Discover** ist dein Einstiegspunkt für jede Datenanalyse in Kibana:
 
-- **Zeitfilter** grenzen den Zeitraum ein -- relativ für laufende Analysen,
+- **Zeitfilter** grenzen den Zeitraum ein - relativ für laufende Analysen,
   absolut für Berichte
 - **KQL** bietet dir eine mächtige, aber einfache Abfragesprache mit Feld:
   Wert-Suche, Vergleichen, Wildcards und boolescher Logik

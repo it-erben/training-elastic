@@ -39,6 +39,12 @@ eCommerce Orders**:
 
 ---
 
+# Beispiel: eCommerce Revenue Dashboard
+
+![h:450 center](images/dashboard-sample.png)
+
+---
+
 # Kibana Lens - der zentrale Editor
 
 **Lens** ist der primäre Visualisierungseditor in Kibana.
@@ -68,6 +74,12 @@ Oder direkt aus einem Dashboard heraus:
 
 ---
 
+# Visualize Library
+
+![h:500 center](images/visualize-library.png)
+
+---
+
 # Aufbau des Lens-Editors
 
 <style scoped>
@@ -82,6 +94,12 @@ table { font-size: 0.85em; }
 | **Oben**         | Diagrammtyp-Auswahl             |
 
 Felder werden per **Drag and Drop** aus der Feldliste auf die Achsen gezogen.
+
+---
+
+# Lens-Editor -- Kibana
+
+![h:500 center](images/lens-editor.png)
 
 ---
 
@@ -103,6 +121,12 @@ table { font-size: 0.7em; }
 | **Heatmap**         | Zwei Dimensionen mit Farbskala |
 | **Treemap**         | Hierarchische Anteile          |
 | **Gauge / Ziel**    | Fortschritt gegen Zielwert     |
+
+---
+
+# Diagrammtyp-Auswahl in Lens
+
+![h:500 center](images/metrik-kachel.png)
 
 ---
 
@@ -327,6 +351,12 @@ Wir erstellen ein Liniendiagramm für den
    *Weekly* oder *Monthly*
 
 ---
+
+# Linien- und Balkendiagramme -- Beispiel
+
+![h:500 center](images/dashboard-sample-charts.png)
+
+---
 <style scoped>
 section { font-size: 1.8em; }
 </style>
@@ -424,6 +454,12 @@ Wir erstellen ein Kreisdiagramm für die
 5. Benenne die Visualisierung: *Bestellverteilung nach Region*
 
 > Für einen Donut-Chart wechsle einfach den Diagrammtyp von *Pie* auf *Donut*.
+
+---
+
+# Kreisdiagramm in Lens
+
+![h:500 center](images/kreisdiagramm.png)
 
 ---
 
@@ -541,6 +577,12 @@ Wiederhole das für:
 
 ---
 
+# Metrik-Kachel in Lens
+
+![h:500 center](images/metrik-gesamtumsatz.png)
+
+---
+
 # Diagramme hinzufügen
 
 Füge die bereits erstellten Visualisierungen zum Dashboard hinzu:
@@ -572,12 +614,7 @@ Visualisierungen lassen sich frei anordnen:
 
 **Empfohlenes Layout:**
 
-```text
-[ Umsatz ]   [ Bestellungen ]  [ Durchschn. Wert ]
-[         Umsatz über Zeit (Linie)               ]
-[ Top-Kategorien (Balken) ][ Region (Kreis)      ]
-[         Bestelldetails (Tabelle)               ]
-```
+![h:400 center](images/dashboard-uebersicht.png)
 
 ---
 <style scoped>
@@ -598,6 +635,12 @@ Du kannst dem Dashboard **Steuerelemente** hinzufügen, damit Nutzer Daten filte
 | **Time Slider**  | Zeitraum visuell eingrenzen |
 
 > Controls ermöglichen es deinen Kollegen, das Dashboard selbst zu filtern, ohne KQL schreiben zu müssen.
+
+---
+
+# Dashboard im Bearbeitungsmodus
+
+![h:500 center](images/dashboard-editmode.png)
 
 ---
 
