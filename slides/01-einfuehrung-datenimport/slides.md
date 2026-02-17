@@ -86,41 +86,11 @@ fragt er "In welchen Dokumenten kommt Wort Y vor?"
 
 ---
 
-<style scoped>
-section { font-size: 1.6em; }
-</style>
-
-# Invertierter Index - Ergebnis
-
-Aus den drei Bestellungen entsteht dieser Index:
-
-| Begriff | Kommt vor in               |
-|---------|----------------------------|
-| laptop  | Bestellung 1, Bestellung 2 |
-| silber  | Bestellung 1, Bestellung 3 |
-| schwarz | Bestellung 2               |
-| tablet  | Bestellung 3               |
-| 899     | Bestellung 1               |
-| 1099    | Bestellung 2               |
-| 499     | Bestellung 3               |
-
-> Suchst du jetzt nach "silber", schaut Elasticsearch nur in diese Tabelle und
-> liefert sofort Bestellung 1 und 3 -- ohne jedes Dokument einzeln durchzulesen.
+![bg w:1150 center](images/invertierter-index.drawio.svg)
 
 ---
 
-# Was passiert bei der Indizierung?
-
-Bevor ein Wort im invertierten Index landet, wird es aufbereitet:
-
-1. **Tokenisierung:** Der Text wird in einzelne Wörter (Tokens) zerlegt
-2. **Normalisierung:** Großbuchstaben werden zu Kleinbuchstaben
-3. **Stammformreduktion:** "Bestellungen" wird zu "bestell"
-
-**Ergebnis:** Die Suche nach "bestellung" findet auch "Bestellungen", "bestellt"
-und "Bestellstatus".
-
-> Das ist der Grund, warum Suchmaschinen bei Textsuche so viel besser funktionieren als einfache Datenbankabfragen.
+![bg w:550 center](images/indizierungsprozess.drawio.svg)
 
 ---
 
@@ -225,32 +195,7 @@ Der Elastic Stack besteht aus vier Hauptkomponenten:
 
 ---
 
-# Wie die Komponenten zusammenspielen
-
-<style scoped>
-p { font-size: 0.9em; }
-</style>
-
-Der Datenfluss im Elastic Stack:
-
-```text
-Datenquellen          Verarbeitung         Speicher & Suche
-+------------+       +------------+       +----------------+
-| CSV-Dateien|       |            |       |                |
-| Datenbanken| ----> |  Logstash  | ----> | Elasticsearch  |
-| Log-Dateien|       |            |       |                |
-+------------+       +------------+       +-------+--------+
-                                                  |
-+------------+                                    |
-|   Beats    | ---------------------------------->|
-+------------+                                    |
-                                                  v
-                                          +-------+--------+
-                                          |    Kibana      |
-                                          | (Analyse &     |
-                                          |  Dashboards)   |
-                                          +----------------+
-```
+![bg w:1050 center](images/elastic-stack-architektur.drawio.svg)
 
 ---
 
@@ -440,17 +385,7 @@ erkennt das Semikolon als Trennzeichen und schlägt passende Feldtypen vor.
 
 ---
 
-# Was passiert beim Import?
-
-Wenn du die CSV-Datei importierst, passiert im Hintergrund Folgendes:
-
-1. **Parsing:** Die CSV-Datei wird in einzelne Zeilen und Spalten zerlegt
-2. **Konvertierung:** Jede Zeile wird zu einem JSON-Dokument
-3. **Mapping-Erkennung:** Elasticsearch erkennt Feldtypen (Text, Zahl, Datum)
-4. **Indizierung:** Dokumente werden im invertierten Index gespeichert
-5. **Verfügbarkeit:** Die Daten sind sofort in Kibana durchsuchbar
-
-> Nach dem Import kannst du in Kibana Discover sofort nach "Laptop" suchen und findest alle Bestellungen mit Laptops.
+![bg w:1100 center](images/datenimport-ablauf.drawio.svg)
 
 ---
 
@@ -493,28 +428,8 @@ table { font-size: 0.8em; }
 > **Tipp:** Achte beim Import besonders auf die Erkennung von `date`-Feldern. Wird ein Datum als `text` erkannt, kannst du keine Zeitreihen-Analysen durchführen.
 
 ---
-<style scoped>
-section { font-size: 1.5em; }
-</style>
 
-# `text` vs. `keyword`
-
-Dieser Unterschied ist für Analysten besonders wichtig:
-
-### `text`
-
-- Wird für Volltextsuche aufbereitet
-  (tokenisiert, normalisiert)
-- Suche nach "Laptop" findet auch "Laptop Pro 15"
-- Nicht für exakte Filter oder Gruppierung geeignet
-
-### `keyword`
-
-- Wird als exakter Wert gespeichert
-- "versendet" findet nur genau "versendet"
-- Perfekt für Filter, Gruppierung und Aggregationen
-
-> **Faustregel:** Willst du nach einem Feld suchen? Dann `text`. Willst du danach filtern oder gruppieren? Dann `keyword`.
+![bg w:1000 center](images/text-vs-keyword.drawio.svg)
 
 ---
 

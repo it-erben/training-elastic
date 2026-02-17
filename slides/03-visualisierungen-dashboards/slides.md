@@ -6,9 +6,6 @@ header: "Modul 03: Visualisierungen & Dashboards"
 footer: "CC BY-NC-SA 4.0, Alexander Erben"
 ---
 
-<!-- _header: "" -->
-<!-- _paginate: false -->
-
 # Modul 03: Visualisierungen & Dashboards
 
 ---
