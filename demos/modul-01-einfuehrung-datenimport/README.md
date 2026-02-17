@@ -113,13 +113,13 @@ GET kibana_sample_data_ecommerce/_mapping
 
 Wichtige Felder zeigen und erklären:
 
-| Feld                   | Typ       | Bedeutung                  |
-|:-----------------------|:----------|:---------------------------|
-| `customer_first_name`  | `text`    | Volltextsuche möglich      |
-| `customer_first_name.keyword` | `keyword` | Exakte Suche, Aggregationen |
-| `order_date`           | `date`    | Zeitbasierte Abfragen      |
-| `taxful_total_price`   | `float`   | Numerische Aggregationen   |
-| `geoip.location`       | `geo_point` | Kartenvisualisierungen   |
+| Feld                          | Typ         | Bedeutung                   |
+|:------------------------------|:------------|:----------------------------|
+| `customer_first_name`         | `text`      | Volltextsuche möglich       |
+| `customer_first_name.keyword` | `keyword`   | Exakte Suche, Aggregationen |
+| `order_date`                  | `date`      | Zeitbasierte Abfragen       |
+| `taxful_total_price`          | `float`     | Numerische Aggregationen    |
+| `geoip.location`              | `geo_point` | Kartenvisualisierungen      |
 
 > **Zeigen:** Viele Textfelder haben ein Subfeld
 > `.keyword` -- das ist das sogenannte

@@ -62,6 +62,7 @@ table { font-size: 0.85em; }
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Data Views (ehemals Index Patterns)
 
 Ein **Data View** legt fest, welche Elasticsearch-Indizes du durchsuchst.
@@ -84,6 +85,7 @@ Ein **Data View** legt fest, welche Elasticsearch-Indizes du durchsuchst.
 <style scoped>
 section { font-size: 1.6em; }
 </style>
+
 # Zeitfilter und Zeitreihen
 
 Der Zeitfilter ist eines der wichtigsten Werkzeuge in Discover. Er befindet sich
@@ -108,6 +110,7 @@ oben rechts in der Oberfläche.
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Das Histogramm nutzen
 
 Das Histogramm oben in Discover zeigt die
@@ -148,6 +151,7 @@ product.category: "Smartphones"
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # KQL - Freitextsuche
 
 Ohne Feldnamen durchsuchst du alle Felder gleichzeitig:
@@ -261,6 +265,7 @@ order.status: "completed" AND
 code { font-size: 0.9em; }
 section { font-size: 1.7em; }
 </style>
+
 # KQL - Klammern und Priorität
 
 Verwende Klammern, um die Auswertungsreihenfolge festzulegen:
@@ -367,7 +372,6 @@ code { font-size: 0.9em; }
 section { font-size: 1.7em; }
 </style>
 
-
 Jeder aktive Filter bietet dir mehrere Aktionen per Klick:
 
 | Aktion                      | Beschreibung                                      |
@@ -417,7 +421,6 @@ table { font-size: 0.82em; }
 code { font-size: 0.9em; }
 section { font-size: 1.7em; }
 </style>
-
 
 | Kriterium           | Filter (grafisch) | KQL (Suchleiste)      |
 |---------------------|-------------------|-----------------------|

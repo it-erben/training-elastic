@@ -59,13 +59,13 @@ Vorschläge.
 Wechsle zwischen verschiedenen Typen und zeige
 die Unterschiede:
 
-| Diagrammtyp            | Einsatzzweck           |
-|:------------------------|:-----------------------|
-| Bar vertical stacked    | Kategorien vergleichen |
-| Pie                     | Anteile zeigen         |
-| Line                    | Trends über Zeit       |
-| Donut                   | Anteile (alternativ)   |
-| Treemap                 | Hierarchien            |
+| Diagrammtyp          | Einsatzzweck           |
+|:---------------------|:-----------------------|
+| Bar vertical stacked | Kategorien vergleichen |
+| Pie                  | Anteile zeigen         |
+| Line                 | Trends über Zeit       |
+| Donut                | Anteile (alternativ)   |
+| Treemap              | Hierarchien            |
 
 ### Schritt 5 -- Metrik hinzufügen
 
