@@ -17,6 +17,8 @@ Du hast **Modul 03** abgeschlossen. Das Dashboard
 `Überblick - Geschäftsführung` mit Controls und den Visualisierungen aus der
 Visualize Library sind vorhanden.
 
+![Visualize Library -- alle Visualisierungen](images/visualize-library.png)
+
 ---
 
 ## Teil 1: Controlling-Dashboard
@@ -46,6 +48,8 @@ Wert des vorherigen Berichtszeitraums an.
 
 7. Speichere als: `Umsatz vs. vorheriger Zeitraum`
 
+![Metrik mit Time Shift -- Umsatz vs. Vorwoche](images/metrik-timeshift.png)
+
 ### Schritt 1.3: Bestellanzahl mit Trendvergleich
 
 Wiederhole das gleiche Prinzip für die Bestellanzahl:
@@ -67,6 +71,8 @@ Erstelle ein vertikales Balkendiagramm, das den
 6. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
 7. Speichere als: `Umsatz nach Kategorie und Geschlecht`
 
+![Balkendiagramm -- Umsatz nach Kategorie und Geschlecht](images/balken-kategorie-geschlecht.png)
+
 ### Schritt 1.5: Ebenen
 
 Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
@@ -81,6 +87,8 @@ Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
 7. Wähle eine Pastellfarbe für dieses Bar Chart, damit es übersichtlich bleibt
 
 Speichere als: `Bestellsummen im Verlauf`
+
+![Liniendiagramm mit zwei Layern -- Brutto, Durchschnitt, Bestellungen](images/linien-layers.png)
 
 ### Schritt 1.6: Umsatzverteilung nach Land (Tabelle)
 
@@ -98,6 +106,8 @@ Erstelle eine Tabelle mit den **Top 15 Ländern nach Umsatz**:
 
 4. Sortiere nach Umsatz absteigend
 5. Speichere als: `Umsatz nach Land`
+
+![Tabelle -- Top 15 Länder nach Umsatz](images/tabelle-umsatz-land.png)
 
 ### Schritt 1.7: Dashboard zusammenstellen
 
@@ -128,6 +138,10 @@ Füge dem Controlling-Dashboard folgende Controls hinzu:
 1. Titel: `Controlling - Umsatzanalyse`
 2. Beschreibung: "Finanzielle Kennzahlen mit Trendvergleich und Länderanalyse"
 
+![Controlling-Dashboard -- obere Hälfte](images/controlling-dashboard.png)
+
+![Controlling-Dashboard -- untere Hälfte](images/controlling-dashboard-unten.png)
+
 ---
 
 ## Teil 2: Produktmanagement-Dashboard
@@ -148,6 +162,8 @@ Erstelle ein horizontales Balkendiagramm mit den
 2. Horizontale Achse: `manufacturer.keyword` (Top values, 10)
 3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Speichere als: `Top Hersteller`
+
+![Horizontales Balkendiagramm -- Top Hersteller nach Umsatz](images/balken-top-hersteller.png)
 
 ### Schritt 2.3: Hersteller-Performance über Zeit
 
@@ -174,6 +190,8 @@ Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro Bes
 4. Y-Achse: **Count** über `order_id`.
 5. Speichere als: `Warenkorbgröße`
 
+![Balkendiagramm -- Warenkorbgröße mit Custom Ranges](images/balken-warenkorbgroesse.png)
+
 ### Schritt 2.5: Preisanalyse -- Pie-Chart
 
 Erstelle ein Kuchen-Diagramm, das die Verteilung der Rabatte zeigt:
@@ -188,6 +206,8 @@ Erstelle ein Kuchen-Diagramm, das die Verteilung der Rabatte zeigt:
 3. Metrik: **Count**
 4. Speichere als: `Preisverteilung`
 
+![Kreisdiagramm -- Preisverteilung nach Bereichen](images/pie-preisverteilung.png)
+
 ### Schritt 2.6: Wochentag-Analyse (Heatmap)
 
 Erstelle eine Heatmap, die zeigt, an welchen
@@ -199,7 +219,10 @@ Erstelle eine Heatmap, die zeigt, an welchen
 4. Cell Value: **Count** (Farbskala)
 5. Speichere als: `Bestellungen Wochentag x Kategorie`
 
-**Erwartetes Ergebnis:** Eine farbige Matrix, die zeigt, welche Kategorien an  welchen Tagen besonders gefragt sind. Dunklere Farben = mehr Bestellungen.
+**Erwartetes Ergebnis:** Eine farbige Matrix, die zeigt, welche Kategorien an
+welchen Tagen besonders gefragt sind. Dunklere Farben = mehr Bestellungen.
+
+![Heatmap -- Bestellungen nach Wochentag und Kategorie](images/heatmap-wochentag.png)
 
 ### Schritt 2.7: Herstellerverteilung pro Kategorie
 
@@ -239,16 +262,20 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 1. Titel: `Produktmanagement - Sortimentsanalyse`
 2. Beschreibung: "Hersteller-Performance, Preise, Warenkörbe und Kundenstruktur"
 
+![Produktmanagement-Dashboard -- obere Hälfte](images/produktmanagement-dashboard.png)
+
+![Produktmanagement-Dashboard -- untere Hälfte](images/produktmanagement-dashboard-unten.png)
+
 ---
 
 ## Teil 3: Fortgeschrittene Lens-Techniken
 
 Erweitere die bestehenden Dashboards mit fortgeschrittenen Visualisierungen.
 
-### Aufgabe 3.1: Formel -- Steueranteil berechnen
+### Aufgabe 3.1: Formel -- Durchschnittlicher Artikelpreis
 
-Erstelle eine Metrik, die den **Steueranteil**
-am Gesamtumsatz berechnet:
+Erstelle eine Metrik, die den **durchschnittlichen Preis pro verkauftem
+Artikel** berechnet -- nicht pro Bestellung, sondern pro Einzelartikel:
 
 1. Neue Lens-Visualisierung, Typ **Metric**
 2. Statt ein Feld zu ziehen, klicke auf
@@ -256,13 +283,20 @@ am Gesamtumsatz berechnet:
 3. Gib folgende Formel ein:
 
 ```text
-1 - sum(taxless_total_price) / sum(taxful_total_price)
+sum(taxful_total_price) / sum(total_quantity)
 ```
 
-4. Formatiere die Ausgabe als **Percent**
+4. Formatiere die Ausgabe als **Number** mit 2 Dezimalstellen
    (unter Format in der Konfiguration)
-5. Speichere als: `Steueranteil`
+5. Speichere als: `Durchschn. Artikelpreis`
 6. Füge die Metrik zum Controlling-Dashboard hinzu
+
+![Formel -- Durchschnittlicher Artikelpreis](images/formel-artikelpreis.png)
+
+> **Hinweis:** Dieser Wert unterscheidet sich vom
+> durchschnittlichen Bestellwert (Aufgabe 3.2), weil
+> hier durch die Artikelanzahl geteilt wird, nicht
+> durch die Bestellanzahl.
 
 ### Aufgabe 3.2: Formel -- Umsatz pro Bestellung
 
@@ -278,6 +312,8 @@ sum(taxful_total_price) / count()
 
 3. Formatiere als **Number** mit 2 Dezimalstellen
 4. Speichere als: `Umsatz pro Bestellung (Formel)`
+
+![Formel -- Umsatz pro Bestellung](images/formel-umsatz-pro-bestellung.png)
 
 > **Frage:** Vergleiche das Ergebnis mit der
 > Average-Metrik aus Modul 03, Aufgabe 1.3. Sind
@@ -320,6 +356,8 @@ zeigt:
 6. Speichere als: `Umsatzvergleich Woche`
 7. Füge die Visualisierung zum Controlling-Dashboard hinzu
 
+![Liniendiagramm -- Umsatzvergleich aktuelle Woche vs. Vorwoche](images/linie-umsatzvergleich-woche.png)
+
 ### Aufgabe 3.5: Top-Kunden-Tabelle
 
 Erstelle eine detaillierte Tabelle der
@@ -339,6 +377,8 @@ Erstelle eine detaillierte Tabelle der
 3. Sortiere nach Gesamtumsatz absteigend
 4. Speichere als: `Top Kunden`
 5. Füge die Tabelle zum Controlling-Dashboard hinzu
+
+![Tabelle -- Top 15 Kunden nach Gesamtumsatz](images/tabelle-top-kunden.png)
 
 ---
 
