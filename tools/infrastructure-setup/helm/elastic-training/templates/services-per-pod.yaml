@@ -1,0 +1,18 @@
+{{- $fullName := include "elastic-training.fullname" . -}}
+{{- range $i := until (int .Values.replicaCount) }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}-{{ $i }}
+  labels:
+    {{- include "elastic-training.labels" $ | nindent 4 }}
+spec:
+  type: ClusterIP
+  selector:
+    statefulset.kubernetes.io/pod-name: {{ $fullName }}-{{ $i }}
+  ports:
+    - name: kibana
+      port: 5601
+      targetPort: 5601
+{{- end }}

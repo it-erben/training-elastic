@@ -1,0 +1,6 @@
+apiVersion: v2
+name: elastic-training
+description: Per-trainee Elasticsearch + Kibana stacks for training courses
+version: 0.1.0
+appVersion: "9.3.0"
+type: application

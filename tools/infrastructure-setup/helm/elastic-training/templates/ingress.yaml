@@ -1,0 +1,28 @@
+{{- $fullName := include "elastic-training.fullname" . -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "elastic-training.labels" . | nindent 4 }}
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{ .Values.domain }}
+      secretName: {{ $fullName }}-tls
+  rules:
+    - host: {{ .Values.domain }}
+      http:
+        paths:
+          {{- range $i := until (int .Values.replicaCount) }}
+          - path: /{{ $i }}
+            pathType: Prefix
+            backend:
+              service:
+                name: {{ $fullName }}-{{ $i }}
+                port:
+                  number: 5601
+          {{- end }}

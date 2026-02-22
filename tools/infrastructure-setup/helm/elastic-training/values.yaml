@@ -1,0 +1,16 @@
+replicaCount: 2
+domain: "elastic-training.erben.tech"
+letsencryptEmail: "alex@it-erben.com"
+
+elasticsearch:
+  image: docker.elastic.co/elasticsearch/elasticsearch
+  tag: "9.3.0"
+  heapSize: "512m"
+  storage: "10Gi"
+
+kibana:
+  image: docker.elastic.co/kibana/kibana
+  tag: "9.3.0"
+
+elasticPassword: "changeme"
+encryptionKey: ""

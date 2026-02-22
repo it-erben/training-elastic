@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "elastic-training.fullname" . }}-headless
+  labels:
+    {{- include "elastic-training.labels" . | nindent 4 }}
+spec:
+  clusterIP: None
+  selector:
+    {{- include "elastic-training.selectorLabels" . | nindent 4 }}
+  ports:
+    - name: http
+      port: 9200
+      targetPort: 9200
+    - name: kibana
+      port: 5601
+      targetPort: 5601
