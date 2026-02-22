@@ -1,4 +1,4 @@
-# Modul 01: Einführung & Datenimport
+# Modul 01: Einführung
 
 ## Übungsziel
 

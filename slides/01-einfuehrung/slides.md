@@ -2,13 +2,13 @@
 marp: true
 theme: default
 paginate: true
-header: "Modul 01: Einführung & Datenimport"
+header: "Modul 01: Einführung"
 footer: "CC BY-NC-SA 4.0, Alexander Erben"
 ---
 
-# Elastic Stack für Analysten
+# Elastic Stack
 
-## Modul 01: Einführung & Datenimport
+## Modul 01: Einführung
 
 ---
 

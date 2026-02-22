@@ -1,4 +1,4 @@
-# Live-Demos: Modul 01 -- Einführung & Datenimport
+# Live-Demos: Modul 01 - Einführung
 
 Elasticsearch und Kibana mit Docker Compose starten,
 die REST API erkunden und verstehen, wie Daten in
