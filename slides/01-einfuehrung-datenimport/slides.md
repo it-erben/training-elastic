@@ -199,7 +199,7 @@ Der Elastic Stack besteht aus vier Hauptkomponenten:
 
 ---
 
-# Elasticsearch -- Der Motor
+# Elasticsearch - Der Motor
 
 Elasticsearch ist das Herzstück des Stacks:
 

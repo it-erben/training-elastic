@@ -97,7 +97,7 @@ Felder werden per **Drag and Drop** aus der Feldliste auf die Achsen gezogen.
 
 ---
 
-# Lens-Editor -- Kibana
+# Lens-Editor - Kibana
 
 ![h:500 center](images/lens-editor.png)
 
@@ -418,7 +418,7 @@ zu vergleichen:
 
 ---
 
-# Kreisdiagramme -- Überblick
+# Kreisdiagramme - Überblick
 
 Kreisdiagramme zeigen **Anteile an einem Ganzen**.
 
@@ -611,6 +611,8 @@ Visualisierungen lassen sich frei anordnen:
   die gewünschte Position
 - **Größe ändern:** Ziehe an der unteren rechten Ecke des Panels
 - **Vollbild:** Klicke auf das Maximieren-Symbol in der Panel-Ecke
+
+---
 
 **Empfohlenes Layout:**
 
@@ -806,9 +808,3 @@ eCommerce-Beispieldaten erstellt:
 
 Dieses Dashboard dient als **Vorlage** für eigene Analysen in deinem
 Arbeitsalltag.
-
----
-
-# Fragen?
-
-Jetzt ist Zeit für deine Fragen zu Visualisierungen und Dashboards.

@@ -66,7 +66,7 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 
 ![Stack Management](images/stack-management.png)
 3. Klicke auf **Index Management**
-4. Du siehst die aktuell vorhandenen Indizes -- vermutlich noch keine
+4. Du siehst die aktuell vorhandenen Indizes - vermutlich noch keine
    E-Commerce-Daten
 
 ![Index Management](images/index-management.png)
