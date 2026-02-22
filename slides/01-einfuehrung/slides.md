@@ -113,7 +113,7 @@ Kernmerkmale:
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Was ist ein JSON-Dokument?
@@ -436,7 +436,7 @@ table { font-size: 0.8em; }
 # Schemafreiheit - Fluch und Segen
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Elasticsearch ist **schemafrei** (schema-free). Das bedeutet:
@@ -459,6 +459,7 @@ Elasticsearch ist **schemafrei** (schema-free). Das bedeutet:
 
 <style scoped>
 table { font-size: 0.82em; }
+section { font-size: 1.6em; }
 </style>
 
 Falsche Feldtypen führen zu Problemen bei der Analyse:
@@ -477,7 +478,7 @@ Falsche Feldtypen führen zu Problemen bei der Analyse:
 # Praxisbeispiel: Mapping der Bestelldaten
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 So sollte das Mapping für die Bestelldaten der Mustertech GmbH aussehen:
@@ -502,7 +503,7 @@ So sollte das Mapping für die Bestelldaten der Mustertech GmbH aussehen:
 ---
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.5em; }
 </style>
 
 # Dynamisches vs. explizites Mapping
