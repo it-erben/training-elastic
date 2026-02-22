@@ -165,6 +165,7 @@ Zwei Hauptarten:
 
 <style scoped>
 table { font-size: 0.85em; }
+section { font-size: 1.7em; }
 </style>
 
 | Aggregation      | Beschreibung             | Beispiel            |
@@ -184,7 +185,7 @@ Alle diese Aggregationen beziehen sich auf
 # Bucket-Aggregationen
 
 <style scoped>
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 Bucket-Aggregationen **gruppieren** Dokumente:
 
@@ -238,7 +239,7 @@ So legst du eine Aggregation in Lens fest:
 ---
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Balkendiagramme - Überblick
@@ -259,7 +260,7 @@ Balkendiagramme eignen sich besonders für den
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Praxis: Top-Produktkategorien
@@ -283,7 +284,7 @@ Wir erstellen ein Balkendiagramm für die
 # Balkendiagramm konfigurieren
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Nützliche Einstellungen im rechten Panel:
@@ -300,6 +301,9 @@ Nützliche Einstellungen im rechten Panel:
 > ohne Kontext die Visualisierung verstehen.
 
 ---
+<style scoped>
+section { font-size: 1.7em; }
+</style>
 
 # Gestapelte Balkendiagramme
 
@@ -318,6 +322,9 @@ Nützliche Einstellungen im rechten Panel:
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Liniendiagramme - Überblick
 
 Liniendiagramme sind ideal für **Zeitreihen**
@@ -334,6 +341,9 @@ und **Trendanalysen**.
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Praxis: Umsatz über Zeit
 
 Wir erstellen ein Liniendiagramm für den
@@ -418,6 +428,9 @@ zu vergleichen:
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Kreisdiagramme - Überblick
 
 Kreisdiagramme zeigen **Anteile an einem Ganzen**.
@@ -436,7 +449,7 @@ Kreisdiagramme zeigen **Anteile an einem Ganzen**.
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Praxis: Bestellungen nach Region
@@ -463,6 +476,9 @@ Wir erstellen ein Kreisdiagramm für die
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Datentabellen
 
 Datentabellen eignen sich für **detaillierte Auflistungen** und **exakte Werte**.
@@ -523,6 +539,10 @@ Heatmaps zeigen **Muster in zwei Dimensionen**
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
+
 # Was ist ein Dashboard?
 
 Ein Dashboard ist eine **Sammlung von Visualisierungen** auf einer Seite.
@@ -534,11 +554,13 @@ Ein Dashboard ist eine **Sammlung von Visualisierungen** auf einer Seite.
 - Interaktive Filterung durch Klick
 - Einfach teilbar mit Kollegen
 
-> Ein gutes Dashboard beantwortet die
-> wichtigsten Fragen, ohne dass man suchen muss.
+> Ein gutes Dashboard beantwortet die wichtigsten Fragen, ohne dass man suchen muss.
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Dashboard erstellen
 
 **Schritt für Schritt:**
@@ -554,7 +576,7 @@ Ein Dashboard ist eine **Sammlung von Visualisierungen** auf einer Seite.
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Metrik-Kacheln hinzufügen
@@ -579,10 +601,13 @@ Wiederhole das für:
 
 # Metrik-Kachel in Lens
 
-![h:500 center](images/metrik-gesamtumsatz.png)
+![h:400 center](images/metrik-gesamtumsatz.png)
 
 ---
 
+<style scoped>
+section { font-size: 1.8em; }
+</style>
 # Diagramme hinzufügen
 
 Füge die bereits erstellten Visualisierungen zum Dashboard hinzu:
@@ -696,7 +721,7 @@ So nutzt du Cross-Filtering:
 # Drilldowns konfigurieren
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Drilldowns ermöglichen es, bei Klick auf ein Element **zu einer anderen Ansicht
@@ -716,7 +741,7 @@ diese Kategorie.
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Zeitsteuerung im Dashboard
@@ -737,7 +762,7 @@ Alle Visualisierungen im Dashboard teilen sich den **gemeinsamen Zeitfilter** (o
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Dashboards teilen
@@ -791,20 +816,3 @@ section { font-size: 1.8em; }
   **Kreisdiagramme** zeigen Anteile
 - **Dashboards** bündeln Visualisierungen und bieten interaktive Filterung
 - **Cross-Filtering** und **Drilldowns** machen Dashboards lebendig
-
----
-
-# Dein E-Commerce Dashboard
-
-Am Ende dieses Moduls hast du ein vollständiges Dashboard auf Basis der
-eCommerce-Beispieldaten erstellt:
-
-- Drei **Metrik-Kacheln**:
-  Gesamtumsatz, Bestellanzahl, Durchschnittswert
-- **Liniendiagramm**: Umsatzverlauf über Zeit
-- **Balkendiagramm**: Top-Produktkategorien
-- **Kreisdiagramm**: Bestellverteilung nach Region
-- **Datentabelle**: Bestelldetails
-
-Dieses Dashboard dient als **Vorlage** für eigene Analysen in deinem
-Arbeitsalltag.

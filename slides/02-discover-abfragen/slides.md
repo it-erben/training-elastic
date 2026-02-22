@@ -66,7 +66,7 @@ table { font-size: 0.85em; }
 ---
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # Data Views (ehemals Index Patterns)
@@ -89,7 +89,7 @@ Ein **Data View** legt fest, welche Elasticsearch-Indizes du durchsuchst.
 
 ---
 <style scoped>
-section { font-size: 1.6em; }
+section { font-size: 1.4em; }
 </style>
 
 # Zeitfilter und Zeitreihen
@@ -136,14 +136,14 @@ Das Histogramm oben in Discover zeigt die
 - **Intervall anpassen:** Kibana wählt das Intervall automatisch, du kannst es
   aber manuell ändern (z. B. stündlich, täglich)
 
-> Auffällige Spitzen oder Lücken im Histogramm sind oft der Ausgangspunkt für tiefere Analysen.
+> Auffällige Spitzen oder Lücken im Histogramm sind oft der Ausgangspunkt für
+> tiefere Analysen.
 
 ---
 
 # Kibana Query Language (KQL)
 
-KQL ist die Abfragesprache in Kibana. Sie ist speziell für Analysten
-konzipiert.
+KQL ist die Abfragesprache in Kibana. Sie ist speziell für Analysten konzipiert.
 
 **Grundprinzip:**
 
@@ -161,7 +161,7 @@ product.category: "Smartphones"
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 # KQL - Freitextsuche
@@ -172,7 +172,8 @@ Ohne Feldnamen durchsuchst du alle Felder gleichzeitig:
 Samsung Galaxy
 ```
 
-Findet alle Dokumente, die "Samsung" **und** "Galaxy" in beliebigen Feldern enthalten.
+Findet alle Dokumente, die "Samsung" **und** "Galaxy" in beliebigen Feldern
+enthalten.
 
 **Anführungszeichen für exakte Phrasen:**
 
@@ -194,7 +195,7 @@ Findet nur Dokumente mit genau dieser Zeichenkette.
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Die präziseste Art zu suchen: Gib das Feld explizit an.
@@ -219,7 +220,7 @@ Die präziseste Art zu suchen: Gib das Feld explizit an.
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Für numerische Felder und Datumswerte stehen Vergleichsoperatoren zur Verfügung:
@@ -245,7 +246,7 @@ order.total > 1000
 
 <style scoped>
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 
 Kombiniere Bedingungen mit `AND`, `OR`
@@ -275,7 +276,7 @@ order.status: "completed" AND
 
 <style scoped>
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 
 # KQL - Klammern und Priorität
@@ -298,7 +299,8 @@ product.category: "Laptops" OR
   order.total > 500
 ```
 
-> Nutze immer Klammern, wenn du `AND` und `OR` in einer Abfrage kombinierst. So vermeidest du unerwartete Ergebnisse.
+> Nutze immer Klammern, wenn du `AND` und `OR` in einer Abfrage kombinierst. So
+> vermeidest du unerwartete Ergebnisse.
 
 ---
 
@@ -307,7 +309,7 @@ product.category: "Laptops" OR
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 
 Das Sternchen `*` steht für beliebig viele Zeichen:
@@ -380,7 +382,8 @@ Neben KQL-Abfragen bietet Kibana eine
    Feldwert
 3. **Manuell:** Klicke auf "Add filter" in der Filter-Leiste
 
-> Filter und KQL-Abfragen ergänzen sich. Nutze Filter für häufig wechselnde Bedingungen und KQL für komplexere Abfragen.
+> Filter und KQL-Abfragen ergänzen sich. Nutze Filter für häufig wechselnde
+> Bedingungen und KQL für komplexere Abfragen.
 
 ---
 
@@ -411,8 +414,7 @@ Jeder aktive Filter bietet dir mehrere Aktionen per Klick:
 **Praxisbeispiel:**
 
 Du filterst auf `product.category: "Laptops"`. Durch Invertieren siehst du alle
-Bestellungen
-**ohne** Laptops.
+Bestellungen **ohne** Laptops.
 
 ---
 <style scoped>
@@ -423,12 +425,12 @@ section { font-size: 1.7em; }
 
 # Filter kombinieren
 
-Mehrere Filter werden standardmäßig mit
-**AND** verknüpft.
+Mehrere Filter werden standardmäßig mit **AND** verknüpft.
 
 **Beispiel-Szenario bei Mustertech GmbH:**
 
-Du möchtest alle Laptop-Bestellungen aus Bayern mit einem Wert über 1000 Euro finden:
+Du möchtest alle Laptop-Bestellungen aus Bayern mit einem Wert über 1000 Euro
+finden:
 
 1. Filter: `product.category: "Laptops"`
 2. Filter: `customer.region: "Bayern"`
@@ -436,32 +438,11 @@ Du möchtest alle Laptop-Bestellungen aus Bayern mit einem Wert über 1000 Euro 
 
 Alle drei Bedingungen müssen gleichzeitig erfüllt sein.
 
-> **Tipp:** Gepinnte Filter bleiben aktiv, auch wenn du zwischen verschiedenen Discover-Tabs oder Dashboards wechselst.
+> **Tipp:** Gepinnte Filter bleiben aktiv, auch wenn du zwischen verschiedenen
+> Discover-Tabs oder Dashboards wechselst.
 
 ---
 
-# Filter vs. KQL - Wann was nutzen?
-
-<style scoped>
-table { font-size: 0.82em; }
-code { font-size: 0.9em; }
-section { font-size: 1.7em; }
-</style>
-
-| Kriterium           | Filter (grafisch) | KQL (Suchleiste)      |
-|---------------------|-------------------|-----------------------|
-| Einfache Feld=Wert  | Sehr gut geeignet | Gut geeignet          |
-| Schnelles Ein/Aus   | Ja, per Klick     | Nein, manuell löschen |
-| Invertieren         | Per Klick         | Mit `NOT`             |
-| Komplexe Logik      | Eingeschränkt     | Volle Kontrolle       |
-| OR-Verknüpfung      | Umständlich       | Einfach mit `OR`      |
-| Wildcards           | Nicht möglich     | Ja                    |
-| Vergleiche (>, <)   | Eingeschränkt     | Ja                    |
-| Teilbar/Speicherbar | Ja                | Ja                    |
-
-> In der Praxis kombinierst du meist beide Ansätze.
-
----
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
@@ -511,14 +492,15 @@ section { font-size: 1.7em; }
 
 **Sortierung ändern:**
 
-- Klicke auf eine Spaltenüberschrift, um aufsteigend oder absteigend zu sortieren
+- Klicke auf eine Spaltenüberschrift, um aufsteigend oder absteigend zu
+  sortieren
 - Mehrfachsortierung: Halte die Umschalttaste gedrückt
 
 ---
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 
 # Dokumente im Detail untersuchen
@@ -547,6 +529,12 @@ Klicke auf einen Pfeil links neben einem Dokument, um es aufzuklappen.
 ![h:450 center](images/dokument-detail.png)
 
 ---
+
+<style scoped>
+table { font-size: 0.82em; }
+code { font-size: 0.9em; }
+section { font-size: 1.6em; }
+</style>
 
 # Verfügbare Felder - Die Seitenleiste
 
@@ -617,9 +605,15 @@ Speichere häufig genutzte Abfragen, um sie schnell wiederzuverwenden:
 - "Retouren letzte 30 Tage"
 - "Bestellungen ohne Versandbestätigung"
 
-> Gespeicherte Suchen können auch in Dashboards eingebettet werden - dazu mehr in Modul 03.
+> Gespeicherte Suchen können auch in Dashboards eingebettet werden - dazu mehr
+> in Modul 03.
 
 ---
+<style scoped>
+table { font-size: 0.82em; }
+code { font-size: 0.9em; }
+section { font-size: 1.7em; }
+</style>
 
 # Zusammenfassung
 
@@ -634,16 +628,3 @@ Speichere häufig genutzte Abfragen, um sie schnell wiederzuverwenden:
 - **Spalten** konfigurierst du individuell für jede Analyse
 - **Gespeicherte Suchen** und **CSV-Export**
   machen deine Ergebnisse nachhaltig nutzbar
-
----
-
-# Nächste Schritte
-
-Im **Modul 03: Visualisierungen & Dashboards** lernst du:
-
-- Diagramme und Visualisierungen aus deinen Daten erstellen
-- Verschiedene Visualisierungstypen gezielt einsetzen (Balken, Linien, Torte,
-  Tabellen)
-- Interaktive Dashboards zusammenstellen
-- Gespeicherte Suchen in Dashboards einbetten
-- Dashboards teilen und exportieren

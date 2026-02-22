@@ -76,7 +76,7 @@ Ein invertierter Index dreht die Logik um:
 Statt "Welche Wörter enthält Dokument X?"
 fragt er "In welchen Dokumenten kommt Wort Y vor?"
 
-**Beispiel -- Bestelldaten der Mustertech GmbH:**
+**Beispiel - Bestelldaten der Mustertech GmbH:**
 
 | Dokument     | Inhalt                      |
 |--------------|-----------------------------|
@@ -141,7 +141,7 @@ Elasticsearch ist ein JSON-Dokument:
 # Dokumente, Indizes und Felder
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.6em; }
 </style>
 
 Die wichtigsten Begriffe im Überblick:
