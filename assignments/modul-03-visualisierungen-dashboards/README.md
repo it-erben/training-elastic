@@ -53,7 +53,7 @@ Die folgenden Felder wirst du in den Übungen verwenden:
 Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 **Visualize Library**.
 
-![Visualize Library -- Übersicht](images/visualize-library.png)
+![Visualize Library - Übersicht](images/visualize-library.png)
 
 ### Aufgabe 1.1: Metrik - Gesamtumsatz
 
@@ -67,7 +67,7 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 6. Ändere die Funktion von "Median" auf **Sum**
 7. Speichere als: `Gesamtumsatz` mit "Add To Dashboard -> None".
 
-![Metrik -- Gesamtumsatz in Lens](images/metrik-gesamtumsatz.png)
+![Metrik - Gesamtumsatz in Lens](images/metrik-gesamtumsatz.png)
 
 ### Aufgabe 1.2: Metrik - Anzahl Bestellungen
 
@@ -105,7 +105,7 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 3. Metrik: **Count**
 4. Speichere als: `Bestellungen nach Region`, mit "Add To Dashboard -> None".
 
-![Kreisdiagramm -- Bestellungen nach Region](images/kreisdiagramm.png)
+![Kreisdiagramm - Bestellungen nach Region](images/kreisdiagramm.png)
 
 ---
 
@@ -119,20 +119,20 @@ geeignet für ein Geschäftsführungs-Meeting.
 1. Navigiere zu **Analytics > Dashboard**
 2. Klicke auf **Create dashboard**
 
-![Dashboard -- Edit-Modus mit Toolbar](images/dashboard-editmode.png)
+![Dashboard - Edit-Modus mit Toolbar](images/dashboard-editmode.png)
 
 ### Schritt 2.2: KPI-Zeile aufbauen
 
 Füge über **Add from library** die drei Metriken hinzu:
 
-![Add from library -- Gespeicherte Visualisierungen](images/add-from-library.png)
+![Add from library - Gespeicherte Visualisierungen](images/add-from-library.png)
 
 - `Gesamtumsatz`
 - `Anzahl Bestellungen`
 - `Durchschn. Bestellwert`
 
 Ordne sie in einer **horizontalen Reihe** oben im Dashboard an. Mache die Panels
-klein -- sie sollen nur die Kennzahl anzeigen.
+klein - sie sollen nur die Kennzahl anzeigen.
 
 ### Schritt 2.3: Diagramme hinzufügen
 
@@ -178,7 +178,7 @@ controlling@mustertech.de
 2. Titel: `Überblick - Geschäftsführung`
 3. Beschreibung: "KPIs und Trends für das Management-Meeting"
 
-![Dashboard -- Fertiges Überblick-Dashboard](images/dashboard-fertig.png)
+![Dashboard - Fertiges Überblick-Dashboard](images/dashboard-fertig.png)
 
 ---
 
@@ -191,7 +191,7 @@ filtern können.
 
 1. Klicke auf **Controls** in der Toolbar
 
-![Controls -- Menü](images/controls-button.png)
+![Controls - Menü](images/controls-button.png)
 
 2. Klicke auf **Add control** im Controls-Panel
 3. Konfiguriere:
@@ -270,10 +270,8 @@ Weiter geht es in **Modul 03b** mit fortgeschrittenen Dashboards
 
 **Lösung:**
 
-1. Prüfe den **Zeitfilter** -- ist
-   "Last 7 days" eingestellt?
-2. Prüfe den **Data View**
-   (kibana_sample_data_ecommerce)
+1. Prüfe den **Zeitfilter** - ist "Last 7 days" eingestellt?
+2. Prüfe den **Data View** (kibana_sample_data_ecommerce)
 3. Prüfe die **Filterleiste** auf aktive Filter
 4. Wechsle zu **Discover** und prüfe, ob dort Daten vorhanden sind
 

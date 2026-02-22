@@ -58,7 +58,7 @@ Daten passen sich an das aktuelle Datum an.
 1. Klicke auf den **Zeitfilter** oben rechts
    (z.B. "Last 15 minutes")
 2. Wähle **Last 7 days**
-3. Klicke auf **Apply**
+3. Klicke auf **Update**
 
 **Erwartetes Ergebnis:** Das Histogramm zeigt die Verteilung der Bestellungen
 der letzten 7 Tage.
@@ -69,23 +69,22 @@ der letzten 7 Tage.
 2. Wechsle zum Tab **Absolute**
 3. Wähle als Start: vor 30 Tagen
 4. Wähle als Ende: heute
-5. Klicke auf **Apply**
+5. Klicke auf **Update**
 
 Beobachte, wie sich das Histogramm und die Trefferzahl ändern.
 
 ### Schritt 2.3: Quick Select nutzen
 
-1. Klicke auf den Zeitfilter
+1. Klicke auf den Kalender links neben dem Zeitfilter
 2. Nutze die **Quick select**-Optionen:
     - Setze den Zeitraum auf **Last 24 hours**
     - Wechsle zu **Last 30 days**
 3. Beobachte jeweils die Änderung im Histogramm
 
-![Zeitfilter -- Quick Select](images/zeitfilter.png)
+![Zeitfilter - Quick Select](images/zeitfilter.png)
 
-> **Tipp:** Der Zeitfilter ist der wichtigste Filter in
-> Kibana. Wenn du keine Daten siehst, prüfe immer zuerst
-> den Zeitraum!
+> **Tipp:** Der Zeitfilter ist der wichtigste Filter in Kibana. 
+> Wenn du keine Daten siehst, prüfe immer zuerst den Zeitraum!
 
 ### Schritt 2.4: Zeitraum auf 7 Tage zurücksetzen
 
@@ -143,9 +142,9 @@ category: "Women's Clothing"
 > Bei Werten mit Leerzeichen oder Sonderzeichen sind sie
 > erforderlich.
 
-**Aufgabe:** Wie viele Treffer gibt es? Erweitere auf ein Dokument und prüfe, ob
-das Feld `category` tatsächlich
-"Women's Clothing" enthält.
+**Aufgabe:** Wie viele Treffer gibt es? Gehe in die Detailansicht eines 
+Dokuments und prüfe, ob das Feld `category` tatsächlich "Women's Clothing" 
+enthält.
 
 ### Aufgabe 3.3: Kombinierte Suche
 
@@ -188,7 +187,7 @@ sind visuell sichtbar und lassen sich leicht kombinieren.
 
 1. Lösche zunächst die KQL-Abfrage aus der Suchleiste
 2. Klicke in der linken Feldliste auf das Feld `category`
-3. Klicke bei einem der angezeigten Werte auf das
+3. Klicke **bei einem der angezeigten Werte** auf das
    **Plus-Symbol** (+), um einen Filter hinzuzufügen
 
 **Erwartetes Ergebnis:** Ein Filter-Pill erscheint in der Filter-Leiste unter
@@ -198,11 +197,11 @@ der Suchleiste.
 
 1. Klicke auf den Filter-Pill in der Filter-Leiste
 2. Erkunde die Optionen:
-    - **Pin** -- Filter beim Wechsel zwischen Kibana-Bereichen beibehalten
-    - **Edit** Filter bearbeiten
-    - **Exclude** -- Alle Ergebnisse AUSSER diesem Wert anzeigen (Negation)
-    - **Disable** -- Filter vorübergehend deaktivieren
-    - **Delete** -- Filter entfernen
+    - **Pin** - Filter beim Wechsel zwischen Kibana-Bereichen beibehalten
+    - **Edit** - Filter bearbeiten
+    - **Exclude** - Alle Ergebnisse AUSSER diesem Wert anzeigen (Negation)
+    - **Disable** - Filter vorübergehend deaktivieren
+    - **Delete** - Filter entfernen
 
 ### Schritt 4.3: Mehrere Filter kombinieren
 
@@ -215,7 +214,7 @@ der Suchleiste.
     - Wert: `Europe`
     - Klicke auf **Save**
 
-![Filter -- Dialog](images/filter-leiste.png)
+![Filter - Dialog](images/filter-leiste.png)
 
 **Erwartetes Ergebnis:** Nur europäische Bestellungen aus der Kategorie "Women's
 Clothing" werden angezeigt.
@@ -231,7 +230,7 @@ angezeigt (der Filter-Pill wird rot dargestellt).
 ### Schritt 4.5: Alle Filter entfernen
 
 Klicke auf **Actions** (neben den Filter-Pills) und wähle
-**Remove all** -- oder entferne die Filter einzeln.
+**Remove all** - oder entferne die Filter einzeln.
 
 ---
 
@@ -284,7 +283,7 @@ Betrag und den Kundennamen.
 3. Wähle **CSV Reports** oder **Download CSV**
 4. Klicke auf **Generate CSV** / **Download**
 
-![CSV Export -- Share-Dialog](images/csv-export.png)
+![CSV Export - Share-Dialog](images/csv-export.png)
 
 Die CSV-Datei wird generiert und kann heruntergeladen werden.
 
@@ -313,5 +312,5 @@ Du hast erfolgreich:
 - [x] Spalten konfiguriert und Ergebnisse sortiert
 - [x] Daten als CSV exportiert
 
-**Nächstes Modul:** Visualisierungen & Dashboards -- Wir erstellen ein
+**Nächstes Modul:** Visualisierungen & Dashboards - Wir erstellen ein
 interaktives E-Commerce-Dashboard!

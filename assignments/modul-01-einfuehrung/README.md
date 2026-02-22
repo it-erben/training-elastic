@@ -15,14 +15,7 @@ Am Ende dieser Übung hast du:
 
 ## Kibana öffnen
 
-Öffne die vom Trainer mitgeteilte URL in deinem Browser, z.B.:
-
-```
-http://<trainer-url>:5601
-```
-
-> **Hinweis:** Die genaue URL erhältst du zu Beginn der
-> Schulung vom Trainer.
+Öffne die vom Trainer mitgeteilte URL in deinem Browser.
 
 ---
 
@@ -58,16 +51,16 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 
 ### Schritt 1.3: Stack Management öffnen
 
-1. Navigiere über das Hauptmenü zu
+- Navigiere über das Hauptmenü zu
    **Management > Stack Management**
-2. Schaue dir die linke Navigation an -- hier findest du unter anderem:
-    - **Data Views** (ehemals Index Patterns)
-    - **Index Management**
+- Schaue dir die linke Navigation an. Hier findest du unter anderem:
+  - **Data Views** (ehemals Index Patterns)
+  - **Index Management**
 
 ![Stack Management](images/stack-management.png)
-3. Klicke auf **Index Management**
-4. Du siehst die aktuell vorhandenen Indizes - vermutlich noch keine
-   E-Commerce-Daten
+
+* Klicke auf **Index Management**
+* Du siehst die aktuell vorhandenen Indizes
 
 ![Index Management](images/index-management.png)
 
@@ -81,7 +74,7 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 ### Was ist ein Data View?
 
 Ein Data View (früher "Index Pattern") ist die
-**Verbindung zwischen Kibana und deinen Elasticsearch- Daten**. Ohne Data View
+**Verbindung zwischen Kibana und deinen Elasticsearch-Daten**. Ohne Data View
 kannst du Daten in Kibana weder durchsuchen noch visualisieren.
 
 Stell dir einen Data View wie eine **Brille** vor:
@@ -109,7 +102,7 @@ Ein Data View definiert:
 2. Klicke in der linken Navigation auf **Data Views**
 3. Du siehst eine Liste aller vorhandenen Data Views
 
-![Data Views -- Liste](images/data-views-liste.png)
+![Data Views - Liste](images/data-views-liste.png)
 
 **Beobachte:** Jeder Data View zeigt:
 
@@ -122,7 +115,7 @@ Ein Data View definiert:
 1. Klicke auf **kibana_sample_data_ecommerce**
 2. Du siehst die **Feld-Übersicht** des Data Views
 
-![Data View -- Feldliste](images/data-view-felder.png)
+![Data View - Feldliste](images/data-view-felder.png)
 
 Auf dieser Seite kannst du ablesen:
 
@@ -172,17 +165,17 @@ einzige Abfrage schreiben musst.
 ### Schritt 3.1: Feldtypen identifizieren
 
 Öffne den Data View `kibana_sample_data_ecommerce`
-(falls nicht noch geöffnet) und scrolle durch die Feldliste. Achte auf die *
-*Typ-Symbole** links neben den Feldnamen:
+(falls nicht noch geöffnet) und scrolle durch die Feldliste. Achte auf die 
+**Typ-Symbole** links neben den Feldnamen:
 
-| Symbol   | Feldtyp       | Beschreibung                                                | Beispielfeld         |
-|:---------|:--------------|:------------------------------------------------------------|:---------------------|
-| `t`      | **Keyword**   | Exakter Text, nicht zerlegt -- für Filter und Gruppierungen | `category`           |
-| `t`      | **Text**      | Volltext, zerlegt in Wörter -- für Freitextsuche            | `customer_full_name` |
-| `#`      | **Number**    | Zahlenwert (integer, float ...) -- für Berechnungen         | `taxful_total_price` |
-| Kalender | **Date**      | Datum / Zeitstempel -- für Zeitfilter                       | `order_date`         |
-| Pin      | **Geo Point** | Geokoordinate (Längen-/Breitengrad)                         | `geoip.location`     |
-| `{}`     | **Object**    | Verschachteltes Objekt mit Unterfeldern                     | `products`           |
+| Symbol   | Feldtyp       | Beschreibung                                               | Beispielfeld         |
+|:---------|:--------------|:-----------------------------------------------------------|:---------------------|
+| `t`      | **Keyword**   | Exakter Text, nicht zerlegt - für Filter und Gruppierungen | `category`           |
+| `t`      | **Text**      | Volltext, zerlegt in Wörter - für Freitextsuche            | `customer_full_name` |
+| `#`      | **Number**    | Zahlenwert (integer, float ...) - für Berechnungen         | `taxful_total_price` |
+| Kalender | **Date**      | Datum / Zeitstempel - für Zeitfilter                       | `order_date`         |
+| Pin      | **Geo Point** | Geokoordinate (Längen-/Breitengrad)                        | `geoip.location`     |
+| `{}`     | **Object**    | Verschachteltes Objekt mit Unterfeldern                    | `products`           |
 
 > **Tipp:** Nutze das **Suchfeld** oben in der Feldliste, um schnell ein
 > bestimmtes Feld zu finden.
@@ -193,12 +186,12 @@ Suche in der Feldliste nach dem Feld
 `customer_full_name`. Du wirst feststellen, dass es
 **zwei Einträge** gibt:
 
-- `customer_full_name` -- Typ **Text**
-- `customer_full_name.keyword` -- Typ **Keyword**
+- `customer_full_name` - Typ **Text**
+- `customer_full_name.keyword` - Typ **Keyword**
 
 Das ist ein sogenanntes **Multi-Field-Mapping**:
 
-![Data View -- keyword vs. text](images/keyword-vs-text.png)
+![Data View - keyword vs. text](images/keyword-vs-text.png)
 
 | Variante                     | Typ     | Einsatz                                                          |
 |:-----------------------------|:--------|:-----------------------------------------------------------------|
@@ -206,7 +199,7 @@ Das ist ein sogenanntes **Multi-Field-Mapping**:
 | `customer_full_name.keyword` | Keyword | Exakte Filterung und Gruppierung ("Gruppiere nach vollem Namen") |
 
 **Frage:** Wenn du in einem Dashboard eine Tabelle mit Kundennamen erstellen
-möchtest -- welche Variante verwendest du? Und wenn du nach einem Namensteil
+möchtest - welche Variante verwendest du? Und wenn du nach einem Namensteil
 suchen möchtest?
 
 > **Antwort:** Für die Tabelle brauchst du die
@@ -227,7 +220,7 @@ Suche in der Feldliste nach `products`. Du siehst zahlreiche Felder, die mit
 - `products.manufacturer`
 
 Diese Felder beschreiben die **einzelnen Artikel innerhalb einer Bestellung**.
-Eine Bestellung kann mehrere Produkte enthalten -- daher sind die Produktfelder
+Eine Bestellung kann mehrere Produkte enthalten - daher sind die Produktfelder
 als verschachteltes Objekt modelliert.
 
 > **Praxisrelevanz:** In Modul 03 (Dashboards)
@@ -241,8 +234,8 @@ Scrolle durch die gesamte Feldliste oder nutze die Filteroptionen oben, um dir
 einen Überblick zu verschaffen:
 
 1. **Wie viele Felder** hat der Data View insgesamt?
-2. Filtere nach Typ **Number** -- wie viele numerische Felder gibt es?
-3. Filtere nach Typ **Keyword** -- wie viele Keyword-Felder gibt es?
+2. Filtere nach Typ **Number** - wie viele numerische Felder gibt es?
+3. Filtere nach Typ **Keyword** - wie viele Keyword-Felder gibt es?
 
 > Der eCommerce-Datensatz hat deutlich mehr Felder,
 > als du zunächst erwartest. Viele davon werden
@@ -262,5 +255,5 @@ Du hast erfolgreich:
 - [x] Den Unterschied zwischen Keyword- und Text-Feldern sowie
   Multi-Field-Mappings verstanden
 
-**Nächstes Modul:** Discover & Abfragen -- Wir suchen und filtern die
+**Nächstes Modul:** Discover & Abfragen - Wir suchen und filtern die
 E-Commerce-Daten!
