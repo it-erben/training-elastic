@@ -193,7 +193,7 @@ filtern können.
 
 ![Controls - Menü](images/controls-button.png)
 
-2. Klicke auf **Add control** im Controls-Panel
+2. Klicke auf das grüne **+** oben in der Leiste -> **Controls** -> **Control**
 3. Konfiguriere:
     - Feld: `category.keyword`
     - Typ: **Options list**
@@ -205,7 +205,7 @@ sollten sich filtern.
 
 ### Aufgabe 3.2: Hersteller-Filter hinzufügen
 
-1. Klicke auf **Add control** (im Controls-Panel)
+1. Füge ein weiteres Control hinzu
 2. Konfiguriere:
     - Feld: `manufacturer.keyword`
     - Typ: **Options list**
@@ -216,18 +216,18 @@ die Kombination die Daten eingrenzt.
 
 ### Aufgabe 3.3: Preisbereich-Filter hinzufügen
 
-1. Klicke auf **Add control**
+1. Füge ein weiteres Control hinzu
 2. Konfiguriere:
     - Feld: `taxful_total_price`
     - Typ: **Range slider**
     - Bezeichnung: `Bestellwert`
 
-**Test:** Stelle den Bereich auf 100-500 EUR ein und beobachte die Veränderungen
+**Test:** Stelle den Bereich auf 100-500 ein und beobachte die Veränderungen
 im Dashboard.
 
 ### Aufgabe 3.4: Cross-Filtering testen
 
-1. Setze alle Controls zurück (Clear)
+1. Setze alle Controls zurück
 2. Klicke im Balkendiagramm auf den Balken "Women's Clothing"
 3. Wähle **Filter for value** (Plus-Symbol)
 
