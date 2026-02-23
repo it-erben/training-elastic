@@ -23,7 +23,7 @@ Visualize Library sind vorhanden.
 
 ## Teil 1: Controlling-Dashboard
 
-Erstelle ein zweites Dashboard speziell für das Controlling -- mit Fokus auf
+Erstelle ein zweites Dashboard speziell für das Controlling - mit Fokus auf
 finanzielle Kennzahlen, Trends und Vergleiche.
 
 ### Schritt 1.1: Neues Dashboard erstellen
@@ -36,7 +36,7 @@ finanzielle Kennzahlen, Trends und Vergleiche.
 Erstelle eine Metrik, die den **Umsatz dieser Woche mit der Vorwoche**
 vergleicht:
 
-1. Klicke auf **Create visualization** und wähle **Lens** mit Typ **Metric**
+1. Klicke auf **Add** -> **Visualization** und wähle den Typ **Metric**
 2. Ziehe `taxful_total_price` in **Primary metric**.
 3. Ändere die Funktion auf **Sum**
 4. Ziehe `taxful_total_price` auch in **Secondary metric** und wähle **Sum**
@@ -63,13 +63,12 @@ Wiederhole das gleiche Prinzip für die Bestellanzahl:
 Erstelle ein vertikales Balkendiagramm, das den
 **Umsatz pro Kategorie** zeigt (nicht die Anzahl):
 
-1. Neue Lens-Visualisierung, Typ **Bar vertical**
+1. Neue Visualisierung, Typ **Bar**
 2. X-Achse: `category.keyword` (Top values, 8)
 3. Y-Achse: `taxful_total_price` mit **Sum**
-4. Sortierung: nach Metrik absteigend
-5. Füge einen Breakdown hinzu über `customer_gender`
-6. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
-7. Speichere als: `Umsatz nach Kategorie und Geschlecht`
+4. Füge einen Breakdown hinzu über `customer_gender`
+5. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
+6. Speichere als: `Umsatz nach Kategorie und Geschlecht`
 
 ![Balkendiagramm -- Umsatz nach Kategorie und Geschlecht](images/balken-kategorie-geschlecht.png)
 
@@ -77,14 +76,17 @@ Erstelle ein vertikales Balkendiagramm, das den
 
 Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
 
-1. Neue Lens-Visualisierung, Typ **Line**
-2. X-Achse: `order_date` (Date histogram)
+1. Neue Visualisierung, Typ **Line**
+2. X-Achse: `order_date`
 3. Y-Achse: `taxful_total_price` mit **Sum** - benenne sie "Brutto"
-4. Weitere X-Achse: `taxful_total_price` mit **Moving Average** und
-   **Window Size** 10. Benenne sie "Gleitender Durchschnitt"
-5. Füge einen weiteren **Layer** hinzu (Knopf unten)
-6. Baue ein **Bar Chart**, welche die Summe der Bestellungen anzeigt.
-7. Wähle eine Pastellfarbe für dieses Bar Chart, damit es übersichtlich bleibt
+4. Weitere Y-Achse: `taxful_total_price` mit **Moving Average** und
+   **Choose a sub-function** "Sum" sowie **Window Size** 10. 
+   Benenne sie "Gleitender Durchschnitt"
+5. Füge einen weiteren **Layer** hinzu (Knopf mit **+** oben)
+6. Wähle **Visualisation** -> **Bar**. X-Achse: `order_date`, Y-Achse: `order_id` 
+   **Unique Count** und unter Appeance **Axis Side** -> Right
+7. Wähle unter **Series Color** eine helle Pastellfarbe für dieses Bar Chart, 
+   damit es übersichtlich bleibt
 
 Speichere als: `Bestellsummen im Verlauf`
 
@@ -94,7 +96,7 @@ Speichere als: `Bestellsummen im Verlauf`
 
 Erstelle eine Tabelle mit den **Top 15 Ländern nach Umsatz**:
 
-1. Neue Lens-Visualisierung, Typ **Table**
+1. Neue Visualisierung, Typ **Table**
 2. **Rows**: `geoip.country_iso_code`, Top values (15)
 3. **Metrics** (Spalten):
 
@@ -146,7 +148,7 @@ Füge dem Controlling-Dashboard folgende Controls hinzu:
 
 ## Teil 2: Produktmanagement-Dashboard
 
-Erstelle ein drittes Dashboard für das Produktmanagement -- mit Fokus auf
+Erstelle ein drittes Dashboard für das Produktmanagement - mit Fokus auf
 Hersteller, Rabatte und Warenkorbanalyse.
 
 ### Schritt 2.1: Neues Dashboard erstellen
@@ -158,7 +160,7 @@ Hersteller, Rabatte und Warenkorbanalyse.
 Erstelle ein horizontales Balkendiagramm mit den
 **umsatzstärksten Herstellern**:
 
-1. Neue Lens-Visualisierung, Typ **Bar horizontal**
+1. Neue Visualisierung, Typ **Bar**
 2. Horizontale Achse: `manufacturer.keyword` (Top values, 10)
 3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Speichere als: `Top Hersteller`
@@ -169,7 +171,7 @@ Erstelle ein horizontales Balkendiagramm mit den
 
 Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zeit** vergleicht:
 
-1. Neue Lens-Visualisierung, Typ **Line**
+1. Neue Visualisierung, Typ **Line**
 2. X-Achse: `order_date` (Date histogram)
 3. Y-Achse: `taxful_total_price` mit **Sum**
 4. Ziehe `manufacturer` auf **Break down by**
@@ -180,7 +182,7 @@ Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zei
 
 Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro Bestellung bestellt werden:
 
-1. Neue Lens-Visualisierung, Typ **Bar vertical**
+1. Neue Visualisierung, Typ **Bar vertical**
 2. X-Achse: `total_quantity` mit Funktion **Intervals**
 3. Konfiguriere folgende Bereiche (**custom ranges**):
     - 1-1 (Einzelartikel)
@@ -192,11 +194,11 @@ Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro Bes
 
 ![Balkendiagramm -- Warenkorbgröße mit Custom Ranges](images/balken-warenkorbgroesse.png)
 
-### Schritt 2.5: Preisanalyse -- Pie-Chart
+### Schritt 2.5: Preisanalyse - Pie-Chart
 
 Erstelle ein Kuchen-Diagramm, das die Verteilung der Rabatte zeigt:
 
-1. Neue Lens-Visualisierung, Typ **Pie**
+1. Neue Visualisierung, Typ **Pie**
 2. Slice by: `products.base_unit_price`
    mit **Custom Ranges**:
     - $0-$10
@@ -229,7 +231,7 @@ welchen Tagen besonders gefragt sind. Dunklere Farben = mehr Bestellungen.
 Erstelle ein gestapeltes Balkendiagramm, das die
 **Bestellungen nach Kategorie, aufgeteilt nach Geschlecht** zeigt:
 
-1. Neue Lens-Visualisierung, Typ **Bar vertical stacked**
+1. Neue Visualisierung, Typ **Bar vertical stacked**
 2. X-Achse: `category` (Top values, 8)
 3. Y-Achse: **Count**
 4. Ziehe `manufacturer.keyword` auf **Break down by**
@@ -272,12 +274,12 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 
 Erweitere die bestehenden Dashboards mit fortgeschrittenen Visualisierungen.
 
-### Aufgabe 3.1: Formel -- Durchschnittlicher Artikelpreis
+### Aufgabe 3.1: Formel - Durchschnittlicher Artikelpreis
 
 Erstelle eine Metrik, die den **durchschnittlichen Preis pro verkauftem
-Artikel** berechnet -- nicht pro Bestellung, sondern pro Einzelartikel:
+Artikel** berechnet - nicht pro Bestellung, sondern pro Einzelartikel:
 
-1. Neue Lens-Visualisierung, Typ **Metric**
+1. Neue Visualisierung, Typ **Metric**
 2. Statt ein Feld zu ziehen, klicke auf
    **Primary metric** und wähle **Formula**
 3. Gib folgende Formel ein:
@@ -298,7 +300,7 @@ sum(taxful_total_price) / sum(total_quantity)
 > hier durch die Artikelanzahl geteilt wird, nicht
 > durch die Bestellanzahl.
 
-### Aufgabe 3.2: Formel -- Umsatz pro Bestellung
+### Aufgabe 3.2: Formel - Umsatz pro Bestellung
 
 Erstelle eine Metrik mit einer Formel für den durchschnittlichen Umsatz pro
 Bestellung:
@@ -337,7 +339,7 @@ Füge dem Liniendiagramm "Umsatz über Zeit" eine
 7. Speichere die Änderung
 
 **Erwartetes Ergebnis:** Das Liniendiagramm zeigt den Umsatzverlauf mit einer
-horizontalen Durchschnittslinie -- sofort erkennbar, welche Tage über- oder
+horizontalen Durchschnittslinie - sofort erkennbar, welche Tage über- oder
 unterdurchschnittlich liefen.
 
 ### Aufgabe 3.4: Umsatz mit Vorwochenvergleich (Linie)
@@ -345,14 +347,13 @@ unterdurchschnittlich liefen.
 Erstelle ein Liniendiagramm, das den **aktuellen Umsatz neben dem der Vorwoche**
 zeigt:
 
-1. Neue Lens-Visualisierung, Typ **Line**
+1. Neue Visualisierung, Typ **Line**
 2. X-Achse: `order_date` (Date histogram, 1 day)
-3. Y-Achse 1: `taxful_total_price` mit **Sum**
-   -- benenne sie "Aktuelle Woche"
+3. Y-Achse 1: `taxful_total_price` mit **Sum** - benenne sie "Aktuelle Woche"
 4. Klicke auf die Y-Achse und wähle **Add** oder
    **Duplicate**
 5. Für die zweite Linie: Aktiviere **Time shift**
-   und gib `1w` ein -- benenne sie "Vorwoche"
+   und gib `1w` ein - benenne sie "Vorwoche"
 6. Speichere als: `Umsatzvergleich Woche`
 7. Füge die Visualisierung zum Controlling-Dashboard hinzu
 
@@ -363,7 +364,7 @@ zeigt:
 Erstelle eine detaillierte Tabelle der
 **wertvollsten Kunden**:
 
-1. Neue Lens-Visualisierung, Typ **Table**
+1. Neue Visualisierung, Typ **Table**
 2. Konfiguriere die Spalten:
 
 | Feld                 | Funktion        | Anzeigename    |
@@ -416,10 +417,10 @@ Produktmanagement-Dashboard navigiert werden, gefiltert auf diese Kategorie.
 Teste den kompletten Navigationsfluss:
 
 1. Starte im `Überblick - Geschäftsführung`
-2. Klicke auf "Women's Clothing" im Balkendiagramm -- du landest im
+2. Klicke auf "Women's Clothing" im Balkendiagramm - du landest im
    Produktmanagement-Dashboard, gefiltert auf Women's Clothing
 3. Gehe zurück (Browser-Zurück-Button)
-4. Klicke auf einen Datenpunkt im Umsatzverlauf -- du landest im
+4. Klicke auf einen Datenpunkt im Umsatzverlauf - du landest im
    Controlling-Dashboard
 5. Gehe zurück zum Überblick
 
@@ -494,9 +495,9 @@ verschiedene Stakeholder und Fragestellungen in Kibana zu erstellen.
 
 **Lösung:**
 
-1. Prüfe die Feldnamen -- sie müssen exakt stimmen (Groß-/Kleinschreibung
+1. Prüfe die Feldnamen - sie müssen exakt stimmen (Groß-/Kleinschreibung
    beachten)
-2. Prüfe die Klammern -- jede öffnende Klammer braucht eine schließende
+2. Prüfe die Klammern - jede öffnende Klammer braucht eine schließende
 3. Verwende die **Autovervollständigung** von Lens, um korrekte Feldnamen
    einzusetzen
 
@@ -556,7 +557,7 @@ Falls du schneller fertig bist:
       80.000)
     - Füge es zum Controlling-Dashboard hinzu
 
-3. **Treemap -- Umsatzhierarchie:** Erstelle eine Treemap, die den Umsatz
+3. **Treemap - Umsatzhierarchie:** Erstelle eine Treemap, die den Umsatz
    hierarchisch nach Kontinent und Land zeigt:
     - Typ: **Treemap**
     - Erste Ebene: `geoip.continent_name`
