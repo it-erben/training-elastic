@@ -276,29 +276,6 @@ Ordne die Spalten in dieser Reihenfolge:
 **Aufgabe:** Was ist die teuerste Bestellung der letzten 7 Tage? Notiere den
 Betrag und den Kundennamen.
 
-### Schritt 5.4: Ergebnisse als CSV exportieren
-
-1. Stelle sicher, dass deine gewünschten Filter und Spalten aktiv sind
-2. Klicke oben rechts auf **Share**
-3. Wähle **CSV Reports** oder **Download CSV**
-4. Klicke auf **Generate CSV** / **Download**
-
-![CSV Export - Share-Dialog](images/csv-export.png)
-
-Die CSV-Datei wird generiert und kann heruntergeladen werden.
-
-> **Tipp:** Der CSV-Export enthält die Daten in der aktuell
-> konfigurierten Spaltenansicht und berücksichtigt alle
-> aktiven Filter und den Zeitraum.
-
-### Schritt 5.5: CSV prüfen
-
-Öffne die heruntergeladene CSV-Datei (z.B. in Excel oder einem Texteditor) und
-prüfe:
-
-- Sind die erwarteten Spalten vorhanden?
-- Stimmt die Anzahl der Zeilen ungefähr mit der Trefferzahl in Discover überein?
-
 ---
 
 ## Zusammenfassung
@@ -310,7 +287,6 @@ Du hast erfolgreich:
 - [x] KQL-Abfragen für verschiedene Szenarien geschrieben
 - [x] Filter über die Filter-Leiste hinzugefügt und kombiniert
 - [x] Spalten konfiguriert und Ergebnisse sortiert
-- [x] Daten als CSV exportiert
 
 **Nächstes Modul:** Visualisierungen & Dashboards - Wir erstellen ein
 interaktives E-Commerce-Dashboard!
