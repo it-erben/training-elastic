@@ -9,8 +9,6 @@ Am Ende dieser Übung hast du:
 - Das Index Mapping grafisch über die Data-View-Ansicht untersucht und die
   Feldtypen verstanden
 
-**Geschätzte Dauer:** 30 Minuten
-
 ---
 
 ## Kibana öffnen
