@@ -64,8 +64,8 @@ Erstelle ein vertikales Balkendiagramm, das den
 **Umsatz pro Kategorie** zeigt (nicht die Anzahl):
 
 1. Neue Visualisierung, Typ **Bar**
-2. X-Achse: `category.keyword` (Top values, 8)
-3. Y-Achse: `taxful_total_price` mit **Sum**
+2. Horizonale Achse: `category.keyword` (Top values, 8)
+3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Füge einen Breakdown hinzu über `customer_gender`
 5. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
 6. Speichere als: `Umsatz nach Kategorie und Geschlecht`
@@ -77,15 +77,16 @@ Erstelle ein vertikales Balkendiagramm, das den
 Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
 
 1. Neue Visualisierung, Typ **Line**
-2. X-Achse: `order_date`
-3. Y-Achse: `taxful_total_price` mit **Sum** - benenne sie "Brutto"
-4. Weitere Y-Achse: `taxful_total_price` mit **Moving Average** und
-   **Choose a sub-function** "Sum" sowie **Window Size** 10. 
-   Benenne sie "Gleitender Durchschnitt"
+2. Horizonale Achse: `order_date`
+3. Vertikale Achse: `taxful_total_price` mit **Sum** - benenne sie "Brutto"
+4. Weitere Vertikale Achse: `taxful_total_price` mit **Moving Average** und
+   **Choose a sub-function** "Sum" sowie **Window Size** 10. Benenne sie "
+   Gleitender Durchschnitt"
 5. Füge einen weiteren **Layer** hinzu (Knopf mit **+** oben)
-6. Wähle **Visualisation** -> **Bar**. X-Achse: `order_date`, Y-Achse: `order_id` 
+6. Wähle **Visualisation** -> **Bar**. Horizonale Achse: `order_date`, Vertikale
+   Achse: `order_id`
    **Unique Count** und unter Appeance **Axis Side** -> Right
-7. Wähle unter **Series Color** eine helle Pastellfarbe für dieses Bar Chart, 
+7. Wähle unter **Series Color** eine helle Pastellfarbe für dieses Bar Chart,
    damit es übersichtlich bleibt
 
 Speichere als: `Bestellsummen im Verlauf`
@@ -165,31 +166,32 @@ Erstelle ein horizontales Balkendiagramm mit den
 3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Speichere als: `Top Hersteller`
 
-![Horizontales Balkendiagramm -- Top Hersteller nach Umsatz](images/balken-top-hersteller.png)
-
 ### Schritt 2.3: Hersteller-Performance über Zeit
 
-Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zeit** vergleicht:
+Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zeit
+** vergleicht:
 
 1. Neue Visualisierung, Typ **Line**
-2. X-Achse: `order_date` (Date histogram)
-3. Y-Achse: `taxful_total_price` mit **Sum**
-4. Ziehe `manufacturer` auf **Break down by**
-5. Klicke auf die Break-down-Konfiguration, wähle `manufacturer.keyword` und setze **Number of values** auf `5`
+2. Horizonale Achse: `order_date` (Date histogram)
+3. Vertikale Achse: `taxful_total_price` mit **Sum**
+4. Ziehe `manufacturer` auf **Breakdown**
+5. Klicke auf die Break-down-Konfiguration, wähle `manufacturer.keyword` und
+   setze **Number of values** auf `5`
 6. Speichere als: `Hersteller-Trend`
 
 ### Schritt 2.4: Warenkorbgröße analysieren
 
-Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro Bestellung bestellt werden:
+Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro
+Bestellung bestellt werden:
 
 1. Neue Visualisierung, Typ **Bar vertical**
-2. X-Achse: `total_quantity` mit Funktion **Intervals**
+2. Horizonale Achse: `total_quantity` mit Funktion **Intervals**
 3. Konfiguriere folgende Bereiche (**custom ranges**):
     - 1-1 (Einzelartikel)
     - 2-3
     - 4-5
     - 6+
-4. Y-Achse: **Count** über `order_id`.
+4. Vertikale Achse: **Count** über `order_id`.
 5. Speichere als: `Warenkorbgröße`
 
 ![Balkendiagramm -- Warenkorbgröße mit Custom Ranges](images/balken-warenkorbgroesse.png)
@@ -215,9 +217,9 @@ Erstelle ein Kuchen-Diagramm, das die Verteilung der Rabatte zeigt:
 Erstelle eine Heatmap, die zeigt, an welchen
 **Wochentagen** das höchste Bestellvolumen liegt:
 
-1. Neue Lens-Visualisierung, Typ **Heat map**
-2. X-Achse: `day_of_week` (Top values, 7)
-3. Y-Achse: `category` (Top values, 6)
+1. Neue Visualisierung, Typ **Heat map**
+2. Horizonale Achse: `day_of_week` (Top values, 7)
+3. Vertikale Achse: `category` (Top values, 6)
 4. Cell Value: **Count** (Farbskala)
 5. Speichere als: `Bestellungen Wochentag x Kategorie`
 
@@ -232,9 +234,9 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 **Bestellungen nach Kategorie, aufgeteilt nach Geschlecht** zeigt:
 
 1. Neue Visualisierung, Typ **Bar vertical stacked**
-2. X-Achse: `category` (Top values, 8)
-3. Y-Achse: **Count**
-4. Ziehe `manufacturer.keyword` auf **Break down by**
+2. Horizonale Achse: `category` (Top values, 8)
+3. Vertikale Achse: **Count**
+4. Ziehe `manufacturer.keyword` auf **Breakdown**
 5. Speichere als: `Kategorie nach Hersteller`
 
 ### Schritt 2.8: Dashboard zusammenstellen
@@ -276,8 +278,7 @@ Erweitere die bestehenden Dashboards mit fortgeschrittenen Visualisierungen.
 
 ### Aufgabe 3.1: Formel - Durchschnittlicher Artikelpreis
 
-Erstelle eine Metrik, die den **durchschnittlichen Preis pro verkauftem
-Artikel** berechnet - nicht pro Bestellung, sondern pro Einzelartikel:
+Erstelle eine Metrik, die den **durchschnittlichen Preis pro verkauftem Artikel** berechnet - nicht pro Bestellung, sondern pro Einzelartikel:
 
 1. Neue Visualisierung, Typ **Metric**
 2. Statt ein Feld zu ziehen, klicke auf
@@ -305,7 +306,7 @@ sum(taxful_total_price) / sum(total_quantity)
 Erstelle eine Metrik mit einer Formel für den durchschnittlichen Umsatz pro
 Bestellung:
 
-1. Neue Lens-Visualisierung, Typ **Metric**
+1. Neue Visualisierung, Typ **Metric**
 2. Wähle **Formula** und gib ein:
 
 ```text
@@ -317,30 +318,20 @@ sum(taxful_total_price) / count()
 
 ![Formel -- Umsatz pro Bestellung](images/formel-umsatz-pro-bestellung.png)
 
-> **Frage:** Vergleiche das Ergebnis mit der
-> Average-Metrik aus Modul 03, Aufgabe 1.3. Sind
-> die Werte identisch? Warum (nicht)?
-
 ### Aufgabe 3.3: Referenzlinie im Umsatzverlauf
 
 Füge dem Liniendiagramm "Umsatz über Zeit" eine
 **Referenzlinie** für den Durchschnitt hinzu:
 
-1. Öffne die Visualisierung `Umsatz über Zeit`
-   zur Bearbeitung
-2. Im rechten Konfigurationspanel, suche
-   **Reference lines** (oder klicke auf das Layer-Menü)
-3. Klicke auf **Add reference line**
-4. Wähle den Typ **Static value** und berechne den durchschnittlichen
-   Tagesumsatz (oder nutze
-   **Average** als dynamische Referenzlinie)
-5. Benenne die Linie "Tagesdurchschnitt"
-6. Wähle eine gestrichelte Linie in einer auffälligen Farbe (z.B. Rot)
+1. Öffne die Visualisierung `Umsatz über Zeit` zur Bearbeitung
+2. Im rechten Konfigurationspanel, klicke **+** und dann **Reference lines**
+3. Klicke auf **Static value**, um ihn zu ersetzen
+4. Klicke auf **Quick function** -> **Average**
+5. Gebe der Linie weiter unten unter **Appearance** den Namen "Durchschnitt"
+6. Wähle eine gestrichelte Linie in einer auffälligen Farbe (z.B. blau)
 7. Speichere die Änderung
 
-**Erwartetes Ergebnis:** Das Liniendiagramm zeigt den Umsatzverlauf mit einer
-horizontalen Durchschnittslinie - sofort erkennbar, welche Tage über- oder
-unterdurchschnittlich liefen.
+**Erwartetes Ergebnis:** Das Liniendiagramm zeigt den Umsatzverlauf mit einer horizontalen Durchschnittslinie an.
 
 ### Aufgabe 3.4: Umsatz mit Vorwochenvergleich (Linie)
 
@@ -348,10 +339,9 @@ Erstelle ein Liniendiagramm, das den **aktuellen Umsatz neben dem der Vorwoche**
 zeigt:
 
 1. Neue Visualisierung, Typ **Line**
-2. X-Achse: `order_date` (Date histogram, 1 day)
-3. Y-Achse 1: `taxful_total_price` mit **Sum** - benenne sie "Aktuelle Woche"
-4. Klicke auf die Y-Achse und wähle **Add** oder
-   **Duplicate**
+2. Horizonale Achse: `order_date`
+3. Vertikale Achse 1: `taxful_total_price` mit **Sum** - benenne sie "Aktuelle Woche"
+4. Füge eine zweite vertikale Achse hinzu, ebenfalls `taxful_total_price` mit **Sum**
 5. Für die zweite Linie: Aktiviere **Time shift**
    und gib `1w` ein - benenne sie "Vorwoche"
 6. Speichere als: `Umsatzvergleich Woche`
@@ -365,21 +355,71 @@ Erstelle eine detaillierte Tabelle der
 **wertvollsten Kunden**:
 
 1. Neue Visualisierung, Typ **Table**
-2. Konfiguriere die Spalten:
+2. Konfiguriere als **Rows** das Feld `customer_full_name`
+3. Konfiguriere die Spalten (**Metrics**) wie folgt:
 
 | Feld                 | Funktion        | Anzeigename    |
 |:---------------------|:----------------|:---------------|
-| `customer_full_name` | Top values (15) | Kunde          |
 | `taxful_total_price` | Sum             | Gesamtumsatz   |
-| `taxful_total_price` | Count           | Bestellungen   |
 | `taxful_total_price` | Average         | Durchschn. BW  |
+| `Records`            | Count           | Bestellungen   |
 | `total_quantity`     | Sum             | Artikel gesamt |
 
-3. Sortiere nach Gesamtumsatz absteigend
-4. Speichere als: `Top Kunden`
-5. Füge die Tabelle zum Controlling-Dashboard hinzu
+4. Sortiere nach Gesamtumsatz absteigend
+5. Speichere als: `Top Kunden`
+6. Füge die Tabelle zum Controlling-Dashboard hinzu
 
 ![Tabelle -- Top 15 Kunden nach Gesamtumsatz](images/tabelle-top-kunden.png)
+
+### Aufgabe 3.6: Formel - Umsatzveränderung zum Vorberichtszeitraum
+
+Erstelle eine Metrik, die die **prozentuale Umsatzveränderung**
+gegenüber dem vorherigen Berichtszeitraum anzeigt:
+
+1. Neue Visualisierung, Typ **Metric**
+2. Wähle **Formula** und gib ein:
+
+```text
+(sum(taxful_total_price) - sum(taxful_total_price, shift='previous')) / sum(taxful_total_price, shift='previous')
+```
+
+3. Formatiere als **Percent** mit 1 Dezimalstelle
+4. Benenne die Metrik: "Umsatzveränderung"
+5. Speichere als: `Umsatzveränderung (%)`
+6. Füge die Metrik zum Controlling-Dashboard hinzu
+
+**Erwartetes Ergebnis:** Die Metrik zeigt z.B. `+12,3%` oder `-5,7%`
+an. Ein positiver Wert bedeutet Umsatzwachstum gegenüber dem
+vorherigen Zeitraum (bei "Last 7 days" ist das die Vorwoche).
+
+> **Hinweis:** Der Parameter `shift='previous'` verschiebt die
+> Aggregation automatisch um den aktuellen Berichtszeitraum. Bei
+> "Last 7 days" entspricht das 7 Tagen, bei "Last 30 days"
+> entsprechend 30 Tagen.
+
+### Aufgabe 3.7: Formel - Anteil hochwertiger Bestellungen
+
+Erstelle eine Metrik, die den **prozentualen Anteil der Bestellungen
+mit einem Gesamtwert über EUR** an allen Bestellungen anzeigt:
+
+1. Neue Visualisierung, Typ **Metric**
+2. Wähle **Formula** und gib ein:
+
+```text
+count(kql='taxful_total_price > 100') / count()
+```
+
+3. Formatiere als **Percent** mit 1 Dezimalstelle
+4. Benenne die Metrik: "Anteil Bestellungen mit mehr als 100 EUR Umsatz"
+5. Speichere als: `Anteil hochwertige Bestellungen`
+6. Füge die Metrik zum Controlling-Dashboard hinzu
+
+**Erwartetes Ergebnis:** Die Metrik zeigt z.B. `68,4%`. Das bedeutet,
+dass rund zwei Drittel aller Bestellungen einen Wert über 100 EUR haben.
+
+> **Hinweis:** Die Funktion `count(kql='...')` filtert die Zählung
+> per KQL-Ausdruck. So lassen sich Teilmengen in Formeln verwenden,
+> ohne einen Dashboard-Filter zu setzen.
 
 ---
 
@@ -454,18 +494,6 @@ Teste den kompletten Navigationsfluss:
 > und alle gesetzten Filter. Kollegen sehen
 > exakt die gleiche Ansicht.
 
-### Aufgabe 5.3: PDF-Export
-
-1. Klicke auf **Share**
-2. Wähle **PDF Reports** (oder **PNG**)
-3. Klicke auf **Generate PDF**
-4. Warte, bis der Bericht erstellt ist
-5. Lade das PDF herunter
-
-> **Hinweis:** Der PDF-Export erfordert eine
-> entsprechende Lizenz (Platinum oder höher).
-> Falls nicht verfügbar, überspringe diese Aufgabe.
-
 ---
 
 ## Zusammenfassung
@@ -481,98 +509,3 @@ Du hast erfolgreich:
   konfiguriert
 - [x] **Drilldowns** zwischen Dashboards eingerichtet
 - [x] Dashboards **geteilt** (Link, PDF)
-
-Du hast jetzt das Handwerkszeug, um eigenständig komplexe Dashboards für
-verschiedene Stakeholder und Fragestellungen in Kibana zu erstellen.
-
----
-
-## Troubleshooting
-
-### Formel zeigt Fehler
-
-**Symptom:** Die Formel in Lens wird rot unterstrichen oder zeigt "Error".
-
-**Lösung:**
-
-1. Prüfe die Feldnamen - sie müssen exakt stimmen (Groß-/Kleinschreibung
-   beachten)
-2. Prüfe die Klammern - jede öffnende Klammer braucht eine schließende
-3. Verwende die **Autovervollständigung** von Lens, um korrekte Feldnamen
-   einzusetzen
-
-### Time Shift zeigt keine Vergleichswerte
-
-**Symptom:** Die Metrik mit Time Shift zeigt keinen Trend-Pfeil oder keinen
-Vergleichswert.
-
-**Lösung:**
-
-1. Stelle sicher, dass der Zeitraum groß genug ist (bei `1w` Shift mindestens
-   "Last 7 days")
-2. Prüfe, ob im verschobenen Zeitraum Daten vorhanden sind (der
-   eCommerce-Datensatz enthält Daten für die letzten Wochen)
-
-### Drilldown funktioniert nicht
-
-**Symptom:** Beim Klick auf ein Panel passiert nichts oder es erscheint kein
-Drilldown-Menü.
-
-**Lösung:**
-
-1. Stelle sicher, dass das Dashboard **nicht** im Edit-Modus ist (Drilldowns
-   funktionieren nur im View-Modus)
-2. Prüfe, ob der Drilldown korrekt konfiguriert ist (Edit > Panel > Drei
-   Punkte > Manage drilldowns)
-3. Nicht alle Visualisierungstypen unterstützen Drilldowns auf einzelne Elemente
-
-### Heatmap zeigt nur eine Farbe
-
-**Symptom:** Die Heatmap ist einfarbig ohne erkennbare Muster.
-
-**Lösung:**
-
-1. Prüfe, ob beide Achsen konfiguriert sind
-   (X und Y brauchen jeweils ein Feld)
-2. Erhöhe den Zeitraum auf "Last 30 days", um mehr Daten zu haben
-3. Prüfe die Farbskala im rechten Konfigurationspanel
-
----
-
-## Bonus-Aufgaben
-
-Falls du schneller fertig bist:
-
-1. **Karten-Visualisierung:** Erstelle eine Maps-Visualisierung:
-    - **Analytics > Maps > Create map**
-    - Füge einen Layer hinzu: **Documents**
-    - Wähle `kibana_sample_data_ecommerce`
-    - Kibana nutzt `geoip.location` automatisch
-    - Speichere und füge die Karte zum Überblick-Dashboard hinzu
-
-2. **Gauge-Visualisierung:** Erstelle ein Gauge (Tachometer) für ein Umsatzziel:
-    - Typ: **Gauge**
-    - Metrik: Sum of `taxful_total_price`
-    - Konfiguriere Zielbereiche (z.B. Rot < 50.000, Gelb 50.000-80.000, Grün >
-      80.000)
-    - Füge es zum Controlling-Dashboard hinzu
-
-3. **Treemap - Umsatzhierarchie:** Erstelle eine Treemap, die den Umsatz
-   hierarchisch nach Kontinent und Land zeigt:
-    - Typ: **Treemap**
-    - Erste Ebene: `geoip.continent_name`
-    - Zweite Ebene: `geoip.country_iso_code`
-    - Metrik: Sum of `taxful_total_price`
-
-4. **Dashboard duplizieren:** Dupliziere das Überblick-Dashboard und erstelle
-   eine "Europa-Analyse":
-    - Füge einen festen Filter hinzu:
-      `geoip.continent_name: "Europe"`
-    - Passe den Titel an
-    - Entferne oder ersetze das Kreisdiagramm durch eine Länder-Aufschlüsselung
-
-5. **URL-Drilldown:** Konfiguriere einen URL-Drilldown auf dem Balkendiagramm
-   "Top Produktkategorien":
-    - **Create drilldown > Go to URL**
-    - URL: Kibana Discover mit einem vorausgefüllten KQL-Filter
-    - So können Nutzer direkt zu den Rohdaten einer Kategorie springen

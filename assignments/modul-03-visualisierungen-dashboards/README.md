@@ -86,16 +86,16 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 ### Aufgabe 1.4: Balkendiagramm - Top Produktkategorien
 
 1. Neue Lens-Visualisierung, Typ **Bar -> Unstacked**
-2. Vertikale Achse: `order_id` mit Funktion **Count**
-3. Horizonale Achse: `category.keyword` mit Funktion
+2. Horizonale Achse: `category.keyword` mit Funktion
    **Top values**, Number of values: `5`
+3. Vertikale Achse: `order_id` mit Funktion **Count**
 4. Speichere als: `Top Produktkategorien`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.5: Liniendiagramm - Umsatz über Zeit
 
 1. Neue Lens-Visualisierung, Typ **Line**
-2. X-Achse: `order_date` (Date histogram, Auto)
-3. Y-Achse: `taxful_total_price` mit Funktion **Sum**
+2. Horizonale Achse: `order_date` (Date histogram, Auto)
+3. Vertikale Achse: `taxful_total_price` mit Funktion **Sum**
 4. Speichere als: `Umsatz über Zeit`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.6: Kreisdiagramm - Bestellungen nach Region
@@ -111,7 +111,7 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 
 ## Teil 2: Überblick-Dashboard für die Geschäftsführung
 
-Erstelle ein Dashboard, das die wichtigsten Kennzahlen auf einen Blick zeigt --
+Erstelle ein Dashboard, das die wichtigsten Kennzahlen auf einen Blick zeigt -
 geeignet für ein Geschäftsführungs-Meeting.
 
 ### Schritt 2.1: Dashboard erstellen
@@ -132,7 +132,7 @@ Füge über **Add from library** die drei Metriken hinzu:
 - `Durchschn. Bestellwert`
 
 Ordne sie in einer **horizontalen Reihe** oben im Dashboard an. Mache die Panels
-klein - sie sollen nur die Kennzahl anzeigen.
+klein. Sie sollen nur die Kennzahl anzeigen.
 
 ### Schritt 2.3: Diagramme hinzufügen
 
@@ -189,19 +189,17 @@ filtern können.
 
 ### Aufgabe 3.1: Kategorie-Filter hinzufügen
 
-1. Klicke auf **Controls** in der Toolbar
+1. Klicke auf das grüne **+** oben in der Leiste -> **Controls** -> **Control**
 
 ![Controls - Menü](images/controls-button.png)
 
-2. Klicke auf das grüne **+** oben in der Leiste -> **Controls** -> **Control**
-3. Konfiguriere:
+2. Konfiguriere:
     - Feld: `category.keyword`
     - Typ: **Options list**
     - Bezeichnung: `Kategorie`
-4. Speichere
+3. Speichere
 
-**Test:** Wähle "Women's Clothing" aus dem Dropdown. Alle Visualisierungen
-sollten sich filtern.
+**Test:** Wähle "Women's Clothing" aus dem Dropdown. Alle Visualisierungen sollten sich filtern.
 
 ### Aufgabe 3.2: Hersteller-Filter hinzufügen
 
