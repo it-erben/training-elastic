@@ -64,7 +64,7 @@ Erstelle ein vertikales Balkendiagramm, das den
 **Umsatz pro Kategorie** zeigt (nicht die Anzahl):
 
 1. Neue Visualisierung, Typ **Bar**
-2. Horizonale Achse: `category.keyword` (Top values, 8)
+2. Horizontale Achse: `category.keyword` (Top values, 8)
 3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Füge einen Breakdown hinzu über `customer_gender`
 5. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
@@ -77,15 +77,15 @@ Erstelle ein vertikales Balkendiagramm, das den
 Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
 
 1. Neue Visualisierung, Typ **Line**
-2. Horizonale Achse: `order_date`
+2. Horizontale Achse: `order_date`
 3. Vertikale Achse: `taxful_total_price` mit **Sum** - benenne sie "Brutto"
 4. Weitere Vertikale Achse: `taxful_total_price` mit **Moving Average** und
    **Choose a sub-function** "Sum" sowie **Window Size** 10. Benenne sie "
-   Gleitender Durchschnitt"
+Gleitender Durchschnitt"
 5. Füge einen weiteren **Layer** hinzu (Knopf mit **+** oben)
-6. Wähle **Visualisation** -> **Bar**. Horizonale Achse: `order_date`, Vertikale
+6. Wähle **Visualisation** -> **Bar**. Horizontale Achse: `order_date`, Vertikale
    Achse: `order_id`
-   **Unique Count** und unter Appeance **Axis Side** -> Right
+   **Unique Count** und unter Appearance **Axis Side** -> Right
 7. Wähle unter **Series Color** eine helle Pastellfarbe für dieses Bar Chart,
    damit es übersichtlich bleibt
 
@@ -104,7 +104,7 @@ Erstelle eine Tabelle mit den **Top 15 Ländern nach Umsatz**:
 | Feld                 | Funktion | Anzeigename   |
 |:---------------------|:---------|:--------------|
 | `taxful_total_price` | Sum      | Umsatz        |
-| `taxful_total_price` | Count    | Bestellungen  |
+| `Records`            | Count    | Bestellungen  |
 | `taxful_total_price` | Average  | Durchschn. BW |
 
 4. Sortiere nach Umsatz absteigend
@@ -161,9 +161,9 @@ Hersteller, Rabatte und Warenkorbanalyse.
 Erstelle ein horizontales Balkendiagramm mit den
 **umsatzstärksten Herstellern**:
 
-1. Neue Visualisierung, Typ **Bar**
-2. Horizontale Achse: `manufacturer.keyword` (Top values, 10)
-3. Vertikale Achse: `taxful_total_price` mit **Sum**
+1. Neue Visualisierung, Typ **Bar horizontal**
+2. Vertikale Achse: `manufacturer.keyword` (Top values, 10)
+3. Horizontale Achse: `taxful_total_price` mit **Sum**
 4. Speichere als: `Top Hersteller`
 
 ### Schritt 2.3: Hersteller-Performance über Zeit
@@ -172,7 +172,7 @@ Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zei
 ** vergleicht:
 
 1. Neue Visualisierung, Typ **Line**
-2. Horizonale Achse: `order_date` (Date histogram)
+2. Horizontale Achse: `order_date` (Date histogram)
 3. Vertikale Achse: `taxful_total_price` mit **Sum**
 4. Ziehe `manufacturer` auf **Breakdown**
 5. Klicke auf die Break-down-Konfiguration, wähle `manufacturer.keyword` und
@@ -185,7 +185,7 @@ Erstelle ein Balkendiagramm, das zeigt, wie viele Artikel typischerweise pro
 Bestellung bestellt werden:
 
 1. Neue Visualisierung, Typ **Bar vertical**
-2. Horizonale Achse: `total_quantity` mit Funktion **Intervals**
+2. Horizontale Achse: `total_quantity` mit Funktion **Intervals**
 3. Konfiguriere folgende Bereiche (**custom ranges**):
     - 1-1 (Einzelartikel)
     - 2-3
@@ -198,10 +198,10 @@ Bestellung bestellt werden:
 
 ### Schritt 2.5: Preisanalyse - Pie-Chart
 
-Erstelle ein Kuchen-Diagramm, das die Verteilung der Rabatte zeigt:
+Erstelle ein Kuchen-Diagramm, das die Verteilung der Produktpreise zeigt:
 
 1. Neue Visualisierung, Typ **Pie**
-2. Slice by: `products.base_unit_price`
+2. Slice by: `products.price`
    mit **Custom Ranges**:
     - $0-$10
     - $10-25
@@ -218,7 +218,7 @@ Erstelle eine Heatmap, die zeigt, an welchen
 **Wochentagen** das höchste Bestellvolumen liegt:
 
 1. Neue Visualisierung, Typ **Heat map**
-2. Horizonale Achse: `day_of_week` (Top values, 7)
+2. Horizontale Achse: `day_of_week` (Top values, 7)
 3. Vertikale Achse: `category` (Top values, 6)
 4. Cell Value: **Count** (Farbskala)
 5. Speichere als: `Bestellungen Wochentag x Kategorie`
@@ -231,10 +231,10 @@ welchen Tagen besonders gefragt sind. Dunklere Farben = mehr Bestellungen.
 ### Schritt 2.7: Herstellerverteilung pro Kategorie
 
 Erstelle ein gestapeltes Balkendiagramm, das die
-**Bestellungen nach Kategorie, aufgeteilt nach Geschlecht** zeigt:
+**Bestellungen nach Kategorie, aufgeteilt nach Hersteller** zeigt:
 
 1. Neue Visualisierung, Typ **Bar vertical stacked**
-2. Horizonale Achse: `category` (Top values, 8)
+2. Horizontale Achse: `category` (Top values, 8)
 3. Vertikale Achse: **Count**
 4. Ziehe `manufacturer.keyword` auf **Breakdown**
 5. Speichere als: `Kategorie nach Hersteller`
@@ -257,8 +257,8 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 
 ### Schritt 2.9: Controls hinzufügen
 
-1. **Hersteller** (Options list auf `manufacturer`)
-2. **Kategorie** (Options list auf `category`)
+1. **Hersteller** (Options list auf `manufacturer.keyword`)
+2. **Kategorie** (Options list auf `category.keyword`)
 3. **Geschlecht** (Options list auf `customer_gender`)
 
 ### Schritt 2.10: Dashboard speichern
@@ -339,7 +339,7 @@ Erstelle ein Liniendiagramm, das den **aktuellen Umsatz neben dem der Vorwoche**
 zeigt:
 
 1. Neue Visualisierung, Typ **Line**
-2. Horizonale Achse: `order_date`
+2. Horizontale Achse: `order_date`
 3. Vertikale Achse 1: `taxful_total_price` mit **Sum** - benenne sie "Aktuelle Woche"
 4. Füge eine zweite vertikale Achse hinzu, ebenfalls `taxful_total_price` mit **Sum**
 5. Für die zweite Linie: Aktiviere **Time shift**
@@ -400,7 +400,7 @@ vorherigen Zeitraum (bei "Last 7 days" ist das die Vorwoche).
 ### Aufgabe 3.7: Formel - Anteil hochwertiger Bestellungen
 
 Erstelle eine Metrik, die den **prozentualen Anteil der Bestellungen
-mit einem Gesamtwert über EUR** an allen Bestellungen anzeigt:
+mit einem Gesamtwert über 100 EUR** an allen Bestellungen anzeigt:
 
 1. Neue Visualisierung, Typ **Metric**
 2. Wähle **Formula** und gib ein:
@@ -504,8 +504,8 @@ Du hast erfolgreich:
 - [x] Ein **Produktmanagement-Dashboard** mit Hersteller-Analyse, Heatmap,
   Geschlechterverteilung und Rabattanalyse gebaut
 - [x] **Formeln** in Lens verwendet
-  (Steueranteil, Umsatz pro Bestellung)
+  (Artikelpreis, Umsatz pro Bestellung, Umsatzveränderung)
 - [x] **Referenzlinien** und **Vorwochenvergleiche**
   konfiguriert
 - [x] **Drilldowns** zwischen Dashboards eingerichtet
-- [x] Dashboards **geteilt** (Link, PDF)
+- [x] Dashboards **geteilt** (Link)

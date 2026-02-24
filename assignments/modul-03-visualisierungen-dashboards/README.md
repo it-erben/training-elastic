@@ -71,36 +71,36 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 
 ### Aufgabe 1.2: Metrik - Anzahl Bestellungen
 
-1. Neue Lens-Visualisierung, Typ **Metric**
+1. Neue Visualisierung, Typ **Metric**
 2. Ziehe ein `order_id` Feld in **Primary metric**
 3. Ändere die Funktion auf **Count**
 4. Speichere als: `Anzahl Bestellungen`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.3: Metrik - Durchschnittlicher Bestellwert
 
-1. Neue Lens-Visualisierung, Typ **Metric**
+1. Neue Visualisierung, Typ **Metric**
 2. Ziehe `taxful_total_price` in **Primary metric**
 3. Ändere die Funktion auf **Average**
 4. Speichere als: `Durchschn. Bestellwert`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.4: Balkendiagramm - Top Produktkategorien
 
-1. Neue Lens-Visualisierung, Typ **Bar -> Unstacked**
-2. Horizonale Achse: `category.keyword` mit Funktion
+1. Neue Visualisierung, Typ **Bar -> Unstacked**
+2. Horizontale Achse: `category.keyword` mit Funktion
    **Top values**, Number of values: `5`
 3. Vertikale Achse: `order_id` mit Funktion **Count**
 4. Speichere als: `Top Produktkategorien`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.5: Liniendiagramm - Umsatz über Zeit
 
-1. Neue Lens-Visualisierung, Typ **Line**
-2. Horizonale Achse: `order_date` (Date histogram, Auto)
+1. Neue Visualisierung, Typ **Line**
+2. Horizontale Achse: `order_date` (Date histogram, Auto)
 3. Vertikale Achse: `taxful_total_price` mit Funktion **Sum**
 4. Speichere als: `Umsatz über Zeit`, mit "Add To Dashboard -> None".
 
 ### Aufgabe 1.6: Kreisdiagramm - Bestellungen nach Region
 
-1. Neue Lens-Visualisierung, Typ **Pie**
+1. Neue Visualisierung, Typ **Pie**
 2. Slice by: `geoip.continent_name` (Top values, Number of values: `7`)
 3. Metrik: **Count**
 4. Speichere als: `Bestellungen nach Region`, mit "Add To Dashboard -> None".
@@ -177,8 +177,6 @@ controlling@mustertech.de
 1. Klicke auf **Save**
 2. Titel: `Überblick - Geschäftsführung`
 3. Beschreibung: "KPIs und Trends für das Management-Meeting"
-
-![Dashboard - Fertiges Überblick-Dashboard](images/dashboard-fertig.png)
 
 ---
 
