@@ -53,21 +53,40 @@ spec:
             - name: http
               containerPort: 9200
               protocol: TCP
+          startupProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - "curl -sf -u elastic:${ELASTIC_PASSWORD} http://localhost:9200/_cluster/health?local=true"
+            failureThreshold: 30
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - "curl -sf -u elastic:${ELASTIC_PASSWORD} http://localhost:9200/_cluster/health?local=true"
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
           readinessProbe:
             exec:
               command:
                 - bash
                 - -c
                 - "curl -sf -u elastic:${ELASTIC_PASSWORD} http://localhost:9200/_cluster/health?local=true"
-            initialDelaySeconds: 30
             periodSeconds: 10
             timeoutSeconds: 5
+            failureThreshold: 3
           resources:
             requests:
-              cpu: 256m
-              memory: 1Gi
+              cpu: 400m
+              memory: 1.5Gi
             limits:
-              memory: 1Gi
+              cpu: 400m
+              memory: 1.5Gi
           volumeMounts:
             - name: data
               mountPath: /usr/share/elasticsearch/data
@@ -117,24 +136,54 @@ spec:
                   key: encryption-key
             - name: TELEMETRY_ENABLED
               value: "false"
+            # Disable unused features to speed up Kibana startup
+            - name: XPACK_FLEET_ENABLED
+              value: "false"
+            - name: XPACK_SECURITYSOLUTION_ENABLED
+              value: "false"
+            - name: XPACK_PROFILING_ENABLED
+              value: "false"
+            - name: XPACK_REPORTING_ENABLED
+              value: "false"
+            - name: XPACK_ML_ENABLED
+              value: "false"
           ports:
             - name: kibana
               containerPort: 5601
               protocol: TCP
+          startupProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - "curl -sf http://localhost:5601/${HOSTNAME##*-}/api/status | grep -q '\"overall\"'"
+            failureThreshold: 60
+            periodSeconds: 10
+            timeoutSeconds: 5
+          livenessProbe:
+            exec:
+              command:
+                - bash
+                - -c
+                - "curl -sf http://localhost:5601/${HOSTNAME##*-}/api/status | grep -q '\"overall\"'"
+            periodSeconds: 30
+            timeoutSeconds: 10
+            failureThreshold: 5
           readinessProbe:
             exec:
               command:
                 - bash
                 - -c
                 - "curl -sf http://localhost:5601/${HOSTNAME##*-}/api/status | grep -q '\"overall\"'"
-            initialDelaySeconds: 45
             periodSeconds: 10
             timeoutSeconds: 5
+            failureThreshold: 3
           resources:
             requests:
-              cpu: 128m
-              memory: 768Mi
+              cpu: 500m
+              memory: 1Gi
             limits:
+              cpu: 500m
               memory: 1Gi
   volumeClaimTemplates:
     - metadata:

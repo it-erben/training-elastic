@@ -1,11 +1,11 @@
-replicaCount: 2
+replicaCount: 10
 domain: "elastic-training.erben.tech"
 letsencryptEmail: "alex@it-erben.com"
 
 elasticsearch:
   image: docker.elastic.co/elasticsearch/elasticsearch
   tag: "9.3.0"
-  heapSize: "512m"
+  heapSize: "768m"
   storage: "10Gi"
 
 kibana:
