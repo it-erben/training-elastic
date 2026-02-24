@@ -270,7 +270,7 @@ im Dashboard.
 Rechtecks werden angezeigt. In der **Filterleiste** oben erscheint
 ein neuer Geo-Filter.
 
-### Aufgabe 7.2: Filter im Dashboard testen
+### Aufgabe 6.2: Filter im Dashboard testen
 
 1. Navigiere zum Dashboard `Überblick - Geschäftsführung`
 2. Öffne die eingebettete Karte
@@ -282,7 +282,7 @@ ein neuer Geo-Filter.
     - Das Kreisdiagramm zeigt nur den gewählten Kontinent
 5. Entferne den Filter über das **X** in der Filterleiste
 
-### Aufgabe 7.3: Filter per Polygon zeichnen
+### Aufgabe 6.3: Filter per Polygon zeichnen
 
 1. Gehe zurück zur Karte `Bestellungen Weltkarte`
 2. Wähle das Werkzeug **Draw shape to filter data**
@@ -296,7 +296,7 @@ ein neuer Geo-Filter.
 werden angezeigt. Diese Methode erlaubt präzisere räumliche
 Eingrenzung als ein Rechteck.
 
-### Aufgabe 7.4: Filter per Distanz
+### Aufgabe 6.4: Filter per Distanz
 
 1. Entferne den vorherigen Geo-Filter
 2. Wähle das Werkzeug **Draw a distance to filter data**
@@ -308,7 +308,7 @@ gewählten Punkt werden angezeigt. Nützlich für standortbezogene
 Analysen (z.B. "Alle Bestellungen im Umkreis von 500 km um unser
 Lager").
 
-### Aufgabe 7.5: Karte speichern
+### Aufgabe 6.5: Karte speichern
 
 Speichere die Karte. Entferne alle Geo-Filter, damit die Karte
 im Dashboard wieder alle Daten zeigt.
