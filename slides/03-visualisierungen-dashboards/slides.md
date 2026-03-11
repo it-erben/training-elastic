@@ -325,6 +325,7 @@ section { font-size: 1.7em; }
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Liniendiagramme - Überblick
 
 Liniendiagramme sind ideal für **Zeitreihen**
@@ -344,6 +345,7 @@ und **Trendanalysen**.
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Praxis: Umsatz über Zeit
 
 Wir erstellen ein Liniendiagramm für den
@@ -431,6 +433,7 @@ zu vergleichen:
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Kreisdiagramme - Überblick
 
 Kreisdiagramme zeigen **Anteile an einem Ganzen**.
@@ -479,6 +482,7 @@ Wir erstellen ein Kreisdiagramm für die
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Datentabellen
 
 Datentabellen eignen sich für **detaillierte Auflistungen** und **exakte Werte**.
@@ -561,6 +565,7 @@ Ein Dashboard ist eine **Sammlung von Visualisierungen** auf einer Seite.
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Dashboard erstellen
 
 **Schritt für Schritt:**
@@ -608,6 +613,7 @@ Wiederhole das für:
 <style scoped>
 section { font-size: 1.8em; }
 </style>
+
 # Diagramme hinzufügen
 
 Füge die bereits erstellten Visualisierungen zum Dashboard hinzu:

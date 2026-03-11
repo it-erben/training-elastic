@@ -83,7 +83,7 @@ Beobachte, wie sich das Histogramm und die Trefferzahl ändern.
 
 ![Zeitfilter - Quick Select](images/zeitfilter.png)
 
-> **Tipp:** Der Zeitfilter ist der wichtigste Filter in Kibana. 
+> **Tipp:** Der Zeitfilter ist der wichtigste Filter in Kibana.
 > Wenn du keine Daten siehst, prüfe immer zuerst den Zeitraum!
 
 ### Schritt 2.4: Zeitraum auf 7 Tage zurücksetzen
@@ -142,8 +142,8 @@ category: "Women's Clothing"
 > Bei Werten mit Leerzeichen oder Sonderzeichen sind sie
 > erforderlich.
 
-**Aufgabe:** Wie viele Treffer gibt es? Gehe in die Detailansicht eines 
-Dokuments und prüfe, ob das Feld `category` tatsächlich "Women's Clothing" 
+**Aufgabe:** Wie viele Treffer gibt es? Gehe in die Detailansicht eines
+Dokuments und prüfe, ob das Feld `category` tatsächlich "Women's Clothing"
 enthält.
 
 ### Aufgabe 3.3: Kombinierte Suche
