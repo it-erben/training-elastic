@@ -58,7 +58,7 @@ Reihenfolge, da jedes Modul auf den Ergebnissen des vorherigen aufbaut.
 
 | Modul | Verzeichnis                             | Thema                                                    | Dauer   |
 |:------|:----------------------------------------|:---------------------------------------------------------|:--------|
-| 01    | `modul-01-einfuehrung/`     | Kibana kennenlernen, Beispieldaten laden, Index erkunden | 30 Min. |
+| 01    | `modul-01-einfuehrung/`                 | Kibana kennenlernen, Beispieldaten laden, Index erkunden | 30 Min. |
 | 02    | `modul-02-discover-abfragen/`           | Daten suchen, filtern und mit KQL abfragen               | 45 Min. |
 | 03    | `modul-03-visualisierungen-dashboards/` | Visualisierungen erstellen und Dashboard bauen           | 60 Min. |
 

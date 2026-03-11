@@ -57,8 +57,8 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 
 ![Stack Management](images/stack-management.png)
 
-* Klicke auf **Index Management**
-* Du siehst die aktuell vorhandenen Indizes
+- Klicke auf **Index Management**
+- Du siehst die aktuell vorhandenen Indizes
 
 ![Index Management](images/index-management.png)
 
@@ -163,7 +163,7 @@ einzige Abfrage schreiben musst.
 ### Schritt 3.1: Feldtypen identifizieren
 
 Öffne den Data View `kibana_sample_data_ecommerce`
-(falls nicht noch geöffnet) und scrolle durch die Feldliste. Achte auf die 
+(falls nicht noch geöffnet) und scrolle durch die Feldliste. Achte auf die
 **Typ-Symbole** links neben den Feldnamen:
 
 | Symbol   | Feldtyp       | Beschreibung                                               | Beispielfeld         |

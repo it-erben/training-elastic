@@ -1,3 +1,4 @@
+# yamllint disable-file
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:

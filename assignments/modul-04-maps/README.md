@@ -226,11 +226,12 @@ Größere und dunklere Cluster stehen für höheren Umsatz.
 ### Aufgabe 5.3: Cluster-Styling anpassen
 
 Unter **Layer style**:
+
 - Wähle eine Farbpalette, die dir gefällt
 - Setze bei **Symbol size** den Bereich auf Minimum `12` und Maximum `40`
 
 Lass' dir nun einen Moment Zeit und probiere, was du hier alles
-an Optionen einstellen kannst. 
+an Optionen einstellen kannst.
 
 ### Aufgabe 5.4: Zoom-Verhalten testen
 
