@@ -1,4 +1,4 @@
-# Modul 02: Discover & Abfragen
+# Lab 02: Discover & Abfragen
 
 ## Übungsziel
 

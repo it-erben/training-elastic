@@ -1,4 +1,4 @@
-# Modul 04: Maps-Visualisierungen
+# Lab 04: Maps-Visualisierungen
 
 ## Übungsziel
 

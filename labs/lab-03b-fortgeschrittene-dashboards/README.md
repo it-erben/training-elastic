@@ -1,4 +1,4 @@
-# Modul 03b: Fortgeschrittene Dashboards
+# Lab 03b: Fortgeschrittene Dashboards
 
 ## Übungsziel
 

@@ -1,4 +1,4 @@
-# Modul 03: Visualisierungen & Dashboards
+# Lab 03: Visualisierungen & Dashboards
 
 ## Übungsziel
 

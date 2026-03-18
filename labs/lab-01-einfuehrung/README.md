@@ -1,4 +1,4 @@
-# Modul 01: Einführung
+# Lab 01: Einführung
 
 ## Übungsziel
 
