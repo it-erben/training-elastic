@@ -351,6 +351,13 @@ POST _bulk
 { "name": "Becker GmbH", "stadt": "Köln", "branche": "Maschinenbau", "kunde_seit": "2023-06-20" }
 ```
 
+> **Wichtig:** Bei `_bulk` muss **jedes JSON-Objekt auf genau einer Zeile**
+> stehen. Kommt beim Kopieren (besonders aus dem PDF oder über die
+> RDP-Zwischenablage) ein Zeilenumbruch mitten in eine Zeile, meldet
+> Elasticsearch z.B. `Malformed action/metadata line [3], expected
+> START_OBJECT but found [VALUE_STRING]`. Ziehe umgebrochene Zeilen dann in der
+> Console wieder zu einer Zeile zusammen.
+
 **Erwartetes Ergebnis:** Die Antwort enthält `"errors": false` und listet für
 jedes der drei Dokumente `"result": "created"` auf.
 
