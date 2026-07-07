@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- GRUEN -->
+  <circle cx="70" cy="70" r="30" fill="#2E7D5B"/>
+  <text x="130" y="70" text-anchor="start" dominant-baseline="middle" fill="#2E7D5B" font-size="30" font-weight="700">GRÜN</text>
+  <g filter="url(#ieShadow)">
+    <rect x="300" y="24" width="670" height="92" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/>
+  </g>
+  <text x="330" y="58" text-anchor="start" fill="#172033" font-size="23" font-weight="700">Alle Primary- und Replica-Shards aktiv</text>
+  <text x="330" y="90" text-anchor="start" fill="#5B6675" font-size="21" font-weight="400">Alles da - weitermachen erlaubt</text>
+
+  <!-- GELB -->
+  <circle cx="70" cy="200" r="30" fill="#C7912E"/>
+  <text x="130" y="200" text-anchor="start" dominant-baseline="middle" fill="#C7912E" font-size="30" font-weight="700">GELB</text>
+  <g filter="url(#ieShadow)">
+    <rect x="300" y="154" width="670" height="92" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/>
+  </g>
+  <text x="330" y="188" text-anchor="start" fill="#172033" font-size="23" font-weight="700">Primaries aktiv, aber Replikas fehlen</text>
+  <text x="330" y="220" text-anchor="start" fill="#5B6675" font-size="21" font-weight="400">Daten da, keine Redundanz - warten!</text>
+
+  <!-- ROT -->
+  <circle cx="70" cy="330" r="30" fill="#C4453D"/>
+  <text x="130" y="330" text-anchor="start" dominant-baseline="middle" fill="#C4453D" font-size="30" font-weight="700">ROT</text>
+  <g filter="url(#ieShadow)">
+    <rect x="300" y="284" width="670" height="92" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/>
+  </g>
+  <text x="330" y="318" text-anchor="start" fill="#172033" font-size="23" font-weight="700">Mindestens ein Primary-Shard fehlt</text>
+  <text x="330" y="350" text-anchor="start" fill="#5B6675" font-size="21" font-weight="400">Datenverlust-Gefahr - NICHT weiter upgraden</text>
+</svg>

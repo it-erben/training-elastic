@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 260"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Rohdaten -->
+  <g filter="url(#ieShadow)"><rect x="40" y="70" width="250" height="100" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="165" y="108" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">50.000 Bestellungen</text>
+  <text x="165" y="138" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="19" font-weight="400">viele Dokumente</text>
+  <text x="165" y="200" text-anchor="middle" fill="#5B6675" font-size="18">viele rein</text>
+
+  <line x1="290" y1="120" x2="380" y2="120" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- Aggregation -->
+  <g filter="url(#ieShadow)"><rect x="380" y="70" width="250" height="100" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="505" y="108" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="26" font-weight="700">Aggregation</text>
+  <text x="505" y="138" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="19" font-weight="400">Sum · Count · Avg</text>
+
+  <line x1="630" y1="120" x2="720" y2="120" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- Kennzahl (Hero) -->
+  <g filter="url(#ieShadow)"><rect x="720" y="70" width="240" height="100" rx="16" fill="#1B4FD8"/></g>
+  <text x="840" y="108" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="26" font-weight="700">Kennzahl</text>
+  <text x="840" y="138" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" fill-opacity="0.85" font-size="19" font-weight="400">1.428.000 EUR</text>
+  <text x="840" y="200" text-anchor="middle" fill="#5B6675" font-size="18">eine Zahl raus</text>
+</svg>

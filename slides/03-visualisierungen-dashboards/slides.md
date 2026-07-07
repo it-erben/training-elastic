@@ -6,6 +6,11 @@ header: "Modul 03: Visualisierungen & Dashboards"
 footer: "CC BY-NC-SA 4.0, Alexander Erben"
 ---
 
+<style>
+section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
+</style>
+
+
 # Modul 03: Visualisierungen & Dashboards
 
 ---
@@ -23,13 +28,17 @@ Nach diesem Modul kannst du:
 
 ---
 
+<style scoped>
+section { font-size: 0.9em; }
+</style>
+
 # Unser Ziel: Das E-Commerce Dashboard
 
 Wir bauen Schritt für Schritt ein Dashboard auf Basis der **Kibana Sample
 eCommerce Orders**:
 
 | Visualisierung                | Typ            |
-|-------------------------------|----------------|
+| ----------------------------- | -------------- |
 | Gesamtumsatz, Bestellanzahl,  | Metrik-Kacheln |
 | durchschn. Bestellwert        |                |
 | Umsatz über Zeit              | Liniendiagramm |
@@ -76,7 +85,7 @@ Oder direkt aus einem Dashboard heraus:
 
 # Visualize Library
 
-![h:500 center](images/visualize-library.png)
+![h:450 center](images/visualize-library.png)
 
 ---
 
@@ -87,19 +96,19 @@ table { font-size: 0.85em; }
 </style>
 
 | Bereich          | Funktion                        |
-|------------------|---------------------------------|
+| ---------------- | ------------------------------- |
 | **Linke Seite**  | Feldliste aus dem Index Pattern |
 | **Mitte**        | Vorschau der Visualisierung     |
 | **Rechte Seite** | Konfiguration (Achsen, Farben)  |
 | **Oben**         | Diagrammtyp-Auswahl             |
 
-Felder werden per **Drag and Drop** aus der Feldliste auf die Achsen gezogen.
+Felder ziehst du per **Drag and Drop** aus der Feldliste auf die Achsen.
 
 ---
 
 # Lens-Editor - Kibana
 
-![h:500 center](images/lens-editor.png)
+![h:450 center](images/lens-editor.png)
 
 ---
 
@@ -110,7 +119,7 @@ table { font-size: 0.7em; }
 </style>
 
 | Typ                 | Einsatzgebiet                  |
-|---------------------|--------------------------------|
+| ------------------- | ------------------------------ |
 | **Balkendiagramm**  | Vergleich von Kategorien       |
 | **Liniendiagramm**  | Zeitverläufe und Trends        |
 | **Flächendiagramm** | Zeitverläufe mit Volumen       |
@@ -126,7 +135,7 @@ table { font-size: 0.7em; }
 
 # Diagrammtyp-Auswahl in Lens
 
-![h:500 center](images/metrik-kachel.png)
+![h:450 center](images/metrik-kachel.png)
 
 ---
 
@@ -143,21 +152,25 @@ table { font-size: 0.7em; }
 
 ---
 
+# Frage in die Runde
+
+- Welche Kennzahl schaust du im Job zuerst an, wenn du wissen willst "läuft's gerade"?
+- Welcher Diagrammtyp landet bei dir am häufigsten im Report - und warum genau der?
+
+---
+
 <!-- _header: "Metriken und Aggregationen" -->
 
 # Was sind Aggregationen?
 
-Aggregationen fassen viele Einzeldaten zu
-**aussagekräftigen Kennzahlen** zusammen.
+Viele Einzeldaten rein, eine **Kennzahl** raus:
 
-> Stell dir vor, du hast 50.000 Bestellungen.
-> Eine Aggregation berechnet daraus z. B. den
-> Gesamtumsatz oder die Anzahl der Bestellungen.
+![w:900 center](images/aggregation-viele-rein-zahl-raus.ie.svg)
 
 Zwei Hauptarten:
 
-- **Metrik-Aggregationen** - berechnen einen Wert
-- **Bucket-Aggregationen** - teilen Daten in Gruppen
+- **Metrik-Aggregation** - berechnet einen Wert
+- **Bucket-Aggregation** - teilt Daten in Gruppen
 
 ---
 
@@ -169,7 +182,7 @@ section { font-size: 1.7em; }
 </style>
 
 | Aggregation      | Beschreibung             | Beispiel            |
-|------------------|--------------------------|---------------------|
+| ---------------- | ------------------------ | ------------------- |
 | **Count**        | Anzahl der Dokumente     | Anzahl Bestellungen |
 | **Sum**          | Summe eines Feldes       | Gesamtumsatz        |
 | **Average**      | Durchschnitt             | Mittlerer Bestellw. |
@@ -185,37 +198,41 @@ Alle diese Aggregationen beziehen sich auf
 # Bucket-Aggregationen
 
 <style scoped>
-section { font-size: 1.5em; }
+section { font-size: 1.4em; }
 </style>
 Bucket-Aggregationen **gruppieren** Dokumente:
 
 | Aggregation        | Gruppiert nach ...          |
-|--------------------|-----------------------------|
+| ------------------ | --------------------------- |
 | **Terms**          | Werten eines Feldes         |
 | **Date Histogram** | Zeitintervallen             |
 | **Ranges**         | Selbstdefinierten Bereichen |
 | **Filters**        | Eigenen Filterregeln        |
 
 **Beispiel Terms:** Gruppiere Bestellungen nach
-*Produktkategorie* -- du erhältst einen Bucket pro Kategorie (Women's Clothing,
+*Produktkategorie*. Du erhältst einen Bucket pro Kategorie (Women's Clothing,
 Men's Shoes ...).
 
-**Beispiel Date Histogram:** Gruppiere Bestellungen nach *Monat* -- du erhältst
+**Beispiel Date Histogram:** Gruppiere Bestellungen nach *Monat*. Du erhältst
 einen Bucket pro Monat.
 
 ---
 
+<style scoped>
+table { font-size: 0.78em; }
+section { font-size: 0.95em; }
+</style>
+
 # Zusammenspiel: Buckets und Metriken
 
-Eine Visualisierung kombiniert typischerweise:
+Eine Visualisierung = **Bucket** (Gruppierung) + **Metrik** (Wert):
 
-**Bucket** (= Achse / Gruppierung)
-und **Metrik** (= berechneter Wert)
+![w:700 center](images/bucket-metrik-diagramm-flow.ie.svg)
 
 Beispiel mit den eCommerce-Beispieldaten:
 
 | Bucket (X-Achse) | Metrik (Y-Achse)     | Ergebnis             |
-|------------------|----------------------|----------------------|
+| ---------------- | -------------------- | -------------------- |
 | Produktkategorie | Sum(Umsatz)          | Umsatz pro Kategorie |
 | Monat            | Count(Bestellungen)  | Bestellungen / Monat |
 | Region           | Average(Bestellwert) | Mittl. Wert / Region |
@@ -244,18 +261,18 @@ section { font-size: 1.6em; }
 
 # Balkendiagramme - Überblick
 
-Balkendiagramme eignen sich besonders für den
-**Vergleich von Kategorien**.
+Willst du **Kategorien vergleichen**, ist das
+Balkendiagramm der Klassiker.
 
 **Varianten:**
 
-- **Vertikal** -- Kategorien auf der X-Achse
+- **Vertikal** - Kategorien auf der X-Achse
   (Standard)
-- **Horizontal** -- Kategorien auf der Y-Achse
+- **Horizontal** - Kategorien auf der Y-Achse
   (gut bei langen Beschriftungen)
-- **Gestapelt (Stacked)** -- mehrere Metriken übereinander (zeigt
+- **Gestapelt (Stacked)** - mehrere Metriken übereinander (zeigt
   Zusammensetzung)
-- **Nebeneinander (Grouped)** -- mehrere Metriken nebeneinander (besser für
+- **Nebeneinander (Grouped)** - mehrere Metriken nebeneinander (besser für
   direkten Vergleich)
 
 ---
@@ -290,7 +307,7 @@ section { font-size: 1.6em; }
 Nützliche Einstellungen im rechten Panel:
 
 | Einstellung            | Wo                  | Tipp                  |
-|------------------------|---------------------|-----------------------|
+| ---------------------- | ------------------- | --------------------- |
 | **Sortierung**         | X-Achsen-Konfig.    | Nach Metrik abst.     |
 | **Farben**             | Rechtes Panel       | Einheitliche Palette  |
 | **Achsenbeschriftung** | Rechtes Panel       | Aussagekräftige Namen |
@@ -328,8 +345,9 @@ section { font-size: 1.8em; }
 
 # Liniendiagramme - Überblick
 
-Liniendiagramme sind ideal für **Zeitreihen**
-und **Trendanalysen**.
+Sobald sich etwas über die Zeit entwickelt,
+kommt das Liniendiagramm zum Einsatz - für
+**Zeitreihen** und **Trends**.
 
 **Typische Fragestellungen:**
 
@@ -337,13 +355,13 @@ und **Trendanalysen**.
 - Gibt es saisonale Muster?
 - Steigen oder fallen die Bestellzahlen?
 
-> Das Liniendiagramm ist die wichtigste
-> Visualisierung für zeitbasierte Analysen.
+> Bei zeitbasierten Analysen ist das
+> Liniendiagramm meist die erste Wahl.
 
 ---
 
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.45em; }
 </style>
 
 # Praxis: Umsatz über Zeit
@@ -355,7 +373,7 @@ Wir erstellen ein Liniendiagramm für den
 
 1. Öffne **Lens** und wähle **Line**
 2. Ziehe `order_date` auf die **X-Achse**
-   -- Lens wählt automatisch *Date Histogram*
+   - Lens wählt automatisch *Date Histogram*
 3. Ziehe `taxful_total_price` auf die **Y-Achse**
 4. Wähle **Sum** als Aggregation für die Y-Achse
 5. Passe das **Zeitintervall** an:
@@ -364,9 +382,9 @@ Wir erstellen ein Liniendiagramm für den
 
 ---
 
-# Linien- und Balkendiagramme -- Beispiel
+# Linien- und Balkendiagramme - Beispiel
 
-![h:500 center](images/dashboard-sample-charts.png)
+![h:450 center](images/dashboard-sample-charts.png)
 
 ---
 <style scoped>
@@ -378,7 +396,7 @@ section { font-size: 1.8em; }
 Das Zeitintervall bestimmt die **Granularität** der Darstellung.
 
 | Intervall       | Gut für ...                       |
-|-----------------|-----------------------------------|
+| --------------- | --------------------------------- |
 | **Stündlich**   | Sehr kurzfristige Analysen        |
 | **Täglich**     | Tages-Trends, letzte Woche        |
 | **Wöchentlich** | Wochen-Vergleich, letzter Monat   |
@@ -389,7 +407,7 @@ Das Zeitintervall bestimmt die **Granularität** der Darstellung.
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.7em; }
 </style>
 
 # Mehrere Linien vergleichen
@@ -426,7 +444,7 @@ zu vergleichen:
    **Time shift**: gib `1M` ein
 5. Lens zeigt die verschobene Linie zum Vergleich
 
-> Time shift ist besonders nützlich für Monats- oder Jahresvergleiche.
+> Time shift ist praktisch für Monats- oder Jahresvergleiche.
 
 ---
 
@@ -440,8 +458,8 @@ Kreisdiagramme zeigen **Anteile an einem Ganzen**.
 
 **Varianten:**
 
-- **Pie** -- klassisches Kreisdiagramm
-- **Donut** -- mit Loch in der Mitte
+- **Pie** - klassisches Kreisdiagramm
+- **Donut** - mit Loch in der Mitte
   (Platz für eine zentrale Kennzahl)
 
 **Wann einsetzen?**
@@ -475,7 +493,7 @@ Wir erstellen ein Kreisdiagramm für die
 
 # Kreisdiagramm in Lens
 
-![h:500 center](images/kreisdiagramm.png)
+![h:450 center](images/kreisdiagramm.png)
 
 ---
 
@@ -501,7 +519,7 @@ Datentabellen eignen sich für **detaillierte Auflistungen** und **exakte Werte*
 
 ---
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.7em; }
 </style>
 
 # Praxis: Bestelldetails-Tabelle
@@ -512,10 +530,10 @@ Wir erstellen eine Tabelle mit den **neuesten Bestellungen im eCommerce-Datensat
 
 1. Öffne **Lens** und wähle **Table**
 2. Ziehe folgende Felder als **Spalten**:
-    - `order_date` -- Bestelldatum
-    - `customer_full_name` -- Kundenname
-    - `category.keyword` -- Produktkategorie
-    - `taxful_total_price` -- Bestellwert
+    - `order_date` - Bestelldatum
+    - `customer_full_name` - Kundenname
+    - `category.keyword` - Produktkategorie
+    - `taxful_total_price` - Bestellwert
 3. Klicke auf **Rows per page** und wähle 10
 4. Sortiere nach `order_date` absteigend
 
@@ -543,22 +561,25 @@ Heatmaps zeigen **Muster in zwei Dimensionen**
 
 ---
 
+# Frage in die Runde
+
+- Wer schaut bei euch auf Dashboards - ihr selbst, das Management, Kunden?
+- Was nervt dich an einem Dashboard, das du regelmäßig offen hast?
+
+---
+
 <style scoped>
-section { font-size: 1.8em; }
+section { font-size: 1.3em; }
 </style>
 
 # Was ist ein Dashboard?
 
-Ein Dashboard ist eine **Sammlung von Visualisierungen** auf einer Seite.
+Viele Visualisierungen, eine Seite, ein Zeitfilter:
 
-**Vorteile:**
+![w:760 center](images/dashboard-aufbau-zeitfilter.ie.svg)
 
-- Alle wichtigen Kennzahlen auf einen Blick
-- Gemeinsamer Zeitfilter für alle Elemente
-- Interaktive Filterung durch Klick
-- Einfach teilbar mit Kollegen
-
-> Ein gutes Dashboard beantwortet die wichtigsten Fragen, ohne dass man suchen muss.
+- Alle Kennzahlen auf einen Blick
+- Interaktiv filterbar, einfach teilbar
 
 ---
 
@@ -581,7 +602,7 @@ section { font-size: 1.8em; }
 
 ---
 <style scoped>
-section { font-size: 1.6em; }
+section { font-size: 1.5em; }
 </style>
 
 # Metrik-Kacheln hinzufügen
@@ -618,13 +639,13 @@ section { font-size: 1.8em; }
 
 Füge die bereits erstellten Visualisierungen zum Dashboard hinzu:
 
-| Reihenfolge | Visualisierung                                 |
-|-------------|------------------------------------------------|
-| 1           | Metrik-Kacheln (Umsatz, Anzahl, Durchschnitt)  |
-| 2           | Umsatz über Zeit (Linie)                       |
-| 3           | Top-Kategorien (Balken)                        |
-| 4           | Bestellverteilung Region (Kreis)               |
-| 5           | Bestelldetails (Tabelle)                       |
+| Reihenfolge | Visualisierung                                |
+| ----------- | --------------------------------------------- |
+| 1           | Metrik-Kacheln (Umsatz, Anzahl, Durchschnitt) |
+| 2           | Umsatz über Zeit (Linie)                      |
+| 3           | Top-Kategorien (Balken)                       |
+| 4           | Bestellverteilung Region (Kreis)              |
+| 5           | Bestelldetails (Tabelle)                      |
 
 Nutze **Add from library**, wenn die Visualisierungen bereits gespeichert sind.
 
@@ -662,18 +683,18 @@ Du kannst dem Dashboard **Steuerelemente** hinzufügen, damit Nutzer Daten filte
 2. Wähle **Add control**
 
 | Control-Typ      | Beispiel                    |
-|------------------|-----------------------------|
+| ---------------- | --------------------------- |
 | **Options List** | Dropdown für Kategorie      |
 | **Range Slider** | Bestellwert von ... bis ... |
 | **Time Slider**  | Zeitraum visuell eingrenzen |
 
-> Controls ermöglichen es deinen Kollegen, das Dashboard selbst zu filtern, ohne KQL schreiben zu müssen.
+> Mit Controls filtern deine Kollegen das Dashboard selbst, ohne KQL schreiben zu müssen.
 
 ---
 
 # Dashboard im Bearbeitungsmodus
 
-![h:500 center](images/dashboard-editmode.png)
+![h:450 center](images/dashboard-editmode.png)
 
 ---
 
@@ -687,6 +708,13 @@ Wenn dein Dashboard fertig ist:
 4. Wähle, ob neue Visualisierungen in die **Library** übernommen werden sollen
 
 > Verwende eine einheitliche Namenskonvention, z. B. mit Präfix für den Fachbereich: *Controlling - Monatsbericht Umsatz*
+
+---
+
+# Frage in die Runde
+
+- Wie filterst du heute durch deine Daten - Klick, Query, oder doch Excel-Export?
+- Wo würde dir "ein Klick filtert alles" im Alltag am meisten Zeit sparen?
 
 ---
 
@@ -711,7 +739,7 @@ section { font-size: 1.9em; }
 
 # Cross-Filtering in der Praxis
 
-So nutzt du Cross-Filtering:
+In der Praxis:
 
 - **Klick auf ein Balken-Segment:** Filtert nach dieser Kategorie
 - **Klick auf ein Kreis-Segment:** Filtert nach dieser Region
@@ -727,11 +755,11 @@ So nutzt du Cross-Filtering:
 # Drilldowns konfigurieren
 
 <style scoped>
-section { font-size: 1.6em; }
+section { font-size: 1.5em; }
 </style>
 
-Drilldowns ermöglichen es, bei Klick auf ein Element **zu einer anderen Ansicht
-zu navigieren**.
+Mit Drilldowns navigierst du per Klick auf ein Element **zu einer anderen
+Ansicht**.
 
 **Beispiel:** Klick auf eine Produktkategorie öffnet ein Detail-Dashboard für
 diese Kategorie.
@@ -757,14 +785,14 @@ Alle Visualisierungen im Dashboard teilen sich den **gemeinsamen Zeitfilter** (o
 **Nützliche Funktionen:**
 
 | Funktion              | Beschreibung                  |
-|-----------------------|-------------------------------|
+| --------------------- | ----------------------------- |
 | **Quick Select**      | Letzte 15 Min, 24 h, 7 Tage   |
 | **Absoluter Bereich** | Von Datum X bis Datum Y       |
 | **Relativer Bereich** | Letzte 30 Tage, letzter Monat |
 | **Refresh-Intervall** | Auto-Aktualisierung (z. B.    |
 |                       | alle 30 Sekunden)             |
 
-> Setze den Zeitfilter so, dass die Daten aussagekräftig sind -- oft ist *Letzte 30 Tage* ein guter Startpunkt.
+> Setze den Zeitfilter so, dass die Daten aussagekräftig sind - oft ist *Letzte 30 Tage* ein guter Startpunkt.
 
 ---
 <style scoped>
@@ -797,16 +825,44 @@ Du kannst Dashboards auf verschiedene Arten mit Kollegen teilen:
 section { font-size: 1.8em; }
 </style>
 
-| Prinzip                    | Empfehlung                                         |
-|----------------------------|----------------------------------------------------|
-| **Weniger ist mehr**       | Max. 8-10 Visualisierungen                         |
-| **Wichtigstes oben**       | KPIs und Haupttrend zuerst                         |
-| **Konsistente Farben**     | Gleiche Palette verwenden                          |
-| **Aussagekräftige Titel**  | Nicht "Chart 1", sondern "Umsatz nach Kategorie"   |
-| **Zeitraum dokumentieren** | Standard-Zeitraum festlegen                        |
-| **Controls anbieten**      | Filter für Nutzer vorsehen                         |
+| Prinzip                    | Empfehlung                                       |
+| -------------------------- | ------------------------------------------------ |
+| **Weniger ist mehr**       | Max. 8-10 Visualisierungen                       |
+| **Wichtigstes oben**       | KPIs und Haupttrend zuerst                       |
+| **Konsistente Farben**     | Gleiche Palette verwenden                        |
+| **Aussagekräftige Titel**  | Nicht "Chart 1", sondern "Umsatz nach Kategorie" |
+| **Zeitraum dokumentieren** | Standard-Zeitraum festlegen                      |
+| **Controls anbieten**      | Filter für Nutzer vorsehen                       |
 
-> Ein Dashboard ist dann gut, wenn es die wichtigsten Fragen beantwortet, ohne dass man nachfragen muss.
+> Faustregel: Wenn nach einem Blick aufs Dashboard keine Rückfragen mehr kommen, sitzt es.
+
+---
+<style scoped>
+code { font-size: 0.85em; }
+section { font-size: 1.3em; }
+</style>
+
+# Dashboards as Code
+
+Dashboards sind in Kibana **Saved Objects** und lassen sich exportieren und
+importieren:
+
+- **Oberfläche:** Stack Management / Saved Objects / Export bzw. Import
+- **API:**
+
+```
+POST /api/saved_objects/_export
+{ "type": "dashboard" }
+```
+
+Das Ergebnis ist eine **ndjson-Datei** (ein JSON-Objekt pro Zeile), inklusive
+abhängiger Objekte wie Visualisierungen und Data Views.
+
+**Anwendungsfälle:**
+
+- **Versionierung** - Dashboards im Git-Repository verwalten
+- **Deployment über Umgebungen** - Dev / Test / Produktion identisch halten
+- **Backup und Austausch** - Dashboards mit anderen Teams teilen
 
 ---
 
@@ -821,4 +877,5 @@ section { font-size: 1.8em; }
   **Liniendiagramme** zeigen Trends,
   **Kreisdiagramme** zeigen Anteile
 - **Dashboards** bündeln Visualisierungen und bieten interaktive Filterung
-- **Cross-Filtering** und **Drilldowns** machen Dashboards lebendig
+- **Cross-Filtering** filtert per Klick alle Panels,
+  **Drilldowns** verlinken auf andere Dashboards

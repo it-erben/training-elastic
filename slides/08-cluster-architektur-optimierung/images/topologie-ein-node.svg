@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 195" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="40" y="20" width="480" height="140" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="280" y="80" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">node-1</text>
+  <text x="280" y="118" font-size="21" fill="#DDE6FB" text-anchor="middle">master, data, ingest</text>
+</svg>

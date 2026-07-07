@@ -1,0 +1,527 @@
+# ============================================================
+# ILM Setup für smarttransactions — Vollständiges Beispiel
+# ============================================================
+#
+# Diese Befehle in Kibana Dev Tools ausführen, in genau
+# dieser Reihenfolge. Am Ende hast du einen funktionierenden
+# ILM-gesteuerten Index mit Rollover.
+#
+# Architektur:
+#   - Hot:    0–30 Tage, aktive Indexierung + Suche
+#   - Warm:  30–180 Tage, nur Lesen, komprimiert
+#   - Cold: 180–365 Tage, selten abgefragt
+#   - Delete: nach 365 Tagen automatisch gelöscht
+
+
+# ============================================================
+# SCHRITT 1: ILM Policy erstellen
+# ============================================================
+#
+# Diese Policy definiert den gesamten Lebenszyklus eines
+# Index — wann er überwechselt, wann er komprimiert wird,
+# und wann er gelöscht wird.
+
+PUT _ilm/policy/smarttransactions-lifecycle
+{
+  "policy": {
+    "phases": {
+
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "rollover": {
+            "max_age": "30d",
+            "max_primary_shard_size": "50gb"
+          },
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+
+      "warm": {
+        "min_age": "30d",
+        "actions": {
+          "shrink": {
+            "number_of_shards": 1
+          },
+          "forcemerge": {
+            "max_num_segments": 1
+          },
+          "set_priority": {
+            "priority": 50
+          }
+        }
+      },
+
+      "cold": {
+        "min_age": "180d",
+        "actions": {
+          "set_priority": {
+            "priority": 0
+          },
+          "readonly": {}
+        }
+      },
+
+      "delete": {
+        "min_age": "365d",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}
+
+# Prüfen, ob die Policy angelegt wurde:
+GET _ilm/policy/smarttransactions-lifecycle
+
+
+# ============================================================
+# SCHRITT 2: Index Template erstellen
+# ============================================================
+#
+# Das Template sorgt dafür, dass jeder neue Index, der dem
+# Muster smarttransactions-* entspricht, automatisch:
+# - die ILM Policy bekommt
+# - das richtige Mapping bekommt
+# - die richtigen Shard-Einstellungen bekommt
+
+PUT _index_template/smarttransactions-template
+{
+  "index_patterns": ["smarttransactions-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 1,
+      "index.lifecycle.name": "smarttransactions-lifecycle",
+      "index.lifecycle.rollover_alias": "smarttransactions-live"
+    },
+    "mappings": {
+      "dynamic": "strict",
+      "date_detection": false,
+      "properties": {
+        "id":                    { "type": "keyword" },
+        "object":                { "type": "keyword", "index": false, "doc_values": false },
+        "trans_id":              { "type": "integer" },
+        "status":                { "type": "keyword" },
+        "created":               { "type": "date", "format": "date_time_no_millis||strict_date_optional_time" },
+        "updated":               { "type": "date", "format": "date_time_no_millis||strict_date_optional_time" },
+        "intent":                { "type": "keyword" },
+        "is_demo":               { "type": "boolean" },
+        "payment_method":        { "type": "keyword" },
+        "tax_amount":            { "type": "integer" },
+        "tax_rate":              { "type": "integer" },
+        "receipt_number":        { "type": "integer" },
+        "receipt_merchant_print": { "type": "boolean" },
+        "merchantRef":           { "type": "keyword", "doc_values": false },
+        "transactionRef":        { "type": "keyword", "doc_values": false },
+        "merchant": {
+          "properties": {
+            "id":          { "type": "keyword" },
+            "object":      { "type": "keyword", "index": false, "doc_values": false },
+            "companyname": { "type": "keyword" }
+          }
+        },
+        "store": {
+          "properties": {
+            "id":     { "type": "keyword" },
+            "object": { "type": "keyword", "index": false, "doc_values": false }
+          }
+        },
+        "basket_info": {
+          "properties": {
+            "sum":      { "type": "integer" },
+            "currency": { "type": "keyword" },
+            "gratuity": { "type": "integer" }
+          }
+        },
+        "basket": {
+          "properties": {
+            "type": { "type": "keyword" },
+            "products": {
+              "properties": {
+                "id":            { "type": "integer" },
+                "desc":          { "type": "text" },
+                "ean":           { "type": "keyword" },
+                "articleNumber": { "type": "keyword" },
+                "priceOne":      { "type": "integer" },
+                "quantity":      { "type": "integer" },
+                "sum":           { "type": "integer" },
+                "tax":           { "type": "integer" },
+                "item_type":     { "type": "keyword" },
+                "parent":        { "type": "integer" },
+                "reference_id":  { "type": "keyword", "doc_values": false },
+                "group": {
+                  "properties": {
+                    "id":    { "type": "keyword", "doc_values": false },
+                    "desc":  { "type": "keyword" },
+                    "level": { "type": "integer" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "customer": {
+          "properties": {
+            "id":     { "type": "keyword" },
+            "object": { "type": "keyword", "index": false, "doc_values": false },
+            "contact": {
+              "properties": {
+                "forename":   { "type": "keyword" },
+                "surname":    { "type": "keyword" },
+                "name":       { "type": "text" },
+                "email":      { "type": "keyword" },
+                "phone":      { "type": "keyword" },
+                "salutation": { "type": "keyword" },
+                "gender":     { "type": "keyword" },
+                "address": {
+                  "properties": {
+                    "street":        { "type": "keyword" },
+                    "street_number": { "type": "keyword" },
+                    "postal_code":   { "type": "keyword" },
+                    "city":          { "type": "keyword" },
+                    "country":       { "type": "keyword" }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "idents": {
+          "properties": {
+            "customer": { "type": "object", "enabled": false },
+            "merchantcard": {
+              "properties": {
+                "id":     { "type": "keyword", "doc_values": false },
+                "object": { "type": "keyword", "index": false, "doc_values": false },
+                "card": {
+                  "properties": {
+                    "id":         { "type": "keyword", "doc_values": false },
+                    "cardnumber": { "type": "keyword", "doc_values": false },
+                    "object":     { "type": "keyword", "index": false, "doc_values": false }
+                  }
+                },
+                "customer": { "type": "object", "enabled": false }
+              }
+            }
+          }
+        },
+        "receipt":          { "type": "object", "enabled": false },
+        "receipt_merchant": { "type": "object", "enabled": false },
+        "container": {
+          "properties": {
+            "id":     { "type": "keyword", "doc_values": false },
+            "object": { "type": "keyword", "index": false, "doc_values": false },
+            "type":   { "type": "keyword" },
+            "token_status": {
+              "properties": {
+                "status":        { "type": "keyword" },
+                "created":       { "type": "date", "format": "date_time_no_millis||strict_date_optional_time" },
+                "last_modified": { "type": "date", "format": "date_time_no_millis||strict_date_optional_time" },
+                "version":       { "type": "long" }
+              }
+            }
+          }
+        },
+        "contract":           { "properties": { "id": { "type": "keyword", "doc_values": false }, "object": { "type": "keyword", "index": false, "doc_values": false } } },
+        "device_source":      { "properties": { "id": { "type": "keyword", "doc_values": false }, "object": { "type": "keyword", "index": false, "doc_values": false } } },
+        "device_destination": { "properties": { "id": { "type": "keyword", "doc_values": false }, "object": { "type": "keyword", "index": false, "doc_values": false } } },
+        "transactions": {
+          "properties": {
+            "id":               { "type": "keyword", "doc_values": false },
+            "object":           { "type": "keyword", "index": false, "doc_values": false },
+            "trans_id":         { "type": "integer" },
+            "transaction_hash": { "type": "keyword", "doc_values": false }
+          }
+        },
+        "application_context": {
+          "properties": {
+            "language": { "type": "keyword" },
+            "shop_details": {
+              "properties": {
+                "shop_system":         { "type": "keyword" },
+                "shop_system_version": { "type": "keyword" },
+                "shop_domain":         { "type": "keyword" },
+                "plugin_vendor":       { "type": "keyword" },
+                "plugin_version":      { "type": "keyword" },
+                "user_agent":          { "type": "keyword" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+# Prüfen, ob das Template angelegt wurde:
+GET _index_template/smarttransactions-template
+
+
+# ============================================================
+# SCHRITT 3: Initialen Index mit Write-Alias erstellen
+# ============================================================
+#
+# Der erste Index heißt smarttransactions-000001.
+# Der Alias "smarttransactions-live" zeigt darauf.
+# Die Anwendung schreibt und liest nur über den Alias.
+
+PUT smarttransactions-000001
+{
+  "aliases": {
+    "smarttransactions-live": {
+      "is_write_index": true
+    }
+  }
+}
+
+
+# ============================================================
+# SCHRITT 4: Testdaten indexieren (über den Alias!)
+# ============================================================
+#
+# Ab jetzt wird IMMER gegen den Alias geschrieben,
+# nie direkt gegen einen Index-Namen.
+
+POST smarttransactions-live/_doc/STX_ILM_001
+{
+  "id": "STX_ILM_001",
+  "object": "smart.transactions",
+  "trans_id": 900001,
+  "status": "ok",
+  "created": "2026-03-27T09:30:00+00:00",
+  "updated": "2026-03-27T09:30:00+00:00",
+  "intent": "sale",
+  "is_demo": false,
+  "payment_method": "creditcard",
+  "tax_amount": 1900,
+  "tax_rate": 19,
+  "receipt_number": 800001,
+  "receipt_merchant_print": true,
+  "merchantRef": "MREF-12345",
+  "transactionRef": "REF-900001",
+  "merchant": {
+    "id": "MRC_000001",
+    "object": "general.merchants",
+    "companyname": "TechStore GmbH"
+  },
+  "store": {
+    "id": "STO_000001",
+    "object": "general.stores"
+  },
+  "basket_info": {
+    "sum": 11999,
+    "currency": "EUR",
+    "gratuity": 0
+  },
+  "basket": {
+    "type": "default",
+    "products": [
+      {
+        "id": 0,
+        "desc": "Wireless Kopfhörer Pro",
+        "ean": "4001234567890",
+        "articleNumber": "WKP-001",
+        "priceOne": 7999,
+        "quantity": 1,
+        "sum": 7999,
+        "tax": 1520,
+        "item_type": "article",
+        "parent": 0,
+        "reference_id": "REF_000001",
+        "group": { "id": "GRP_000003", "desc": "Elektronik", "level": 1 }
+      },
+      {
+        "id": 1,
+        "desc": "USB-C Ladekabel 2m",
+        "ean": "4002223334440",
+        "articleNumber": "UCL-200",
+        "priceOne": 1299,
+        "quantity": 1,
+        "sum": 1299,
+        "tax": 247,
+        "item_type": "article",
+        "parent": 0,
+        "reference_id": "REF_000002",
+        "group": { "id": "GRP_000003", "desc": "Elektronik", "level": 1 }
+      }
+    ]
+  },
+  "customer": {
+    "id": "CUS_000042",
+    "object": "payment.customers",
+    "contact": {
+      "forename": "Anna",
+      "surname": "Müller",
+      "name": "Anna Müller",
+      "email": "anna.mueller@example.com",
+      "phone": "+491511234567",
+      "salutation": "Mrs",
+      "gender": "f",
+      "address": {
+        "street": "Hauptstraße",
+        "street_number": "42",
+        "postal_code": "10115",
+        "city": "Berlin",
+        "country": "DE"
+      }
+    }
+  },
+  "idents": {
+    "customer": {
+      "id": "CUS_000042",
+      "forename": "Anna",
+      "surname": "Müller"
+    },
+    "merchantcard": {
+      "id": "MCC_000123",
+      "object": "loyalty.merchantcards",
+      "card": {
+        "id": "CRD_000456",
+        "cardnumber": "1234567890",
+        "object": "loyalty.cards"
+      },
+      "customer": {
+        "id": "CUS_000042",
+        "forename": "Anna",
+        "surname": "Müller"
+      }
+    }
+  },
+  "receipt": [
+    { "type": "separator", "value": { "text": "================================" } },
+    { "type": "name_value", "value": { "name": "Betrag", "value": "EUR 119,99", "decoration": "bold" } }
+  ],
+  "receipt_merchant": [
+    { "type": "separator", "value": { "text": "================================" } },
+    { "type": "name_value", "value": { "name": "Betrag", "value": "EUR 119,99", "decoration": "bold" } }
+  ],
+  "container": {
+    "id": "PCT_000100",
+    "object": "payment.containers",
+    "type": "credit_card",
+    "token_status": {
+      "status": "active",
+      "created": "2026-03-27T09:30:00+00:00",
+      "last_modified": "2026-03-27T09:30:00+00:00",
+      "version": 1
+    }
+  },
+  "contract":           { "id": "GCT_000010", "object": "general.contracts" },
+  "device_source":      { "id": "SDV_000050", "object": "general.devices" },
+  "device_destination": { "id": "SDV_000051", "object": "general.devices" },
+  "transactions": [
+    { "id": "PTA_000999", "object": "payment.transactions", "trans_id": 200001, "transaction_hash": "hash_900001" }
+  ],
+  "application_context": {
+    "language": "de",
+    "shop_details": {
+      "shop_system": "WooCommerce",
+      "shop_system_version": "8.2.1",
+      "shop_domain": "www.techstore-gmbh.de",
+      "plugin_vendor": "secuconnect",
+      "plugin_version": "3.4.1",
+      "user_agent": "Mozilla/5.0"
+    }
+  }
+}
+
+
+# ============================================================
+# SCHRITT 5: Prüfen, dass alles funktioniert
+# ============================================================
+
+# Dokument über den Alias suchen:
+GET smarttransactions-live/_search
+{
+  "query": { "term": { "status": "ok" } }
+}
+
+# Welcher Index steckt hinter dem Alias?
+GET smarttransactions-live/_alias
+
+# ILM-Status prüfen — zeigt aktuelle Phase und nächsten Übergang:
+GET smarttransactions-000001/_ilm/explain
+
+# Alle Indices mit dem Muster anzeigen:
+GET _cat/indices/smarttransactions-*?v&h=index,docs.count,store.size,status
+
+
+# ============================================================
+# SCHRITT 6: Rollover manuell testen (optional)
+# ============================================================
+#
+# Im Normalbetrieb macht ILM den Rollover automatisch,
+# wenn max_age (30d) oder max_primary_shard_size (50gb)
+# erreicht ist. Zum Testen kann man ihn manuell auslösen:
+
+POST smarttransactions-live/_rollover
+
+# Jetzt gibt es:
+# - smarttransactions-000001 (alter Index, read-only, ILM übernimmt)
+# - smarttransactions-000002 (neuer Write-Index)
+
+# Prüfen:
+GET _cat/indices/smarttransactions-*?v&h=index,docs.count,store.size,status
+
+# Alias zeigt jetzt auf den neuen Index zum Schreiben:
+GET smarttransactions-live/_alias
+
+# Neues Dokument landet automatisch im neuen Index:
+POST smarttransactions-live/_doc/STX_ILM_002
+{
+  "id": "STX_ILM_002",
+  "object": "smart.transactions",
+  "trans_id": 900002,
+  "status": "ok",
+  "created": "2026-03-27T10:00:00+00:00",
+  "updated": "2026-03-27T10:00:00+00:00",
+  "intent": "sale",
+  "is_demo": false,
+  "payment_method": "debit",
+  "tax_amount": 285,
+  "tax_rate": 19,
+  "receipt_number": 800002,
+  "receipt_merchant_print": false,
+  "merchantRef": "MREF-12346",
+  "transactionRef": "REF-900002",
+  "merchant":    { "id": "MRC_000002", "object": "general.merchants", "companyname": "BioMarkt KG" },
+  "store":       { "id": "STO_000005", "object": "general.stores" },
+  "basket_info": { "sum": 1499, "currency": "EUR", "gratuity": 0 },
+  "basket":      { "type": "default", "products": [{ "id": 0, "desc": "Bio-Olivenöl 500ml", "ean": "4009876543210", "articleNumber": "BOO-500", "priceOne": 899, "quantity": 1, "sum": 899, "tax": 171, "item_type": "article", "parent": 0, "reference_id": "REF_000003", "group": { "id": "GRP_000001", "desc": "Lebensmittel", "level": 1 } }] },
+  "customer":    { "id": "CUS_000099", "object": "payment.customers", "contact": { "forename": "Bernd", "surname": "Schmidt", "name": "Bernd Schmidt", "email": "bernd.schmidt@example.com", "phone": "+491521234567", "salutation": "Mr", "gender": "m", "address": { "street": "Berliner Allee", "street_number": "7", "postal_code": "40210", "city": "Düsseldorf", "country": "DE" } } },
+  "idents":      { "customer": { "id": "CUS_000099" }, "merchantcard": { "id": "MCC_000200", "object": "loyalty.merchantcards", "card": { "id": "CRD_000789", "cardnumber": "9876543210", "object": "loyalty.cards" }, "customer": { "id": "CUS_000099" } } },
+  "receipt":          [{ "type": "name_value", "value": { "name": "Betrag", "value": "EUR 14,99" } }],
+  "receipt_merchant": [{ "type": "name_value", "value": { "name": "Betrag", "value": "EUR 14,99" } }],
+  "container":        { "id": "PCT_000101", "object": "payment.containers", "type": "debit", "token_status": { "status": "active", "created": "2026-03-27T10:00:00+00:00", "last_modified": "2026-03-27T10:00:00+00:00", "version": 1 } },
+  "contract":           { "id": "GCT_000010", "object": "general.contracts" },
+  "device_source":      { "id": "SDV_000050", "object": "general.devices" },
+  "device_destination": { "id": "SDV_000051", "object": "general.devices" },
+  "transactions":       [{ "id": "PTA_001000", "object": "payment.transactions", "trans_id": 200002, "transaction_hash": "hash_900002" }],
+  "application_context": { "language": "de", "shop_details": { "shop_system": "Shopify", "shop_system_version": "2.0", "shop_domain": "www.biomarkt-kg.de", "plugin_vendor": "secuconnect", "plugin_version": "3.4.1", "user_agent": "Mozilla/5.0" } }
+}
+
+# Suche über den Alias findet Dokumente aus BEIDEN Indices:
+GET smarttransactions-live/_search
+{
+  "query": { "match_all": {} }
+}
+# → 2 Treffer: STX_ILM_001 aus -000001, STX_ILM_002 aus -000002
+
+
+# ============================================================
+# AUFRÄUMEN (nach dem Testen)
+# ============================================================
+
+# Indices löschen:
+DELETE smarttransactions-000001
+DELETE smarttransactions-000002
+
+# Policy löschen:
+DELETE _ilm/policy/smarttransactions-lifecycle
+
+# Template löschen:
+DELETE _index_template/smarttransactions-template

@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1270 580" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B4FD8"/>
+    </marker>
+    <marker id="ieArrowGrau" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Hauptfluss -->
+  <rect x="40" y="60" width="260" height="100" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="170" y="120" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Filebeat</text>
+
+  <line x1="306" y1="110" x2="352" y2="110" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <rect x="360" y="60" width="260" height="100" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="490" y="120" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Logstash</text>
+
+  <line x1="626" y1="110" x2="672" y2="110" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <rect x="680" y="60" width="320" height="100" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="840" y="120" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Elasticsearch</text>
+
+  <!-- Verzweigung unter Logstash -->
+  <line x1="490" y1="160" x2="490" y2="500" stroke="#5B6675" stroke-width="2.5"/>
+  <line x1="490" y1="260" x2="524" y2="260" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+  <line x1="490" y1="380" x2="524" y2="380" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+  <line x1="490" y1="500" x2="524" y2="500" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+
+  <!-- Zweig: Java-Logs -->
+  <rect x="540" y="212" width="400" height="96" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="740" y="252" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">Java-Logs</text>
+  <text x="740" y="286" font-size="20" fill="#5B6675" text-anchor="middle">grok + date + tag</text>
+  <line x1="946" y1="260" x2="984" y2="260" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="992" y="224" width="238" height="72" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1111" y="269" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">javalogs ✓</text>
+
+  <!-- Zweig: Apache-Logs -->
+  <rect x="540" y="332" width="400" height="96" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="740" y="372" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">Apache-Logs</text>
+  <text x="740" y="406" font-size="20" fill="#5B6675" text-anchor="middle">unverändert</text>
+  <line x1="946" y1="380" x2="984" y2="380" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="992" y="344" width="238" height="72" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1111" y="389" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">stdout ✗</text>
+
+  <!-- Zweig: App-Logs -->
+  <rect x="540" y="452" width="400" height="96" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="740" y="492" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">App-Logs</text>
+  <text x="740" y="526" font-size="20" fill="#5B6675" text-anchor="middle">unverändert</text>
+  <line x1="946" y1="500" x2="984" y2="500" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="992" y="464" width="238" height="72" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1111" y="509" font-size="26" font-weight="700" fill="#172033" text-anchor="middle">stdout ✗</text>
+</svg>

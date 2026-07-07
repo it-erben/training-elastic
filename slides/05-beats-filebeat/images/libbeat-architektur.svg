@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1060 760" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="ieBg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#EEF1F8"/>
+      <stop offset="1" stop-color="#E3E9F6"/>
+    </linearGradient>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B4FD8"/>
+    </marker>
+  </defs>
+
+  <!-- Container: der Beat -->
+  <rect x="40" y="40" width="980" height="680" rx="24" fill="url(#ieBg)" stroke="#D5DBEA"/>
+  <text x="110" y="102" font-size="21" font-weight="600" letter-spacing="3" fill="#1B4FD8">BEAT (Z. B. FILEBEAT)</text>
+
+  <!-- Input -->
+  <rect x="140" y="140" width="380" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="330" y="185" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Input</text>
+  <text x="330" y="220" font-size="21" fill="#5B6675" text-anchor="middle">liest Daten, z. B. Dateien</text>
+
+  <!-- Processors -->
+  <rect x="140" y="292" width="380" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="330" y="337" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Processors</text>
+  <text x="330" y="372" font-size="21" fill="#5B6675" text-anchor="middle">anreichern, filtern</text>
+
+  <!-- Queue -->
+  <rect x="140" y="444" width="380" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="330" y="489" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Queue</text>
+  <text x="330" y="524" font-size="21" fill="#5B6675" text-anchor="middle">puffert Events</text>
+
+  <!-- Output -->
+  <rect x="140" y="596" width="380" height="104" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="330" y="641" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Output</text>
+  <text x="330" y="676" font-size="21" fill="#DDE6FB" text-anchor="middle">ES, Logstash, Kafka, ...</text>
+
+  <!-- Flusspfeile -->
+  <line x1="330" y1="244" x2="330" y2="284" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <line x1="330" y1="396" x2="330" y2="436" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <line x1="330" y1="548" x2="330" y2="588" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <!-- libbeat-Klammer rechts -->
+  <path d="M 600 160 L 622 160 Q 634 160 634 172 L 634 668 Q 634 680 622 680 L 600 680" fill="none" stroke="#5B6675" stroke-width="2.5"/>
+  <text x="690" y="400" font-size="24" font-weight="700" fill="#172033">libbeat</text>
+  <text x="690" y="436" font-size="20" fill="#5B6675">gemeinsame Bibliothek:</text>
+  <text x="690" y="466" font-size="20" fill="#5B6675">Queue, Outputs, Retry,</text>
+  <text x="690" y="496" font-size="20" fill="#5B6675">Konfiguration, Monitoring</text>
+</svg>

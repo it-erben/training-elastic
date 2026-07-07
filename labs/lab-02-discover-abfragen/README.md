@@ -16,18 +16,20 @@ Am Ende dieser Übung hast du:
 
 ### Schritt 1.1: Discover aufrufen
 
-1. Navigiere über das Hauptmenü zu **Analytics > Discover**
-2. Falls nötig, wähle oben links den Data View
+1. Öffne Kibana in deiner lokalen Umgebung: <http://localhost:5601>
+   (kein Login erforderlich)
+2. Navigiere über das Hauptmenü zu **Analytics > Discover**
+3. Falls nötig, wähle oben links den Data View
    **Kibana Sample Data eCommerce** aus
 
 ### Schritt 1.2: Oberfläche verstehen
 
 Mache dich mit den Bereichen der Discover-Ansicht vertraut:
 
-![Discover -- Übersicht](images/discover-uebersicht.png)
+![Discover - Übersicht](images/discover-uebersicht.png)
 
 | Bereich               | Position             | Beschreibung                     |
-|:----------------------|:---------------------|:---------------------------------|
+| :-------------------- | :------------------- | :------------------------------- |
 | **Data View Auswahl** | Oben links           | Auswahl des Datensatzes          |
 | **Suchleiste (KQL)**  | Oben                 | Eingabefeld für Suchabfragen     |
 | **Zeitfilter**        | Oben rechts          | Zeitraum einschränken            |
@@ -44,14 +46,14 @@ Feld (z.B. `category`), um eine Vorschau der häufigsten Werte zu sehen.
 **Aufgabe:** Klicke auf das Feld `manufacturer` und notiere die drei häufigsten
 Hersteller.
 
-![Feldliste -- Wertvorschau](images/feldliste-vorschau.png)
+![Feldliste - Wertvorschau](images/feldliste-vorschau.png)
 
 ---
 
 ## Teil 2: Zeitfilter verwenden
 
-Die E-Commerce-Beispieldaten verwenden relative Zeiträume. Das bedeutet, die
-Daten passen sich an das aktuelle Datum an.
+Die E-Commerce-Beispieldaten verwenden relative Zeiträume: Die Daten passen
+sich an das aktuelle Datum an.
 
 ### Schritt 2.1: Zeitraum einstellen
 
@@ -101,7 +103,7 @@ in die Suchleiste oben ein.
 ### KQL-Kurzreferenz
 
 | Operator          | Beispiel              | Beschreibung                          |
-|:------------------|:----------------------|:--------------------------------------|
+| :---------------- | :-------------------- | :------------------------------------ |
 | `:`               | `status: "success"`   | Exakte Übereinstimmung                |
 | `>` `<` `>=` `<=` | `price > 100`         | Vergleich (Zahlen, Datum)             |
 | `AND`             | `a: "x" AND b > 5`    | Beide Bedingungen müssen gelten       |
@@ -122,7 +124,7 @@ Drücke `Enter` oder klicke auf **Update**.
 **Erwartetes Ergebnis:** Nur Bestellungen mit einem Gesamtpreis über 100 EUR
 werden angezeigt.
 
-![KQL -- Preisfilter](images/kql-preis-filter.png)
+![KQL - Preisfilter](images/kql-preis-filter.png)
 
 **Aufgabe:** Notiere die ungefähre Anzahl der Treffer
 (sichtbar oben links, z.B. "X hits").
@@ -157,7 +159,7 @@ category: "Men's Clothing" AND taxful_total_price > 50
 **Erwartetes Ergebnis:** Nur Bestellungen aus der Kategorie
 "Men's Clothing" mit einem Preis über 50 EUR.
 
-![KQL -- Kombinierte Abfrage](images/kql-kombiniert.png)
+![KQL - Kombinierte Abfrage](images/kql-kombiniert.png)
 
 **Aufgabe:** Vergleiche die Trefferzahl mit der Suche nur nach der Kategorie (
 ohne Preisfilter). Wie viel Prozent der Bestellungen in "Men's Clothing" liegen
@@ -165,7 +167,7 @@ ohne Preisfilter). Wie viel Prozent der Bestellungen in "Men's Clothing" liegen
 
 ### Aufgabe 3.4: Suche nach Kundenland
 
-Finde alle Bestellungen von Kunden aus Deutschland:
+Finde alle Bestellungen von Kunden aus Frankreich:
 
 ```
 geoip.country_iso_code: "FR"
@@ -271,22 +273,66 @@ Ordne die Spalten in dieser Reihenfolge:
 ### Schritt 5.3: Nach Preis sortieren
 
 1. Klicke auf den Spalten-Header **taxful_total_price**
-2. Klicke erneut, um zwischen aufsteigend und absteigend zu wechseln
+2. Wähle im Menü **Sort High-Low** (absteigend) bzw. **Sort Low-High**
+   (aufsteigend)
 
 **Aufgabe:** Was ist die teuerste Bestellung der letzten 7 Tage? Notiere den
 Betrag und den Kundennamen.
 
 ---
 
-## Zusammenfassung
+## Teil 6 (Bonus): KQL-Abfrage als Query DSL nachbauen
 
-Du hast erfolgreich:
+Hinter jeder KQL-Abfrage in Discover steht eine Query-DSL-Abfrage gegen die
+Elasticsearch-API. In diesem Bonus-Teil baust du die kombinierte Abfrage aus
+Aufgabe 3.3 in den Dev Tools nach.
 
-- [x] Das Discover Interface kennengelernt
-- [x] Den Zeitfilter gezielt eingesetzt
-- [x] KQL-Abfragen für verschiedene Szenarien geschrieben
-- [x] Filter über die Filter-Leiste hinzugefügt und kombiniert
-- [x] Spalten konfiguriert und Ergebnisse sortiert
+### Schritt 6.1: Trefferzahl in Discover ermitteln
 
-**Nächstes Modul:** Visualisierungen & Dashboards - Wir erstellen ein
-interaktives E-Commerce-Dashboard!
+1. Gib in Discover erneut die KQL-Abfrage aus Aufgabe 3.3 ein:
+
+   ```
+   category: "Men's Clothing" AND taxful_total_price > 50
+   ```
+
+2. Notiere die Trefferzahl (oben links, "X hits")
+
+### Schritt 6.2: Abfrage in Dev Tools nachbauen
+
+1. Navigiere zu **Management > Dev Tools**
+2. Führe folgende `_search`-Abfrage aus:
+
+   ```json
+   GET kibana_sample_data_ecommerce/_search
+   {
+     "query": {
+       "bool": {
+         "must": [
+           { "match_phrase": { "category": "Men's Clothing" } },
+           { "range": { "taxful_total_price": { "gt": 50 } } }
+         ]
+       }
+     }
+   }
+   ```
+
+3. Prüfe im Ergebnis das Feld `hits.total.value`
+
+> **Warum `match_phrase`?** Die KQL-Suche mit Anführungszeichen sucht die
+> exakte Wortfolge. Ein einfaches `match` würde die Wörter per ODER
+> verknüpfen und damit auch "Women's Clothing"-Bestellungen treffen --
+> die Trefferzahlen wären nicht vergleichbar.
+
+### Schritt 6.3: Ergebnis vergleichen
+
+Vergleiche `hits.total.value` mit der Trefferzahl aus Discover.
+
+> **Hinweis:** Discover schränkt die Suche zusätzlich über den Zeitfilter ein.
+> Damit die Zahlen übereinstimmen, müsstest du die `_search`-Abfrage um eine
+> `range`-Bedingung auf `order_date` ergänzen - oder in Discover einen
+> Zeitraum wählen, der alle Daten umfasst.
+
+<!-- markdownlint-disable-next-line MD028 -->
+> **Tipp:** Über **Inspect > Request** in Discover kannst du dir die von
+> Kibana generierte Query-DSL-Abfrage anzeigen lassen und mit deiner eigenen
+> vergleichen.

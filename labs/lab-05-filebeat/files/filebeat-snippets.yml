@@ -1,0 +1,42 @@
+# Snippets für Lab 05 -- als Lückentext zum Nachschlagen.
+# Die vollständige Lösung liegt in loesung/filebeat.yml.
+#
+# Die Inputs gehören in environment/day2/filebeat/filebeat.yml
+# unter filebeat.inputs, danach: docker compose restart filebeat
+# (nach Teil 3 und Teil 4: ./reset.sh, damit alles neu eingelesen wird)
+
+filebeat.inputs:
+  # --- Teil 2: JSON-Logs (NDJSON) -----------------------------------
+  # TODO: Pfad eintragen und die drei ndjson-Optionen ausfüllen
+  #       (target, overwrite_keys, add_error_key)
+  - type: filestream
+    id: app-json
+    paths:
+      - /data/____________
+    parsers:
+      - ndjson:
+          target: ____
+          overwrite_keys: ____
+          add_error_key: ____
+
+  # --- Teil 3: Java-Logs mit Multiline ------------------------------
+  # TODO: Pattern für "Zeile beginnt mit Datum" eintragen und
+  #       negate/match so setzen, dass alle Zeilen OHNE Datum an die
+  #       vorherige Zeile angehängt werden.
+  - type: filestream
+    id: java-app
+    paths:
+      - /data/java-app.log
+    parsers:
+      - multiline:
+          type: pattern
+          pattern: '____________________'
+          negate: ____
+          match: ____
+
+# --- Teil 4: logtype-Kennzeichnung -----------------------------------
+# TODO: Bei ALLEN drei Inputs ergänzen -- Werte: apache / app / java
+#
+#    fields:
+#      logtype: ______
+#    fields_under_root: true

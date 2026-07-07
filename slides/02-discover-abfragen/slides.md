@@ -6,6 +6,11 @@ header: "Modul 02: Discover & Abfragen"
 footer: "CC BY-NC-SA 4.0, Alexander Erben"
 ---
 
+<style>
+section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
+</style>
+
+
 # Modul 02: Discover & Abfragen
 
 Daten durchsuchen, filtern und analysieren mit Kibana Discover
@@ -27,8 +32,8 @@ Nach diesem Modul kannst du:
 
 # Kibana Discover - Überblick
 
-Discover ist dein zentrales Werkzeug, um Daten in Elasticsearch zu durchsuchen
-und zu erkunden.
+- Rohdaten in Elasticsearch durchsuchen und erkunden
+- Erster Anlaufpunkt für fast jede Analyse
 
 **Typische Anwendungsfälle bei Mustertech GmbH:**
 
@@ -48,7 +53,7 @@ table { font-size: 0.85em; }
 </style>
 
 | Bereich               | Beschreibung                              |
-|-----------------------|-------------------------------------------|
+| --------------------- | ----------------------------------------- |
 | **Suchleiste**        | KQL-Abfragen eingeben                     |
 | **Zeitfilter**        | Zeitraum auswählen (oben rechts)          |
 | **Histogramm**        | Verteilung der Treffer über die Zeit      |
@@ -71,31 +76,31 @@ section { font-size: 1.6em; }
 
 # Data Views (ehemals Index Patterns)
 
-Ein **Data View** legt fest, welche Elasticsearch-Indizes du durchsuchst.
+- Ein **Data View** legt fest, welche Indizes du durchsuchst
+- Bestimmt, welche Felder dir zur Verfügung stehen
 
-**Beispiele bei Mustertech GmbH:**
+**In den Übungen nutzt du:**
 
-- `mustertech-orders-*` -- alle Bestelldaten
-- `mustertech-products-*` -- Produktkatalog
-- `mustertech-customers-*` -- Kundendaten
+- `Kibana Sample Data eCommerce` - die Bestelldaten des Beispiel-Shops
 
-**So wählst du einen Data View aus:**
+> Die Beispieldaten ersetzen an Tag 1 die echten Mustertech-Indizes -
+> Felder, KQL und Filter funktionieren identisch.
 
-1. Klicke oben links auf den Data-View-Namen
-2. Wähle den gewünschten Data View aus der Liste
-3. Die Felderliste und Daten aktualisieren sich automatisch
+**Data View wechseln:**
 
-> Der Data View bestimmt, welche Felder dir zur Verfügung stehen.
+1. Oben links auf den Data-View-Namen klicken
+2. Gewünschten Data View wählen
+3. Felderliste und Daten aktualisieren sich automatisch
 
 ---
 <style scoped>
-section { font-size: 1.4em; }
+section { font-size: 1.15em; }
 </style>
 
 # Zeitfilter und Zeitreihen
 
-Der Zeitfilter ist eines der wichtigsten Werkzeuge in Discover. Er befindet sich
-oben rechts in der Oberfläche.
+- Kaum eine Analyse ohne Zeitfilter
+- Zu finden oben rechts in der Oberfläche
 
 **Zwei Arten der Zeitauswahl:**
 
@@ -107,10 +112,23 @@ oben rechts in der Oberfläche.
 **Wann welche Variante nutzen?**
 
 | Relativ                     | Absolut                      |
-|-----------------------------|------------------------------|
+| --------------------------- | ---------------------------- |
 | Laufende Überwachung        | Monatsberichte               |
 | Tagesaktuelle Analyse       | Quartalsvergleiche           |
 | Dashboards mit Auto-Refresh | Reproduzierbare Auswertungen |
+
+---
+
+# Zeitfenster auf der Zeitachse
+
+Der Zeitfilter schneidet ein Fenster aus der Zeitachse - nur
+Treffer darin landen in der Tabelle:
+
+![w:738 center](images/zeitfenster-zeitachse.ie.svg)
+
+- Fenster verschieben oder Grenzen ziehen -> Trefferliste ändert sich sofort
+- Relativ: Fenster wandert mit "jetzt" mit
+- Absolut: Fenster steht fest, egal wann du schaust
 
 ---
 
@@ -128,7 +146,7 @@ section { font-size: 1.8em; }
 Das Histogramm oben in Discover zeigt die
 **Verteilung der Treffer über die Zeit**.
 
-**So nutzt du es effektiv:**
+**Was du damit machst:**
 
 - **Überblick verschaffen:** Erkenne auf einen Blick, wann besonders viele
   Bestellungen eingegangen sind
@@ -141,9 +159,21 @@ Das Histogramm oben in Discover zeigt die
 
 ---
 
+# Frage in die Runde
+
+**Wie sucht ihr heute in euren Logs oder Daten?**
+
+- grep, SQL-Queries, ein Klick-UI - was nutzt du gerade?
+- Wo verlierst du dabei am meisten Zeit?
+
+> Behalte deinen Fall im Kopf - wir bauen ihn gleich in KQL nach.
+
+---
+
 # Kibana Query Language (KQL)
 
-KQL ist die Abfragesprache in Kibana. Sie ist speziell für Analysten konzipiert.
+- Die Abfragesprache in Kibanas Suchleiste
+- Bewusst einfach - auch ohne Programmierkenntnisse schnell am Ergebnis
 
 **Grundprinzip:**
 
@@ -154,14 +184,14 @@ feldname: wert
 **Beispiel:**
 
 ```
-product.category: "Smartphones"
+category: "Men's Clothing"
 ```
 
 > KQL-Abfragen gibst du in die Suchleiste oben in Discover ein.
 
 ---
 <style scoped>
-section { font-size: 1.6em; }
+section { font-size: 1.3em; }
 </style>
 
 # KQL - Freitextsuche
@@ -169,24 +199,36 @@ section { font-size: 1.6em; }
 Ohne Feldnamen durchsuchst du alle Felder gleichzeitig:
 
 ```
-Samsung Galaxy
+Women's Clothing
 ```
 
-Findet alle Dokumente, die "Samsung" **und** "Galaxy" in beliebigen Feldern
+Findet alle Dokumente, die "Women's" **und** "Clothing" in beliebigen Feldern
 enthalten.
 
 **Anführungszeichen für exakte Phrasen:**
 
 ```
-"Samsung Galaxy S24"
+"Women's Clothing"
 ```
 
 Findet nur Dokumente mit genau dieser Zeichenkette.
 
-| Abfrage            | Ergebnis                             |
-|--------------------|--------------------------------------|
-| `Samsung Galaxy`   | Beide Wörter (beliebige Reihenfolge) |
-| `"Samsung Galaxy"` | Exakte Phrase                        |
+| Abfrage              | Ergebnis                             |
+| -------------------- | ------------------------------------ |
+| `Women's Clothing`   | Beide Wörter (beliebige Reihenfolge) |
+| `"Women's Clothing"` | Exakte Phrase                        |
+
+---
+
+# Wie eine KQL-Abfrage aufgebaut ist
+
+Drei Teile: welches Feld, welcher Vergleich, welcher Wert.
+
+![w:820 center](images/kql-abfrage-aufbau.ie.svg)
+
+- Feld = welche Spalte im Dokument
+- Operator = `:` `>` `<` `>=` `<=`
+- Wert = Text (in `"..."`) oder Zahl
 
 ---
 
@@ -198,14 +240,14 @@ code { font-size: 0.9em; }
 section { font-size: 1.6em; }
 </style>
 
-Die präziseste Art zu suchen: Gib das Feld explizit an.
+Am genauesten suchst du, wenn du das Feld explizit angibst.
 
-| Abfrage                       | Beschreibung            |
-|-------------------------------|-------------------------|
-| `customer.city: "Berlin"`     | Kunden aus Berlin       |
-| `product.category: "Laptops"` | Kategorie Laptops       |
-| `order.status: "shipped"`     | Versendete Bestellungen |
-| `customer.region: "Bayern"`   | Kunden aus Bayern       |
+| Abfrage                         | Beschreibung               |
+| ------------------------------- | -------------------------- |
+| `geoip.city_name: "Cairo"`      | Kunden aus Kairo           |
+| `category: "Men's Clothing"`    | Kategorie Herrenbekleidung |
+| `manufacturer: "Elitelligence"` | Hersteller Elitelligence   |
+| `geoip.country_iso_code: "FR"`  | Kunden aus Frankreich      |
 
 **Wichtig:**
 
@@ -223,21 +265,21 @@ code { font-size: 0.9em; }
 section { font-size: 1.6em; }
 </style>
 
-Für numerische Felder und Datumswerte stehen Vergleichsoperatoren zur Verfügung:
+Für numerische Felder und Datumswerte gibt es Vergleichsoperatoren:
 
-| Operator | Bedeutung           | Beispiel                 |
-|----------|---------------------|--------------------------|
-| `>`      | Größer als          | `order.total > 500`      |
-| `>=`     | Größer oder gleich  | `order.total >= 100`     |
-| `<`      | Kleiner als         | `order.total < 50`       |
-| `<=`     | Kleiner oder gleich | `order.items_count <= 3` |
+| Operator | Bedeutung           | Beispiel                    |
+| -------- | ------------------- | --------------------------- |
+| `>`      | Größer als          | `taxful_total_price > 500`  |
+| `>=`     | Größer oder gleich  | `taxful_total_price >= 100` |
+| `<`      | Kleiner als         | `taxful_total_price < 50`   |
+| `<=`     | Kleiner oder gleich | `total_quantity <= 3`       |
 
 **Praxisbeispiel Mustertech GmbH:**
 
-Alle Bestellungen über 1000 Euro finden:
+Alle Bestellungen über 100 Euro finden:
 
 ```
-order.total > 1000
+taxful_total_price > 100
 ```
 
 ---
@@ -255,21 +297,21 @@ und `NOT`:
 **AND - beide Bedingungen müssen zutreffen:**
 
 ```
-product.category: "Laptops" AND order.total > 800
+category: "Men's Clothing" AND taxful_total_price > 50
 ```
 
 **OR - mindestens eine Bedingung trifft zu:**
 
 ```
-customer.region: "Bayern" OR
-  customer.region: "Baden-Württemberg"
+geoip.country_iso_code: "FR" OR
+  geoip.country_iso_code: "GB"
 ```
 
 **NOT - Bedingung ausschließen:**
 
 ```
-order.status: "completed" AND
-  NOT product.category: "Zubehör"
+category: "Women's Clothing" AND
+  NOT manufacturer: "Elitelligence"
 ```
 
 ---
@@ -286,17 +328,17 @@ Verwende Klammern, um die Auswertungsreihenfolge festzulegen:
 **Ohne Klammern (mehrdeutig):**
 
 ```
-product.category: "Laptops" OR
-  product.category: "Tablets" AND
-  order.total > 500
+category: "Men's Clothing" OR
+  category: "Men's Shoes" AND
+  taxful_total_price > 50
 ```
 
 **Mit Klammern (eindeutig):**
 
 ```
-(product.category: "Laptops" OR
-  product.category: "Tablets") AND
-  order.total > 500
+(category: "Men's Clothing" OR
+  category: "Men's Shoes") AND
+  taxful_total_price > 50
 ```
 
 > Nutze immer Klammern, wenn du `AND` und `OR` in einer Abfrage kombinierst. So
@@ -314,20 +356,20 @@ section { font-size: 1.5em; }
 
 Das Sternchen `*` steht für beliebig viele Zeichen:
 
-| Abfrage                      | Findet                           |
-|------------------------------|----------------------------------|
-| `product.name: Samsung*`     | Samsung Galaxy, Samsung Tab, ... |
-| `customer.email: *@firma.de` | Alle Firmen-E-Mails              |
-| `product.sku: LPT-*`         | Alle Laptop-Artikelnummern       |
+| Abfrage                         | Findet                       |
+| ------------------------------- | ---------------------------- |
+| `customer_full_name: Eddie*`    | Eddie Weber, Eddie Rowe, ... |
+| `products.product_name: *shirt` | Alle Shirt-Produkte          |
+| `sku: ZO0*`                     | Alle Artikelnummern mit ZO0  |
 
 **Existenzprüfung** - hat ein Feld überhaupt einen Wert?
 
 ```
-customer.phone: *
+geoip.region_name: *
 ```
 
 Findet alle Dokumente, bei denen das Feld
-`customer.phone` vorhanden und nicht leer ist.
+`geoip.region_name` vorhanden und nicht leer ist.
 
 > Wildcards sind nützlich, können aber bei sehr großen Datenmengen langsam sein.
 
@@ -340,19 +382,19 @@ table { font-size: 0.6em; }
 code { font-size: 0.85em; }
 </style>
 
-| Element       | Syntax        | Beispiel                  |
-|---------------|---------------|---------------------------|
-| Freitext      | `text`        | `Samsung`                 |
-| Exakte Phrase | `"text"`      | `"Samsung Galaxy"`        |
-| Feld:Wert     | `feld: wert`  | `customer.city: "Berlin"` |
-| Größer als    | `feld > wert` | `order.total > 500`       |
-| Kleiner als   | `feld < wert` | `order.total < 50`        |
-| UND           | `AND`         | `a: 1 AND b: 2`           |
-| ODER          | `OR`          | `a: 1 OR a: 2`            |
-| NICHT         | `NOT`         | `NOT a: 1`                |
-| Wildcard      | `*`           | `name: Sam*`              |
-| Klammern      | `()`          | `(a: 1 OR a: 2) AND b: 3` |
-| Existenz      | `feld: *`     | `phone: *`                |
+| Element       | Syntax        | Beispiel                     |
+| ------------- | ------------- | ---------------------------- |
+| Freitext      | `text`        | `Clothing`                   |
+| Exakte Phrase | `"text"`      | `"Women's Clothing"`         |
+| Feld:Wert     | `feld: wert`  | `category: "Men's Clothing"` |
+| Größer als    | `feld > wert` | `taxful_total_price > 500`   |
+| Kleiner als   | `feld < wert` | `taxful_total_price < 50`    |
+| UND           | `AND`         | `a: 1 AND b: 2`              |
+| ODER          | `OR`          | `a: 1 OR a: 2`               |
+| NICHT         | `NOT`         | `NOT a: 1`                   |
+| Wildcard      | `*`           | `manufacturer: Elite*`       |
+| Klammern      | `()`          | `(a: 1 OR a: 2) AND b: 3`    |
+| Existenz      | `feld: *`     | `geoip.region_name: *`       |
 
 ---
 
@@ -360,7 +402,29 @@ code { font-size: 0.85em; }
 
 `customer_gender: FEMALE AND taxful_total_price > 100`
 
-![h:450 center](images/kql-abfrage.png)
+![h:405 center](images/kql-abfrage.png)
+
+---
+
+# KQL vs. Query DSL vs. Lucene
+
+<style scoped>
+table { font-size: 0.68em; }
+section { font-size: 1.5em; }
+</style>
+
+Drei Abfragesprachen begegnen dir im Elastic Stack:
+
+|                  | KQL                      | Query DSL                   | Lucene                     |
+| ---------------- | ------------------------ | --------------------------- | -------------------------- |
+| **Wo verwendet** | Kibana-Suchleiste        | JSON für APIs / Anwendungen | Kibana-Suchleiste (Legacy) |
+| **Mächtigkeit**  | Einfach, deckt Alltag ab | Voller Funktionsumfang      | Mehr als KQL, sperrig      |
+| **Zielgruppe**   | Analysten, Kibana-Nutzer | Entwickler, Integrationen   | Bestandssysteme            |
+
+- **KQL** ist der Standard in Kibana - für fast alle Analysen ausreichend
+- **Query DSL** hast du in Modul 01 in den Dev Tools bereits kurz gesehen:
+  Sie ist die Sprache, die Anwendungen gegen die Elasticsearch-API sprechen
+- **Lucene** ist die ältere Syntax, nur noch relevant für Altbestände
 
 ---
 <style scoped>
@@ -371,8 +435,8 @@ section { font-size: 1.7em; }
 
 # Filter verwenden
 
-Neben KQL-Abfragen bietet Kibana eine
-**grafische Filter-Leiste** unterhalb der Suchleiste.
+Neben KQL gibt es die **grafische Filter-Leiste** unter der Suchleiste - klicken
+statt tippen.
 
 **Filter hinzufügen - drei Wege:**
 
@@ -401,20 +465,20 @@ code { font-size: 0.9em; }
 section { font-size: 1.7em; }
 </style>
 
-Jeder aktive Filter bietet dir mehrere Aktionen per Klick:
+Für jeden aktiven Filter gibt es mehrere Aktionen per Klick:
 
-| Aktion                      | Beschreibung                                      |
-|-----------------------------|---------------------------------------------------|
-| **Aktivieren/Deaktivieren** | Filter temporär ein-/ausschalten                  |
-| **Pinnen**                  | Filter bleibt beim Wechsel zwischen Tabs erhalten |
-| **Invertieren**             | Gegenteil anzeigen (z. B. alles außer "Laptops")  |
-| **Bearbeiten**              | Filterbedingung nachträglich ändern               |
-| **Löschen**                 | Filter entfernen                                  |
+| Aktion                      | Beschreibung                                            |
+| --------------------------- | ------------------------------------------------------- |
+| **Aktivieren/Deaktivieren** | Filter temporär ein-/ausschalten                        |
+| **Pinnen**                  | Filter bleibt beim Wechsel zwischen Tabs erhalten       |
+| **Invertieren**             | Gegenteil anzeigen (z. B. alles außer "Men's Clothing") |
+| **Bearbeiten**              | Filterbedingung nachträglich ändern                     |
+| **Löschen**                 | Filter entfernen                                        |
 
 **Praxisbeispiel:**
 
-Du filterst auf `product.category: "Laptops"`. Durch Invertieren siehst du alle
-Bestellungen **ohne** Laptops.
+Du filterst auf `category: "Men's Clothing"`. Durch Invertieren siehst du alle
+Bestellungen **ohne** Herrenbekleidung.
 
 ---
 <style scoped>
@@ -429,12 +493,12 @@ Mehrere Filter werden standardmäßig mit **AND** verknüpft.
 
 **Beispiel-Szenario bei Mustertech GmbH:**
 
-Du möchtest alle Laptop-Bestellungen aus Bayern mit einem Wert über 1000 Euro
-finden:
+Du möchtest alle Herrenschuh-Bestellungen aus Frankreich mit einem Wert über
+50 Euro finden:
 
-1. Filter: `product.category: "Laptops"`
-2. Filter: `customer.region: "Bayern"`
-3. KQL-Abfrage: `order.total > 1000`
+1. Filter: `category: "Men's Shoes"`
+2. Filter: `geoip.country_iso_code: "FR"`
+3. KQL-Abfrage: `taxful_total_price > 50`
 
 Alle drei Bedingungen müssen gleichzeitig erfüllt sein.
 
@@ -449,10 +513,23 @@ code { font-size: 0.9em; }
 section { font-size: 1.6em; }
 </style>
 
+# Frage in die Runde
+
+**Deine Abfrage sitzt - wie soll das Ergebnis aussehen?**
+
+- Welche Felder willst du als Spalten sehen, welche stören nur?
+- Wonach würdest du sortieren, um Auffälliges nach oben zu holen?
+
+---
+
+<style scoped>
+section { font-size: 0.9em; }
+</style>
+
 # Spalten konfigurieren
 
-In der Standardansicht zeigt Discover nur die Spalte `_source` mit dem gesamten
-Dokumentinhalt. Das ist unübersichtlich.
+- Standardansicht zeigt nur `_source` mit dem ganzen Dokument
+- Das ist unübersichtlich - bau dir eigene Spalten
 
 **Spalten hinzufügen:**
 
@@ -462,18 +539,18 @@ Dokumentinhalt. Das ist unübersichtlich.
 
 **Empfohlene Spalten für Bestellanalysen:**
 
-- `order.date`
-- `customer.name`
-- `product.category`
-- `product.name`
-- `order.total`
-- `order.status`
+- `order_date`
+- `customer_full_name`
+- `category`
+- `manufacturer`
+- `taxful_total_price`
+- `customer_gender`
 
 ---
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.5em; }
 </style>
 
 # Spalten verwalten
@@ -542,10 +619,10 @@ Die linke Seitenleiste zeigt alle verfügbaren Felder des aktuellen Data Views.
 
 **Feldtypen erkennen:**
 
-- **t** -- Textfeld (z. B. `customer.name`)
-- **#** -- Numerisches Feld (z. B. `order.total`)
-- **Kalender** -- Datumsfeld (z. B. `order.date`)
-- **?** -- Boolean (z. B. `order.is_returned`)
+- **t** - Textfeld (z. B. `customer_full_name`)
+- **#** - Numerisches Feld (z. B. `taxful_total_price`)
+- **Kalender** - Datumsfeld (z. B. `order_date`)
+- **?** - Boolean - Ja/Nein-Feld (in den Beispieldaten nicht enthalten)
 
 **Feldstatistiken:**
 
@@ -556,13 +633,26 @@ erkennst du z. B. sofort die beliebtesten Produktkategorien.
 
 # Verfügbare Felder - Feldstatistiken
 
-![w:1200 center](images/feld-statistik.png)
+![h:432 center](images/feld-statistik.png)
 
 ---
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
 section { font-size: 1.7em; }
+</style>
+
+# Frage in die Runde
+
+**Die Analyse steht - was passiert danach damit?**
+
+- Landet sie in einer Mail, einem Ticket, einer Tabelle für Kollegen?
+- Was davon machst du immer wieder und würdest es gern speichern?
+
+---
+
+<style scoped>
+section { font-size: 0.85em; }
 </style>
 
 # Daten exportieren - CSV
@@ -586,7 +676,7 @@ Du kannst die aktuelle Trefferliste als CSV-Datei herunterladen:
 <style scoped>
 table { font-size: 0.82em; }
 code { font-size: 0.9em; }
-section { font-size: 1.7em; }
+section { font-size: 1.35em; }
 </style>
 
 # Gespeicherte Suchen
@@ -601,12 +691,37 @@ Speichere häufig genutzte Abfragen, um sie schnell wiederzuverwenden:
 
 **Beispiele für sinnvolle Namen:**
 
-- "Laptop-Bestellungen Bayern > 1000 EUR"
-- "Retouren letzte 30 Tage"
-- "Bestellungen ohne Versandbestätigung"
+- "Herrenschuhe Frankreich > 50 EUR"
+- "Bestellungen über 100 EUR letzte 7 Tage"
+- "Damenmode Europa"
 
 > Gespeicherte Suchen können auch in Dashboards eingebettet werden - dazu mehr
 > in Modul 03.
+
+---
+<style scoped>
+code { font-size: 0.9em; }
+section { font-size: 1.35em; }
+</style>
+
+# Blick hinter die Kulissen: Inspect
+
+Jede Discover-Ansicht basiert auf einer echten Elasticsearch-Abfrage. Mit
+**Inspect** schaust du dir diese Abfrage an:
+
+1. Öffne oben rechts das Menü und wähle **Inspect**
+2. Wechsle zum Tab **Request**
+3. Du siehst die generierte **Query-DSL-Abfrage** als JSON
+
+**Warum ist das für Entwickler nützlich?**
+
+- Du baust deine Suche bequem mit KQL und Filtern in Discover zusammen
+- Über Inspect greifst du die fertige Query DSL ab
+- Die Abfrage kannst du direkt in deine **eigene Anwendung** übernehmen oder
+  in den Dev Tools weiterentwickeln
+
+> Praktisch: Du klickst dir die Suche in Discover zusammen und nimmst die
+> fertige Query DSL für deinen Code mit.
 
 ---
 <style scoped>
@@ -621,10 +736,10 @@ section { font-size: 1.7em; }
 
 - **Zeitfilter** grenzen den Zeitraum ein - relativ für laufende Analysen,
   absolut für Berichte
-- **KQL** bietet dir eine mächtige, aber einfache Abfragesprache mit Feld:
-  Wert-Suche, Vergleichen, Wildcards und boolescher Logik
+- **KQL** deckt fast alles ab und bleibt einfach: Feld:Wert-Suche, Vergleiche,
+  Wildcards und boolesche Logik
 - **Filter** ergänzen KQL und lassen sich per Klick ein-/ausschalten, pinnen und
   invertieren
 - **Spalten** konfigurierst du individuell für jede Analyse
 - **Gespeicherte Suchen** und **CSV-Export**
-  machen deine Ergebnisse nachhaltig nutzbar
+  machen deine Ergebnisse wiederverwendbar

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Request -->
+  <g filter="url(#ieShadow)"><rect x="240" y="30" width="280" height="60" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="380" y="60" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="25" font-weight="700">Request</text>
+
+  <line x1="380" y1="90" x2="380.0" y2="125.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M373.0,125.0 L387.0,125.0 L380,138 z" fill="#5B6675"/>
+
+  <!-- 1. Authentifizierung -->
+  <g filter="url(#ieShadow)"><rect x="210" y="140" width="340" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="380" y="174" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="24" font-weight="700">1. Authentifizierung</text>
+  <text x="380" y="205" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="19" font-weight="400">Wer bist du?</text>
+
+  <!-- reject 401 -->
+  <line x1="550" y1="188" x2="678" y2="188" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="600" y="178" text-anchor="middle" fill="#5B6675" font-size="18" font-weight="600">nein</text>
+  <g filter="url(#ieShadow)"><rect x="680" y="152" width="270" height="72" rx="16" fill="#C4453D"/></g>
+  <text x="815" y="188" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="23" font-weight="700">401 Unauthorized</text>
+
+  <line x1="380" y1="236" x2="380.0" y2="305.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M373.0,305.0 L387.0,305.0 L380,318 z" fill="#5B6675"/>
+  <text x="398" y="282" text-anchor="start" fill="#5B6675" font-size="18" font-weight="600">ja</text>
+
+  <!-- 2. Autorisierung -->
+  <g filter="url(#ieShadow)"><rect x="210" y="320" width="340" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="380" y="354" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="24" font-weight="700">2. Autorisierung</text>
+  <text x="380" y="385" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="19" font-weight="400">Was darfst du?</text>
+
+  <!-- reject 403 -->
+  <line x1="550" y1="368" x2="678" y2="368" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="600" y="358" text-anchor="middle" fill="#5B6675" font-size="18" font-weight="600">nein</text>
+  <g filter="url(#ieShadow)"><rect x="680" y="332" width="270" height="72" rx="16" fill="#C4453D"/></g>
+  <text x="815" y="368" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="23" font-weight="700">403 Forbidden</text>
+
+  <line x1="380" y1="416" x2="380.0" y2="485.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M373.0,485.0 L387.0,485.0 L380,498 z" fill="#5B6675"/>
+  <text x="398" y="462" text-anchor="start" fill="#5B6675" font-size="18" font-weight="600">ja</text>
+
+  <!-- Aktion (blau, Kernelement) -->
+  <g filter="url(#ieShadow)"><rect x="210" y="500" width="340" height="76" rx="16" fill="#1B4FD8"/></g>
+  <text x="380" y="538" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="24" font-weight="700">Aktion ausgeführt</text>
+</svg>

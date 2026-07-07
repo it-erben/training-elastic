@@ -1,0 +1,22 @@
+# Filebeat-Konfiguration für Tag 2 (Labs 05 und 06).
+# Nach jeder Änderung: docker compose restart filebeat
+# Logs prüfen:        docker compose logs -f filebeat
+
+filebeat.inputs:
+  # Teil 1: Apache-Access-Logs, Zeile für Zeile
+  - type: filestream
+    id: apache-access
+    paths:
+      - /data/apache-access.log
+
+  # Teil 2 (Lab 05): Hier kommt der Input für /data/app-json.log hin
+  # (ndjson-Parser).
+
+  # Teil 3 (Lab 05): Hier kommt der Input für /data/java-app.log hin
+  # (multiline-Parser).
+
+# In Lab 06 wird der Output auf Logstash umgestellt:
+# output.logstash:
+#   hosts: ["logstash:5044"]
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]

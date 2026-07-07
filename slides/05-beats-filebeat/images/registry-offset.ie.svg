@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Quelldateien -->
+  <g filter="url(#ieShadow)"><rect x="50" y="52" width="340" height="72" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="220" y="93" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">/data/apache-access.log</text>
+
+  <g filter="url(#ieShadow)"><rect x="50" y="176" width="340" height="72" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="220" y="217" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">/data/app-json.log</text>
+
+  <line x1="390" y1="88" x2="453.4" y2="104.7" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M451.6,111.5 L455.2,97.9 L466,108 z" fill="#5B6675"/>
+  <line x1="390" y1="212" x2="453.4" y2="195.3" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M455.2,202.1 L451.6,188.5 L466,192 z" fill="#5B6675"/>
+
+  <!-- Registry (Hero) -->
+  <g filter="url(#ieShadow)"><rect x="476" y="46" width="474" height="208" rx="16" fill="#1B4FD8"/></g>
+  <text x="713" y="92" text-anchor="middle" fill="#FFFFFF" font-size="26" font-weight="700">Registry</text>
+  <text x="713" y="120" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.85" font-size="16" font-weight="400">bis zu welchem Offset wurde gelesen?</text>
+  <line x1="516" y1="140" x2="910" y2="140" stroke="#FFFFFF" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="513" y="176" text-anchor="start" fill="#FFFFFF" font-size="18" font-weight="600">apache-access.log</text>
+  <text x="913" y="176" text-anchor="end" fill="#FFFFFF" font-size="18" font-weight="400">Offset 1.482.113</text>
+  <text x="513" y="216" text-anchor="start" fill="#FFFFFF" font-size="18" font-weight="600">app-json.log</text>
+  <text x="913" y="216" text-anchor="end" fill="#FFFFFF" font-size="18" font-weight="400">Offset 902.554</text>
+</svg>

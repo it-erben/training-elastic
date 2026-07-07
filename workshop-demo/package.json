@@ -1,0 +1,7 @@
+{
+  "name": "workshop-demo",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^16.4.0"
+  }
+}

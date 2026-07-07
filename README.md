@@ -1,137 +1,118 @@
-# Übungen: E-Commerce-Analyse Mustertech GmbH
+# Elastic Stack - Komplett (GFU s2004)
 
-Diese Übungsserie begleitet dich durch die Schulung
-"Elastic Stack für Analysten". Du lernst schrittweise, wie du mit Elasticsearch
-und Kibana E-Commerce-Daten der fiktiven Mustertech GmbH (Online-Elektronikshop)
-analysierst, visualisierst und in interaktiven Dashboards aufbereitest.
+Materialien für die 3-tägige Schulung **„Elastic Stack - Komplett: Einstieg
+in Elasticsearch, Kibana, Logstash, Beats"**. Zielgruppe sind Entwickler,
+Administratoren und Architekten mit Grundkenntnissen in Webtechnologien.
 
-Die Übungen richten sich an Analysten aus Controlling und Produktmanagement --
-Programmierkenntnisse sind nicht erforderlich.
+Der rote Faden ist die fiktive **Mustertech GmbH** (Online-Elektronikshop):
+
+| Tag | Motto                   | Inhalte                                         |
+| :-- | :---------------------- | :---------------------------------------------- |
+| 1   | **Daten analysieren**   | Elasticsearch-Grundlagen, REST-API, Kibana, ML  |
+| 2   | **Logs einsammeln**     | Filebeat, Logstash, Grok, Geoip                 |
+| 3   | **Plattform betreiben** | Cluster, ILM, Backup, Security, Alerting, Fleet |
 
 ## Voraussetzungen
 
-- **Browser** -- Chrome oder Firefox (aktuelle Version)
-- **URL zur Kibana-Instanz** -- wird vom Trainer bereitgestellt
+- **Docker Desktop** (bzw. Docker Engine + Compose v2 unter Linux) mit
+  mindestens **8 GB RAM** für Docker
+- Browser (Chrome oder Firefox, aktuelle Version)
+- Vor dem Kurs: [`environment/VORBEREITUNG.md`](environment/VORBEREITUNG.md)
+  durchführen (Images vorladen!)
 
-> **Hinweis:** Du benötigst keine lokale Installation.
-> Elasticsearch und Kibana laufen auf einer zentralen Instanz,
-> die der Trainer für die Schulung bereitstellt.
+Jeder Teilnehmer betreibt die Übungsumgebungen lokal per Docker Compose --
+es gibt keine zentrale Trainer-Instanz. Details: [`environment/README.md`](environment/README.md)
 
-## Architektur-Überblick
-
-```
-+-----------------------------------------------------+
-|                  Schulungsumgebung                    |
-+-----------------------------------------------------+
-|                                                      |
-|   +----------------------------------------------+   |
-|   |            Elasticsearch-Cluster             |   |
-|   |         (zentrale Instanz vom Trainer)        |   |
-|   +----------------------------------------------+   |
-|                        |                             |
-|                        v                             |
-|   +----------------------------------------------+   |
-|   |                  Kibana                       |   |
-|   |         (Web-Oberfläche für Analyse)          |   |
-|   +----------------------------------------------+   |
-|                        ^                             |
-|                        |                             |
-+------------------------+-----------------------------+
-                         |
-          +--------------+--------------+
-          |              |              |
-     +--------+     +--------+     +--------+
-     |Browser |     |Browser |     |Browser |
-     |Teiln. 1|     |Teiln. 2|     |Teiln. 3|
-     +--------+     +--------+     +--------+
-```
-
-Alle Teilnehmer arbeiten über ihren Browser auf derselben Kibana-Instanz. Die
-Beispieldaten stehen allen gemeinsam zur Verfügung.
-
-## Module
-
-Die Module bauen aufeinander auf. Bitte bearbeite sie in der angegebenen
-Reihenfolge, da jedes Modul auf den Ergebnissen des vorherigen aufbaut.
-
-### Übersicht
-
-| Modul | Verzeichnis                             | Thema                                                    | Dauer   |
-|:------|:----------------------------------------|:---------------------------------------------------------|:--------|
-| 01    | `modul-01-einfuehrung/`                 | Kibana kennenlernen, Beispieldaten laden, Index erkunden | 30 Min. |
-| 02    | `modul-02-discover-abfragen/`           | Daten suchen, filtern und mit KQL abfragen               | 45 Min. |
-| 03    | `modul-03-visualisierungen-dashboards/` | Visualisierungen erstellen und Dashboard bauen           | 60 Min. |
-
-**Gesamtdauer:** ca. 2 Stunden 15 Minuten (ohne Bonus-Aufgaben)
-
-## Verzeichnisstruktur
+## Repo-Struktur
 
 ```
-assignments/
-+-- README.md                                # Diese Datei
-+-- modul-01-einfuehrung/
-|   +-- README.md                            # Übung Modul 01
-+-- modul-02-discover-abfragen/
-|   +-- README.md                            # Übung Modul 02
-+-- modul-03-visualisierungen-dashboards/
-    +-- README.md                            # Übung Modul 03
+slides/          Foliensätze (Marp-Markdown), Module 01-13
+labs/            Hands-on-Übungen, Labs 01-11 (+ Bonus-Labs)
+environment/     Docker-Compose-Umgebungen pro Kurstag + Beispieldaten
+workshop-demo/   Demo-Skripte für den Mapping-Workshop (Modul 08 / Lab 08)
+tools/           Slide-Rendering, Log-Generator, Infra-Fallback
+```
+
+## Tagesplan
+
+### Tag 1: Grundlagen & Kibana
+
+| Modul | Slides                           | Lab                                  | Dauer   |
+| :---- | :------------------------------- | :----------------------------------- | :------ |
+| --    | Begrüßung, Umgebungs-Check       | --                                   | 20 Min. |
+| 01    | `01-einfuehrung`                 | `lab-01-einfuehrung`                 | 70 + 25 |
+| 02    | `02-discover-abfragen`           | `lab-02-discover-abfragen`           | 35 + 20 |
+| 03    | `03-visualisierungen-dashboards` | `lab-03-visualisierungen-dashboards` | 50 + 30 |
+| 04    | `04-machine-learning`            | -- (Trainer-Demo)                    | 25 Min. |
+
+Puffer/Bonus für Schnelle: `lab-03b-fortgeschrittene-dashboards`, `lab-04-maps`
+
+### Tag 2: Beats & Logstash
+
+| Modul | Slides                      | Lab                         | Dauer   |
+| :---- | :-------------------------- | :-------------------------- | :------ |
+| --    | Recap Tag 1                 | --                          | 10 Min. |
+| 05    | `05-beats-filebeat`         | `lab-05-filebeat`           | 55 + 40 |
+| 06    | `06-logstash-grundlagen`    | `lab-06-logstash-pipelines` | 40 + 30 |
+| 07    | `07-logstash-filter-praxis` | `lab-07-grok-geoip`         | 45 + 45 |
+
+### Tag 3: Cluster, Betrieb & Fleet
+
+| Modul | Slides                               | Lab                       | Dauer   |
+| :---- | :----------------------------------- | :------------------------ | :------ |
+| --    | Recap Tag 2                          | --                        | 10 Min. |
+| 08    | `08-cluster-architektur-optimierung` | `lab-08-cluster-shards`   | 50 + 30 |
+| 09    | `09-index-lifecycle-management`      | `lab-09-ilm`              | 30 + 25 |
+| 10    | `10-betrieb-backup-updates`          | -- (Snapshot-Demo)        | 30 Min. |
+| 11    | `11-security-lizenzen`               | -- (Security-Demo)        | 30 Min. |
+| 12    | `12-alerting-monitoring-siem`        | `lab-11-alerting` (Bonus) | 35 + 15 |
+| 13    | `13-fleet-elastic-agent`             | `lab-10-fleet`            | 25 + 25 |
+
+## Labs
+
+Die Labs bauen innerhalb eines Tages aufeinander auf - bitte in der
+angegebenen Reihenfolge bearbeiten. Musterlösungen liegen jeweils unter
+`labs/lab-NN-*/files/loesung/`.
+
+| Lab | Verzeichnis                                | Thema                                    | Umgebung |
+| :-- | :----------------------------------------- | :--------------------------------------- | :------- |
+| 01  | `labs/lab-01-einfuehrung`                  | Kibana, Data Views, erste REST-Aufrufe   | day1     |
+| 02  | `labs/lab-02-discover-abfragen`            | Discover, KQL, Filter                    | day1     |
+| 03  | `labs/lab-03-visualisierungen-dashboards`  | Lens, Dashboards                         | day1     |
+| 03b | `labs/lab-03b-fortgeschrittene-dashboards` | Bonus: Formeln, Time Shifts              | day1     |
+| 04  | `labs/lab-04-maps`                         | Bonus: Kibana Maps                       | day1     |
+| 05  | `labs/lab-05-filebeat`                     | Filebeat: Inputs, JSON, Multiline        | day2     |
+| 06  | `labs/lab-06-logstash-pipelines`           | Logstash: Pipeline, mutate/date, Routing | day2     |
+| 07  | `labs/lab-07-grok-geoip`                   | Grok, Geoip, Web-Traffic-Dashboard       | day2     |
+| 08  | `labs/lab-08-cluster-shards`               | Cluster, Failover, Mapping-Optimierung   | day3     |
+| 09  | `labs/lab-09-ilm`                          | ILM: Rollover, Phasen, Data Streams      | day3     |
+| 10  | `labs/lab-10-fleet`                        | Fleet Server & Elastic Agent             | day3     |
+| 11  | `labs/lab-11-alerting`                     | Bonus: Alerting-Rule mit Auslösung       | day3     |
+
+## Umgebung starten
+
+Pro Kurstag eine Umgebung - **immer nur eine gleichzeitig**:
+
+```bash
+cd environment/day1   # bzw. day2, day3
+docker compose up -d --wait
+```
+
+Kibana: `http://localhost:5601` - an Tag 1/2 ohne Login, an Tag 3 mit
+`elastic`/`changeme`. Kaputt? `./reset.sh` im Tagesverzeichnis (< 3 Min.).
+Details und Troubleshooting: README im jeweiligen Tagesverzeichnis.
+
+## Slides rendern
+
+```bash
+./tools/render-slides.sh   # erzeugt PDFs unter pdf/ (braucht npx/marp-cli)
 ```
 
 ## Hilfe bei Problemen
 
-### Kibana lädt nicht im Browser
-
-**Symptom:** Die Kibana-URL zeigt eine leere Seite oder einen Verbindungsfehler.
-
-**Lösung:**
-
-1. Prüfe, ob du die korrekte URL vom Trainer verwendest
-2. Stelle sicher, dass du mit dem richtigen Netzwerk verbunden bist (ggf. VPN)
-3. Versuche, die Seite mit `Ctrl+Shift+R` (Hard Reload)
-   neu zu laden
-4. Teste mit einem anderen Browser (Chrome oder Firefox)
-
-### Kibana reagiert langsam
-
-**Symptom:** Die Oberfläche reagiert verzögert oder Visualisierungen laden
-lange.
-
-**Lösung:**
-
-1. Schließe nicht benötigte Browser-Tabs
-2. Wähle einen kleineren Zeitraum für deine Abfragen
-3. Melde dich beim Trainer, falls das Problem anhält
-
-### Beispieldaten fehlen
-
-**Symptom:** Der Index `kibana_sample_data_ecommerce` ist nicht vorhanden oder
-leer.
-
-**Lösung:**
-
-1. Gehe auf die Kibana-Startseite (Home-Symbol oben links)
-2. Klicke auf **Try sample data**
-3. Wähle **Sample eCommerce orders** und klicke **Add data**
-4. Warte, bis der Import abgeschlossen ist
-
-### Visualisierung zeigt "No results found"
-
-**Symptom:** Eine Visualisierung oder Discover zeigt keine Daten an.
-
-**Lösung:**
-
-1. Prüfe den Zeitfilter oben rechts -- ist der richtige Zeitraum ausgewählt? Die
-   Beispieldaten verwenden relative Zeiträume, wähle z.B. **Last 7 days**
-2. Prüfe, ob aktive Filter die Ergebnisse einschränken
-   (Filter-Leiste unter der Suchleiste)
-3. Stelle sicher, dass der richtige Data View ausgewählt ist
-
-### Browser-Kompatibilität
-
-Kibana funktioniert am besten mit aktuellen Versionen von Chrome oder Firefox.
-Falls du Darstellungsprobleme hast:
-
-1. Aktualisiere deinen Browser auf die neueste Version
-2. Deaktiviere Browser-Erweiterungen (z.B. Ad-Blocker), die Kibana
-   beeinträchtigen könnten
-3. Versuche den Inkognito-/Privat-Modus
+- Umgebungs-/Docker-Probleme: `environment/dayN/README.md` (Troubleshooting-Abschnitt)
+- Kibana zeigt keine Daten: Zeitfilter prüfen (Übungsdaten decken die
+  letzten 48 Stunden ab - ggf. „Last 3 days" wählen) und aktive Filter
+  kontrollieren
+- Beispieldaten fehlen an Tag 1: Kibana Home → **Try sample data** →
+  **Sample eCommerce orders** → Add data

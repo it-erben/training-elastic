@@ -4,16 +4,59 @@
 
 Am Ende dieser Übung hast du:
 
+- Deine lokale Übungsumgebung selbst gestartet
 - Die Kibana-Oberfläche kennengelernt und dich orientiert
 - Verstanden, was ein Data View ist und wozu er dient
 - Das Index Mapping grafisch über die Data-View-Ansicht untersucht und die
   Feldtypen verstanden
+- Erste REST-Aufrufe in den Kibana Dev Tools ausgeführt
+
+**Dauer:** ca. 25 Minuten
 
 ---
 
-## Kibana öffnen
+## Teil 0: Umgebung starten
 
-Öffne die vom Trainer mitgeteilte URL in deinem Browser.
+In dieser Schulung betreibst du Elasticsearch und Kibana **lokal auf deinem
+eigenen Rechner** mit Docker.
+
+> **Voraussetzung:** Du hast die Schritte aus `environment/VORBEREITUNG.md`
+> bereits ausgeführt (Docker installiert, Images geladen).
+
+### Schritt 0.1: Docker-Umgebung starten
+
+Öffne ein Terminal im Schulungs-Repository und starte die Umgebung für Tag 1:
+
+```bash
+cd environment/day1
+docker compose up -d --wait
+```
+
+> **Tipp:** Der erste Start kann 1-2 Minuten dauern. Der Befehl kehrt erst
+> zurück, wenn Elasticsearch und Kibana bereit sind (`--wait`).
+
+**Erwartetes Ergebnis:** Beide Container werden als `Healthy` angezeigt.
+
+### Schritt 0.2: Kibana öffnen
+
+Öffne in deinem Browser:
+
+<http://localhost:5601>
+
+Kibana und Elasticsearch laufen lokal **ohne Login**. Du landest direkt auf
+der Startseite.
+
+### Schritt 0.3: Beispieldaten laden
+
+Für die folgenden Teile brauchst du den eCommerce-Beispieldatensatz:
+
+1. Gehe auf die Kibana-Startseite (**Home**)
+2. Klicke auf **Try sample data**
+3. Öffne **Other sample data sets**
+4. Wähle **Sample eCommerce orders** und klicke auf **Add data**
+
+**Erwartetes Ergebnis:** Nach kurzer Zeit ist der Index
+`kibana_sample_data_ecommerce` samt Data View und Dashboard angelegt.
 
 ---
 
@@ -27,7 +70,7 @@ Moment, um die Hauptbereiche zu identifizieren:
 ![Kibana Startseite](images/kibana-startseite.png)
 
 | Bereich        | Position                 | Beschreibung                            |
-|:---------------|:-------------------------|:----------------------------------------|
+| :------------- | :----------------------- | :-------------------------------------- |
 | **Hauptmenü**  | Links (Hamburger-Symbol) | Navigation zu allen Kibana-Bereichen    |
 | **Suchleiste** | Oben mittig              | Globale Suche nach Funktionen und Daten |
 | **Hilfe**      | Oben rechts              | Dokumentation und Hilfe                 |
@@ -40,7 +83,7 @@ Klicke auf das Hamburger-Symbol (drei Striche) oben links, um das Hauptmenü zu
 ![Hauptmenü](images/hauptmenue.png)
 
 | Menüpunkt                         | Funktion                                |
-|:----------------------------------|:----------------------------------------|
+| :-------------------------------- | :-------------------------------------- |
 | **Analytics > Discover**          | Daten durchsuchen und filtern           |
 | **Analytics > Dashboard**         | Dashboards anzeigen und erstellen       |
 | **Analytics > Visualize Library** | Gespeicherte Visualisierungen           |
@@ -102,11 +145,11 @@ Ein Data View definiert:
 
 ![Data Views - Liste](images/data-views-liste.png)
 
-**Beobachte:** Jeder Data View zeigt:
-
-- seinen **Namen**
-- das **Index-Muster** (welche Elasticsearch-Indizes er abdeckt)
-- das **Zeitstempel-Feld** (z.B. `order_date`)
+**Beobachte:** Die Liste zeigt pro Data View seinen **Namen** und die
+**Spaces**, in denen er verfügbar ist. Das **Index-Muster** (welche
+Elasticsearch-Indizes er abdeckt) und das **Zeitstempel-Feld** (z.B.
+`order_date`) siehst du erst nach dem Öffnen des Data Views auf der
+Detailseite (Schritt 2.2).
 
 ### Schritt 2.2: E-Commerce Data View öffnen
 
@@ -118,7 +161,7 @@ Ein Data View definiert:
 Auf dieser Seite kannst du ablesen:
 
 | Information      | Wo zu finden        | Beispiel                        |
-|:-----------------|:--------------------|:--------------------------------|
+| :--------------- | :------------------ | :------------------------------ |
 | **Feldname**     | Erste Spalte        | `taxful_total_price`            |
 | **Feldtyp**      | Symbol + Typname    | `#` = Number                    |
 | **Format**       | Format-Spalte       | Standard oder benutzerdefiniert |
@@ -126,9 +169,9 @@ Auf dieser Seite kannst du ablesen:
 | **Aggregierbar** | Spalte Aggregatable | Ja/Nein                         |
 
 > **Wichtig:** Nur Felder, die als **aggregierbar**
-> markiert sind, können in Visualisierungen und
-> Dashboards als Achse oder Gruppierung verwendet
-> werden. Das betrifft vor allem `keyword`-Felder,
+> markiert sind, kannst du in Visualisierungen und
+> Dashboards als Achse oder Gruppierung verwenden.
+> Das betrifft vor allem `keyword`-Felder,
 > Zahlen und Datumsfelder.
 
 ### Schritt 2.3: Wichtige Felder für die Schulung
@@ -136,24 +179,24 @@ Auf dieser Seite kannst du ablesen:
 Suche in der Feldliste nach den folgenden Feldern und notiere ihren Typ. Du
 wirst sie in den nächsten Modulen intensiv nutzen:
 
-| Feld                     | Typ     | Bedeutung             |
-|:-------------------------|:--------|:----------------------|
-| `order_date`             | Date    | Bestelldatum          |
-| `customer_full_name`     | Text    | Kundenname            |
-| `category`               | Keyword | Produktkategorie      |
-| `taxful_total_price`     | Number  | Gesamtpreis (brutto)  |
-| `currency`               | Keyword | Währung               |
-| `geoip.country_iso_code` | Keyword | Ländercode des Kunden |
-| `geoip.continent_name`   | Keyword | Kontinent des Kunden  |
-| `manufacturer`           | Keyword | Hersteller            |
-| `products.product_name`  | Text    | Produktname           |
+| Feld                     | Typ                 | Bedeutung             |
+| :----------------------- | :------------------ | :-------------------- |
+| `order_date`             | Date                | Bestelldatum          |
+| `customer_full_name`     | Text                | Kundenname            |
+| `category`               | Text (+ `.keyword`) | Produktkategorie      |
+| `taxful_total_price`     | Number              | Gesamtpreis (brutto)  |
+| `currency`               | Keyword             | Währung               |
+| `geoip.country_iso_code` | Keyword             | Ländercode des Kunden |
+| `geoip.continent_name`   | Keyword             | Kontinent des Kunden  |
+| `manufacturer`           | Text (+ `.keyword`) | Hersteller            |
+| `products.product_name`  | Text                | Produktname           |
 
 ---
 
 ## Teil 3: Index Mapping
 
 Das **Mapping** legt fest, wie Elasticsearch jedes Feld intern speichert und
-interpretiert. Du kannst es dir als das **Schema** deiner Daten vorstellen --
+interpretiert. Du kannst es dir als das **Schema** deiner Daten vorstellen,
 vergleichbar mit der Spaltendefinition in einer Excel-Tabelle
 (Text, Zahl, Datum ...).
 
@@ -167,8 +210,8 @@ einzige Abfrage schreiben musst.
 **Typ-Symbole** links neben den Feldnamen:
 
 | Symbol   | Feldtyp       | Beschreibung                                               | Beispielfeld         |
-|:---------|:--------------|:-----------------------------------------------------------|:---------------------|
-| `t`      | **Keyword**   | Exakter Text, nicht zerlegt - für Filter und Gruppierungen | `category`           |
+| :------- | :------------ | :--------------------------------------------------------- | :------------------- |
+| `t`      | **Keyword**   | Exakter Text, nicht zerlegt - für Filter und Gruppierungen | `currency`           |
 | `t`      | **Text**      | Volltext, zerlegt in Wörter - für Freitextsuche            | `customer_full_name` |
 | `#`      | **Number**    | Zahlenwert (integer, float ...) - für Berechnungen         | `taxful_total_price` |
 | Kalender | **Date**      | Datum / Zeitstempel - für Zeitfilter                       | `order_date`         |
@@ -192,7 +235,7 @@ Das ist ein sogenanntes **Multi-Field-Mapping**:
 ![Data View - keyword vs. text](images/keyword-vs-text.png)
 
 | Variante                     | Typ     | Einsatz                                                          |
-|:-----------------------------|:--------|:-----------------------------------------------------------------|
+| :--------------------------- | :------ | :--------------------------------------------------------------- |
 | `customer_full_name`         | Text    | Volltextsuche ("Suche nach Müller")                              |
 | `customer_full_name.keyword` | Keyword | Exakte Filterung und Gruppierung ("Gruppiere nach vollem Namen") |
 
@@ -242,16 +285,105 @@ einen Überblick zu verschaffen:
 
 ---
 
-## Zusammenfassung
+## Teil 4: Dev Tools - erste REST-Aufrufe
 
-Du hast erfolgreich:
+Zum Abschluss sprichst du direkt mit Elasticsearch, so wie es Kibana im
+Hintergrund die ganze Zeit tut. Dafür nutzt du die **Dev Tools Console**.
 
-- [x] Die Kibana-Oberfläche und das Hauptmenü kennengelernt
-- [x] Verstanden, was ein Data View ist und wozu er dient
-- [x] Den Data View mit seinen Feldern und Feldtypen erkundet
-- [x] Das Index Mapping grafisch über die Feldliste untersucht
-- [x] Den Unterschied zwischen Keyword- und Text-Feldern sowie
-  Multi-Field-Mappings verstanden
+### Schritt 4.1: Dev Tools öffnen
 
-**Nächstes Modul:** Discover & Abfragen - Wir suchen und filtern die
-E-Commerce-Daten!
+1. Navigiere über das Hauptmenü zu **Management > Dev Tools**
+2. Links siehst du den Editor für deine Anfragen, rechts erscheinen die
+   Antworten
+
+> **Tipp:** Anfragen führst du mit **Ctrl+Enter** (Windows/Linux) bzw.
+> **Cmd+Enter** (macOS) aus, alternativ über das Play-Symbol neben der
+> Anfrage.
+> Die Console bietet Autocomplete für Endpunkte und Felder.
+
+### Schritt 4.2: Erstes Dokument anlegen
+
+Lege einen Kunden der Mustertech GmbH an. Tippe in die Console:
+
+```json
+PUT kunden/_doc/1
+{
+  "name": "Firma Müller",
+  "stadt": "Köln",
+  "branche": "Maschinenbau",
+  "kunde_seit": "2019-04-01"
+}
+```
+
+**Erwartetes Ergebnis:** Die Antwort enthält `"result": "created"` und
+`"_id": "1"`. Den Index `kunden` hat Elasticsearch dabei automatisch angelegt.
+
+### Schritt 4.3: Dokument lesen
+
+```json
+GET kunden/_doc/1
+```
+
+**Erwartetes Ergebnis:** `"found": true`. Unter `_source` steht dein
+Kunden-Dokument, dazu Metadaten wie `_index` und `_version`.
+
+### Schritt 4.4: Indizes auflisten
+
+```json
+GET _cat/indices?v
+```
+
+**Erwartetes Ergebnis:** Eine Tabelle aller Indizes. Du findest darin sowohl
+`kunden` (mit `docs.count` 1) als auch `kibana_sample_data_ecommerce`.
+
+### Schritt 4.5: Mehrere Dokumente per Bulk-API anlegen
+
+Statt drei einzelner `PUT`-Aufrufe bündelst du drei Kunden in einer Anfrage.
+Beachte das Zeilenformat: immer eine Action-Zeile, dann eine Dokument-Zeile:
+
+```json
+POST _bulk
+{ "index": { "_index": "kunden", "_id": "2" } }
+{ "name": "Schmidt AG", "stadt": "Hamburg", "branche": "Logistik", "kunde_seit": "2021-09-15" }
+{ "index": { "_index": "kunden", "_id": "3" } }
+{ "name": "Weber & Co", "stadt": "München", "branche": "Handel", "kunde_seit": "2020-02-01" }
+{ "index": { "_index": "kunden", "_id": "4" } }
+{ "name": "Becker GmbH", "stadt": "Köln", "branche": "Maschinenbau", "kunde_seit": "2023-06-20" }
+```
+
+**Erwartetes Ergebnis:** Die Antwort enthält `"errors": false` und listet für
+jedes der drei Dokumente `"result": "created"` auf.
+
+### Schritt 4.6: Erste Suche
+
+Suche alle Kunden, in deren Namen "müller" vorkommt:
+
+```json
+GET kunden/_search
+{
+  "query": {
+    "match": {
+      "name": "müller"
+    }
+  }
+}
+```
+
+**Erwartetes Ergebnis:** Unter `hits.total.value` steht `1`, und in
+`hits.hits` findest du die Firma Müller, obwohl du klein geschrieben gesucht
+hast. Die Details der Query DSL lernst du in einem späteren Modul.
+
+### Schritt 4.7: Aufräumen
+
+Lösche den Übungsindex wieder, damit er die nächsten Labs nicht stört:
+
+```json
+DELETE kunden
+```
+
+**Erwartetes Ergebnis:** `"acknowledged": true`. Ein erneutes
+`GET _cat/indices?v` zeigt: `kunden` ist verschwunden,
+`kibana_sample_data_ecommerce` ist weiterhin da.
+
+> **Merke:** `DELETE kunden` löscht den kompletten Index inklusive aller
+> Dokumente und des Mappings, ohne Rückfrage.

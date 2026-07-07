@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1480 700" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B4FD8"/>
+    </marker>
+    <marker id="ieArrowGrau" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Logdateien -->
+  <rect x="40" y="40" width="330" height="64" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="205" y="79" font-size="19" fill="#172033" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">/data/apache-access.log</text>
+  <rect x="40" y="120" width="330" height="64" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="205" y="159" font-size="19" fill="#172033" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">/data/java-app.log</text>
+  <rect x="40" y="200" width="330" height="64" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="205" y="239" font-size="19" fill="#172033" text-anchor="middle" font-family="ui-monospace, 'SF Mono', Menlo, monospace">/data/app-json.log</text>
+
+  <!-- Pfeile zu Filebeat -->
+  <line x1="376" y1="72" x2="428" y2="128" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <line x1="376" y1="152" x2="428" y2="152" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <line x1="376" y1="232" x2="428" y2="178" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <!-- Filebeat -->
+  <rect x="440" y="102" width="200" height="100" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="540" y="144" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Filebeat</text>
+  <text x="540" y="176" font-size="21" fill="#5B6675" text-anchor="middle">(logtype)</text>
+
+  <line x1="646" y1="152" x2="692" y2="152" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <!-- Logstash -->
+  <rect x="700" y="102" width="200" height="100" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="800" y="162" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Logstash</text>
+
+  <line x1="906" y1="152" x2="952" y2="152" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <!-- Elasticsearch -->
+  <rect x="960" y="102" width="250" height="100" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="1085" y="162" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Elasticsearch</text>
+
+  <line x1="1216" y1="152" x2="1262" y2="152" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+
+  <!-- Kibana -->
+  <rect x="1270" y="102" width="170" height="100" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1355" y="162" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Kibana</text>
+
+  <!-- Verzweigung unter Logstash -->
+  <line x1="800" y1="202" x2="800" y2="600" stroke="#5B6675" stroke-width="2.5"/>
+  <line x1="800" y1="340" x2="830" y2="340" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+  <line x1="800" y1="470" x2="830" y2="470" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+  <line x1="800" y1="600" x2="830" y2="600" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGrau)"/>
+
+  <!-- Zweig: apache -->
+  <rect x="846" y="288" width="350" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1021" y="322" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">apache</text>
+  <text x="1021" y="350" font-size="19" fill="#5B6675" text-anchor="middle">grok(HTTPD_COMBINEDLOG)</text>
+  <text x="1021" y="376" font-size="19" fill="#5B6675" text-anchor="middle">+ date + geoip + useragent</text>
+  <line x1="1202" y1="340" x2="1248" y2="340" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="1256" y="306" width="184" height="68" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1348" y="348" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">weblogs</text>
+
+  <!-- Zweig: java -->
+  <rect x="846" y="418" width="350" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1021" y="456" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">java</text>
+  <text x="1021" y="490" font-size="19" fill="#5B6675" text-anchor="middle">grok + date + Fehler-Tag</text>
+  <line x1="1202" y1="470" x2="1248" y2="470" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="1256" y="436" width="184" height="68" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1348" y="478" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">javalogs</text>
+
+  <!-- Zweig: app -->
+  <rect x="846" y="548" width="350" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1021" y="586" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">app</text>
+  <text x="1021" y="620" font-size="19" fill="#5B6675" text-anchor="middle">JSON (fertig)</text>
+  <line x1="1202" y1="600" x2="1248" y2="600" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <rect x="1256" y="566" width="184" height="68" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1348" y="608" font-size="24" font-weight="700" fill="#172033" text-anchor="middle">applogs</text>
+</svg>

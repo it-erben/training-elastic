@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Age axis -->
+  <text x="40" y="42" text-anchor="start" fill="#5B6675" font-size="16" font-weight="600">neu</text>
+  <text x="500" y="42" text-anchor="middle" fill="#5B6675" font-size="16">Alter der Daten</text>
+  <text x="910" y="42" text-anchor="end" fill="#5B6675" font-size="16" font-weight="600">alt</text>
+  <line x1="40" y1="54" x2="910" y2="54" stroke="#D5DBEA" stroke-width="2" marker-end="url(#ieArrow)"/>
+
+  <!-- Tier boxes -->
+  <g filter="url(#ieShadow)"><rect x="40" y="90" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="130" y="130" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">hot</text>
+  <text x="130" y="160" text-anchor="middle" fill="#5B6675" font-size="17">schnelle SSD</text>
+
+  <line x1="222" y1="138" x2="266" y2="138" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <g filter="url(#ieShadow)"><rect x="270" y="90" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="360" y="130" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">warm</text>
+  <text x="360" y="160" text-anchor="middle" fill="#5B6675" font-size="17">gr&#246;&#223;ere HDD</text>
+
+  <line x1="452" y1="138" x2="496" y2="138" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <g filter="url(#ieShadow)"><rect x="500" y="90" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="590" y="130" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">cold</text>
+  <text x="590" y="160" text-anchor="middle" fill="#5B6675" font-size="17">g&#252;nstiger Speicher</text>
+
+  <line x1="682" y1="138" x2="726" y2="138" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <g filter="url(#ieShadow)"><rect x="730" y="90" width="180" height="96" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="820" y="130" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">frozen</text>
+  <text x="820" y="160" text-anchor="middle" fill="#5B6675" font-size="17">Object Storage</text>
+
+  <!-- Bracket down to ILM -->
+  <path d="M130 210 L130 224 L820 224 L820 210" fill="none" stroke="#D5DBEA" stroke-width="2"/>
+  <line x1="475" y1="224" x2="475.0" y2="239.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M468.0,239.0 L482.0,239.0 L475,252 z" fill="#5B6675"/>
+
+  <!-- Blue ILM hero -->
+  <g filter="url(#ieShadow)"><rect x="290" y="258" width="420" height="62" rx="16" fill="#1B4FD8"/></g>
+  <text x="500" y="283" text-anchor="middle" fill="#FFFFFF" font-size="21" font-weight="700">ILM verschiebt automatisch</text>
+  <text x="500" y="306" text-anchor="middle" fill="#FFFFFF" font-size="15" font-weight="400">pro Tier zahlst du weniger</text>
+</svg>

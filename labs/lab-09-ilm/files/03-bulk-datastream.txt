@@ -1,0 +1,247 @@
+# ============================================================
+# Lab 09 - Schritt 4.4: 120 Log-Einträge in den Data Stream
+# Data Streams akzeptieren im Bulk nur "create"-Operationen.
+# Kompletten Request in die Kibana Dev Tools kopieren.
+# ============================================================
+
+POST logs-mustertech-default/_bulk
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:01.001Z","message":"Request 1 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:02.002Z","message":"Request 2 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:03.003Z","message":"Request 3 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:04.004Z","message":"Request 4 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:05.005Z","message":"Request 5 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:06.006Z","message":"Request 6 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:07.007Z","message":"Request 7 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:08.008Z","message":"Request 8 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:09.009Z","message":"Request 9 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:10.010Z","message":"Request 10 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:11.011Z","message":"Request 11 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:12.012Z","message":"Request 12 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:13.013Z","message":"Request 13 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:14.014Z","message":"Request 14 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:15.015Z","message":"Request 15 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:16.016Z","message":"Request 16 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:17.017Z","message":"Request 17 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:18.018Z","message":"Request 18 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:19.019Z","message":"Request 19 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:20.020Z","message":"Request 20 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:21.021Z","message":"Request 21 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:22.022Z","message":"Request 22 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:23.023Z","message":"Request 23 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:24.024Z","message":"Request 24 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:25.025Z","message":"Request 25 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:26.026Z","message":"Request 26 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:27.027Z","message":"Request 27 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:28.028Z","message":"Request 28 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:29.029Z","message":"Request 29 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:30.030Z","message":"Request 30 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:31.031Z","message":"Request 31 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:32.032Z","message":"Request 32 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:33.033Z","message":"Request 33 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:34.034Z","message":"Request 34 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:35.035Z","message":"Request 35 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:36.036Z","message":"Request 36 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:37.037Z","message":"Request 37 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:38.038Z","message":"Request 38 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:39.039Z","message":"Request 39 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:40.040Z","message":"Request 40 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:41.041Z","message":"Request 41 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:42.042Z","message":"Request 42 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:43.043Z","message":"Request 43 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:44.044Z","message":"Request 44 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:45.045Z","message":"Request 45 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:46.046Z","message":"Request 46 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:47.047Z","message":"Request 47 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:48.048Z","message":"Request 48 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:49.049Z","message":"Request 49 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:50.050Z","message":"Request 50 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:51.051Z","message":"Request 51 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:52.052Z","message":"Request 52 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:53.053Z","message":"Request 53 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:54.054Z","message":"Request 54 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:55.055Z","message":"Request 55 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:56.056Z","message":"Request 56 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:57.057Z","message":"Request 57 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:58.058Z","message":"Request 58 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:59.059Z","message":"Request 59 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:00.060Z","message":"Request 60 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:01.061Z","message":"Request 61 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:02.062Z","message":"Request 62 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:03.063Z","message":"Request 63 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:04.064Z","message":"Request 64 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:05.065Z","message":"Request 65 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:06.066Z","message":"Request 66 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:07.067Z","message":"Request 67 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:08.068Z","message":"Request 68 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:09.069Z","message":"Request 69 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:10.070Z","message":"Request 70 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:11.071Z","message":"Request 71 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:12.072Z","message":"Request 72 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:13.073Z","message":"Request 73 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:14.074Z","message":"Request 74 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:15.075Z","message":"Request 75 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:16.076Z","message":"Request 76 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:17.077Z","message":"Request 77 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:18.078Z","message":"Request 78 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:19.079Z","message":"Request 79 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:20.080Z","message":"Request 80 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:21.081Z","message":"Request 81 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:22.082Z","message":"Request 82 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:23.083Z","message":"Request 83 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:24.084Z","message":"Request 84 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:25.085Z","message":"Request 85 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:26.086Z","message":"Request 86 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:27.087Z","message":"Request 87 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:28.088Z","message":"Request 88 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:29.089Z","message":"Request 89 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:30.090Z","message":"Request 90 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:31.091Z","message":"Request 91 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:32.092Z","message":"Request 92 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:33.093Z","message":"Request 93 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:34.094Z","message":"Request 94 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:35.095Z","message":"Request 95 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:36.096Z","message":"Request 96 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:37.097Z","message":"Request 97 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:38.098Z","message":"Request 98 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:39.099Z","message":"Request 99 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:40.100Z","message":"Request 100 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:41.101Z","message":"Request 101 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:42.102Z","message":"Request 102 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:43.103Z","message":"Request 103 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:44.104Z","message":"Request 104 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:45.105Z","message":"Request 105 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:46.106Z","message":"Request 106 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:47.107Z","message":"Request 107 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:48.108Z","message":"Request 108 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:49.109Z","message":"Request 109 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:50.110Z","message":"Request 110 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:51.111Z","message":"Request 111 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:52.112Z","message":"Request 112 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:53.113Z","message":"Request 113 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:54.114Z","message":"Request 114 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:55.115Z","message":"Request 115 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:56.116Z","message":"Request 116 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:57.117Z","message":"Request 117 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:58.118Z","message":"Request 118 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:59.119Z","message":"Request 119 verarbeitet","service":"shop-backend"}
+{"create":{}}
+{"@timestamp":"2026-07-02T10:31:00.120Z","message":"Request 120 verarbeitet","service":"shop-backend"}

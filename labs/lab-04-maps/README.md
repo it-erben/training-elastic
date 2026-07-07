@@ -11,7 +11,7 @@ Am Ende dieser Übung hast du:
 
 ### Voraussetzung
 
-Du hast **Modul 03** abgeschlossen. Das Dashboard
+Du hast **Lab 03** abgeschlossen. Das Dashboard
 `Überblick - Geschäftsführung` ist vorhanden.
 
 ---
@@ -23,18 +23,18 @@ Stelle zu Beginn sicher, dass der Zeitfilter auf
 
 ### Relevante Felder im eCommerce-Datensatz
 
-| Feld                         | Typ       | Beschreibung              |
-|:-----------------------------|:----------|:--------------------------|
-| `geoip.location`             | geo_point | Koordinaten (Lat/Lon)     |
-| `geoip.city_name`            | keyword   | Stadt                     |
-| `geoip.region_name`          | keyword   | Region                    |
-| `geoip.country_iso_code`     | keyword   | Ländercode (DE, US...)    |
-| `geoip.continent_name`       | keyword   | Kontinent                 |
-| `taxful_total_price`         | number    | Bestellwert (brutto)      |
-| `customer_full_name`         | text      | Kundenname                |
-| `category`                   | keyword   | Produktkategorie(n)       |
-| `order_date`                 | date      | Bestellzeitpunkt          |
-| `total_quantity`             | number    | Anzahl Artikel            |
+| Feld                     | Typ                 | Beschreibung           |
+| :----------------------- | :------------------ | :--------------------- |
+| `geoip.location`         | geo_point           | Koordinaten (Lat/Lon)  |
+| `geoip.city_name`        | keyword             | Stadt                  |
+| `geoip.region_name`      | keyword             | Region                 |
+| `geoip.country_iso_code` | keyword             | Ländercode (DE, US...) |
+| `geoip.continent_name`   | keyword             | Kontinent              |
+| `taxful_total_price`     | number              | Bestellwert (brutto)   |
+| `customer_full_name`     | text                | Kundenname             |
+| `category`               | text (+ `.keyword`) | Produktkategorie(n)    |
+| `order_date`             | date                | Bestellzeitpunkt       |
+| `total_quantity`         | number              | Anzahl Artikel         |
 
 ---
 
@@ -208,7 +208,7 @@ unübersichtlich werden.
 7. Klicke auf **Add and continue**
 
 **Erwartetes Ergebnis:** Die Karte zeigt farbige Kreise unterschiedlicher
-Größe. Jeder Kreis repräsentiert ein Cluster aus mehreren Bestellungen.
+Größe. Jeder Kreis fasst mehrere Bestellungen zu einem Cluster zusammen.
 
 ### Aufgabe 5.2: Cluster-Metrik konfigurieren
 
@@ -230,7 +230,7 @@ Unter **Layer style**:
 - Wähle eine Farbpalette, die dir gefällt
 - Setze bei **Symbol size** den Bereich auf Minimum `12` und Maximum `40`
 
-Lass' dir nun einen Moment Zeit und probiere, was du hier alles
+Lass dir nun einen Moment Zeit und probiere, was du hier alles
 an Optionen einstellen kannst.
 
 ### Aufgabe 5.4: Zoom-Verhalten testen
@@ -264,8 +264,7 @@ im Dashboard.
 3. Wähle **Draw bounds to filter data**
 4. Zeichne ein Rechteck über **Europa**:
     - Klicke auf die linke obere Ecke (z.B. Portugal)
-    - Ziehe zur rechten unteren Ecke (z.B. Türkei)
-    - Lasse los
+    - Klicke auf die rechte untere Ecke (z.B. Türkei)
 
 **Erwartetes Ergebnis:** Nur Bestellungen innerhalb des gezeichneten
 Rechtecks werden angezeigt. In der **Filterleiste** oben erscheint
@@ -276,11 +275,9 @@ ein neuer Geo-Filter.
 1. Navigiere zum Dashboard `Überblick - Geschäftsführung`
 2. Öffne die eingebettete Karte
 3. Zeichne erneut ein Rechteck (z.B. über Nordamerika)
-4. **Beobachte:**
-    - Alle Metriken (Umsatz, Bestellungen) zeigen nur Werte
-      aus dieser Region
-    - Das Liniendiagramm filtert sich ebenfalls
-    - Das Kreisdiagramm zeigt nur den gewählten Kontinent
+4. Das ganze Dashboard rechnet jetzt nur noch mit dieser Region:
+   Umsatz und Bestellzahl schrumpfen, Liniendiagramm und
+   Kreisdiagramm zeigen nur noch den gewählten Ausschnitt
 5. Entferne den Filter über das **X** in der Filterleiste
 
 ### Aufgabe 6.3: Filter per Polygon zeichnen
@@ -294,15 +291,15 @@ ein neuer Geo-Filter.
 4. Beobachte die gefilterten Daten
 
 **Erwartetes Ergebnis:** Nur Bestellungen innerhalb des Polygons
-werden angezeigt. Diese Methode erlaubt präzisere räumliche
-Eingrenzung als ein Rechteck.
+werden angezeigt. Damit grenzt du räumlich präziser ein als mit
+einem Rechteck.
 
 ### Aufgabe 6.4: Filter per Distanz
 
 1. Entferne den vorherigen Geo-Filter
-2. Wähle das Werkzeug **Draw a distance to filter data**
-3. Klicke auf eine Stadt (z.B. New York)
-4. Ziehe einen Radius auf (z.B. ca. 500 km)
+2. Wähle das Werkzeug **Draw distance to filter data**
+3. Klicke auf eine Stadt (z.B. New York) als Mittelpunkt
+4. Ein zweiter Klick legt den Radius fest (z.B. ca. 500 km)
 
 **Erwartetes Ergebnis:** Nur Bestellungen innerhalb des Radius um den
 gewählten Punkt werden angezeigt. Nützlich für standortbezogene
@@ -328,7 +325,6 @@ Du hast erfolgreich:
   Cross-Filtering getestet
 - [x] Einen **Cluster-Layer** mit aggregiertem Umsatz und
   dynamischer Größe erstellt
-- [x] **Dynamisches Styling** konfiguriert (Farbe nach Bestellwert,
-  Größe nach Artikelanzahl)
+- [x] **Layer-Styling** angepasst (Farben, Symbolgrößen, Deckkraft)
 - [x] **Räumliche Filter** per Rechteck, Polygon und Distanz angewendet
   und deren Auswirkung auf Dashboard-Visualisierungen getestet

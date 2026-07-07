@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Gruppenflaeche links: viele Beats -->
+  <rect x="30" y="72" width="440" height="336" rx="20" fill="#EEF1F8"/>
+
+  <text x="250" y="52" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">Früher: ein Beat pro Datentyp</text>
+  <text x="750" y="52" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">Heute: ein Agent</text>
+
+  <!-- Beat-Boxen (neutral) mit Ausgaben -->
+  <g filter="url(#ieShadow)"><rect x="60" y="95" width="180" height="56" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="150" y="123" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Filebeat</text>
+  <line x1="240" y1="123" x2="330" y2="123" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="342" y="123" dominant-baseline="middle" fill="#5B6675" font-size="20">Logs</text>
+
+  <g filter="url(#ieShadow)"><rect x="60" y="170" width="180" height="56" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="150" y="198" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Metricbeat</text>
+  <line x1="240" y1="198" x2="330" y2="198" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="342" y="198" dominant-baseline="middle" fill="#5B6675" font-size="20">Metriken</text>
+
+  <g filter="url(#ieShadow)"><rect x="60" y="245" width="180" height="56" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="150" y="273" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Heartbeat</text>
+  <line x1="240" y1="273" x2="330" y2="273" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="342" y="273" dominant-baseline="middle" fill="#5B6675" font-size="20">Uptime</text>
+
+  <g filter="url(#ieShadow)"><rect x="60" y="320" width="180" height="56" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="150" y="348" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Auditbeat</text>
+  <line x1="240" y1="348" x2="330" y2="348" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="342" y="348" dominant-baseline="middle" fill="#5B6675" font-size="20">Audit</text>
+
+  <!-- Ein Elastic Agent (Akzent-Box, blau) -->
+  <g filter="url(#ieShadow)"><rect x="560" y="170" width="190" height="110" rx="16" fill="#1B4FD8"/></g>
+  <text x="655" y="212" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="26" font-weight="700">Elastic</text>
+  <text x="655" y="242" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="26" font-weight="700">Agent</text>
+
+  <!-- Fan-out zu den Datentypen -->
+  <line x1="750" y1="225" x2="820.1" y2="133.3" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M825.7,137.6 L814.5,129.1 L828,123 z" fill="#5B6675"/>
+  <line x1="750" y1="225" x2="815.7" y2="202.3" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M818.0,208.9 L813.4,195.6 L828,198 z" fill="#5B6675"/>
+  <line x1="750" y1="225" x2="816.9" y2="266.2" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M813.3,272.1 L820.6,260.2 L828,273 z" fill="#5B6675"/>
+  <line x1="750" y1="225" x2="821.0" y2="337.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M815.1,340.8 L826.9,333.3 L828,348 z" fill="#5B6675"/>
+  <text x="842" y="123" dominant-baseline="middle" fill="#5B6675" font-size="20">Logs</text>
+  <text x="842" y="198" dominant-baseline="middle" fill="#5B6675" font-size="20">Metriken</text>
+  <text x="842" y="273" dominant-baseline="middle" fill="#5B6675" font-size="20">Uptime</text>
+  <text x="842" y="348" dominant-baseline="middle" fill="#5B6675" font-size="20">Audit</text>
+</svg>

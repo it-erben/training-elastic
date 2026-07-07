@@ -5,7 +5,7 @@
 Am Ende dieser Übung hast du:
 
 - Ein Controlling-Dashboard mit KPIs und Trendvergleichen zusammengestellt
-- Ein Produktmanagement-Dashboard mit Hersteller- und Rabattanalyse erstellt
+- Ein Produktmanagement-Dashboard mit Hersteller- und Preisanalyse erstellt
 - Fortgeschrittene Techniken wie Formeln, Referenzlinien und Time Shift
   angewendet
 - Dashboards mit Drilldowns hierarchisch verknüpft
@@ -13,18 +13,18 @@ Am Ende dieser Übung hast du:
 
 ### Voraussetzung
 
-Du hast **Modul 03** abgeschlossen. Das Dashboard
-`Überblick - Geschäftsführung` mit Controls und den Visualisierungen aus der
+Du hast **Lab 03** abgeschlossen. Das Dashboard
+`Überblick - Geschäftsführung` mit Controls und die Visualisierungen aus der
 Visualize Library sind vorhanden.
 
-![Visualize Library -- alle Visualisierungen](images/visualize-library.png)
+![Visualize Library - alle Visualisierungen](images/visualize-library.png)
 
 ---
 
 ## Teil 1: Controlling-Dashboard
 
-Erstelle ein zweites Dashboard speziell für das Controlling - mit Fokus auf
-finanzielle Kennzahlen, Trends und Vergleiche.
+Erstelle ein zweites Dashboard speziell für das Controlling, mit Fokus auf
+finanzielle Kennzahlen und Trendvergleiche.
 
 ### Schritt 1.1: Neues Dashboard erstellen
 
@@ -48,7 +48,7 @@ Wert des vorherigen Berichtszeitraums an.
 
 7. Speichere als: `Umsatz vs. vorheriger Zeitraum`
 
-![Metrik mit Time Shift -- Umsatz vs. Vorwoche](images/metrik-timeshift.png)
+![Metrik mit Time Shift - Umsatz vs. Vorwoche](images/metrik-timeshift.png)
 
 ### Schritt 1.3: Bestellanzahl mit Trendvergleich
 
@@ -56,7 +56,7 @@ Wiederhole das gleiche Prinzip für die Bestellanzahl:
 
 1. Neue **Metric** mit **Count** über `order_id`
 2. Füge einen Time Shift von `1w` hinzu
-3. Speichere als: `Bestellungen vs. Vorberichtszeitraum`
+3. Speichere als: `Bestellungen vs. Vorwoche`
 
 ### Schritt 1.4: Umsatz nach Kategorie (Balken) und Breakdown nach Geschlecht
 
@@ -70,7 +70,7 @@ Erstelle ein vertikales Balkendiagramm, das den
 5. Wähle unter "Appearance" ein Color Mapping nach deinem Geschmack
 6. Speichere als: `Umsatz nach Kategorie und Geschlecht`
 
-![Balkendiagramm -- Umsatz nach Kategorie und Geschlecht](images/balken-kategorie-geschlecht.png)
+![Balkendiagramm - Umsatz nach Kategorie und Geschlecht](images/balken-kategorie-geschlecht.png)
 
 ### Schritt 1.5: Ebenen
 
@@ -79,19 +79,19 @@ Erstelle ein Liniendiagramm mit **zwei Linien** und einem weiteren Layer:
 1. Neue Visualisierung, Typ **Line**
 2. Horizontale Achse: `order_date`
 3. Vertikale Achse: `taxful_total_price` mit **Sum** - benenne sie "Brutto"
-4. Weitere Vertikale Achse: `taxful_total_price` mit **Moving Average** und
-   **Choose a sub-function** "Sum" sowie **Window Size** 10. Benenne sie "
-Gleitender Durchschnitt"
+4. Weitere vertikale Achse: `taxful_total_price` mit **Moving Average**,
+   als **Sub-function** "Sum", **Window Size** 10. Benenne sie
+   "Gleitender Durchschnitt"
 5. Füge einen weiteren **Layer** hinzu (Knopf mit **+** oben)
-6. Wähle **Visualisation** -> **Bar**. Horizontale Achse: `order_date`, Vertikale
-   Achse: `order_id`
-   **Unique Count** und unter Appearance **Axis Side** -> Right
+6. Wähle **Visualization** -> **Bar**. Horizontale Achse: `order_date`,
+   vertikale Achse: `order_id` mit **Unique Count**. Setze unter
+   Appearance **Axis Side** auf Right
 7. Wähle unter **Series Color** eine helle Pastellfarbe für dieses Bar Chart,
    damit es übersichtlich bleibt
 
 Speichere als: `Bestellsummen im Verlauf`
 
-![Liniendiagramm mit zwei Layern -- Brutto, Durchschnitt, Bestellungen](images/linien-layers.png)
+![Liniendiagramm mit zwei Layern - Brutto, Durchschnitt, Bestellungen](images/linien-layers.png)
 
 ### Schritt 1.6: Umsatzverteilung nach Land (Tabelle)
 
@@ -110,7 +110,7 @@ Erstelle eine Tabelle mit den **Top 15 Ländern nach Umsatz**:
 4. Sortiere nach Umsatz absteigend
 5. Speichere als: `Umsatz nach Land`
 
-![Tabelle -- Top 15 Länder nach Umsatz](images/tabelle-umsatz-land.png)
+![Tabelle - Top 15 Länder nach Umsatz](images/tabelle-umsatz-land.png)
 
 ### Schritt 1.7: Dashboard zusammenstellen
 
@@ -141,16 +141,16 @@ Füge dem Controlling-Dashboard folgende Controls hinzu:
 1. Titel: `Controlling - Umsatzanalyse`
 2. Beschreibung: "Finanzielle Kennzahlen mit Trendvergleich und Länderanalyse"
 
-![Controlling-Dashboard -- obere Hälfte](images/controlling-dashboard.png)
+![Controlling-Dashboard - obere Hälfte](images/controlling-dashboard.png)
 
-![Controlling-Dashboard -- untere Hälfte](images/controlling-dashboard-unten.png)
+![Controlling-Dashboard - untere Hälfte](images/controlling-dashboard-unten.png)
 
 ---
 
 ## Teil 2: Produktmanagement-Dashboard
 
-Erstelle ein drittes Dashboard für das Produktmanagement - mit Fokus auf
-Hersteller, Rabatte und Warenkorbanalyse.
+Erstelle ein drittes Dashboard für das Produktmanagement. Diesmal geht es um
+Hersteller, Preisverteilung und Warenkörbe.
 
 ### Schritt 2.1: Neues Dashboard erstellen
 
@@ -168,8 +168,8 @@ Erstelle ein horizontales Balkendiagramm mit den
 
 ### Schritt 2.3: Hersteller-Performance über Zeit
 
-Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller über die Zeit
-** vergleicht:
+Erstelle ein Liniendiagramm, das den **Umsatz der Top-5-Hersteller**
+über die Zeit vergleicht:
 
 1. Neue Visualisierung, Typ **Line**
 2. Horizontale Achse: `order_date` (Date histogram)
@@ -194,7 +194,10 @@ Bestellung bestellt werden:
 4. Vertikale Achse: **Count** über `order_id`.
 5. Speichere als: `Warenkorbgröße`
 
-![Balkendiagramm -- Warenkorbgröße mit Custom Ranges](images/balken-warenkorbgroesse.png)
+**Erwartetes Ergebnis:** Fast alle Bestellungen liegen bei 2-3 Artikeln.
+Die Randbereiche bleiben klein, der 6+-Balken kann sogar leer sein.
+
+![Balkendiagramm - Warenkorbgröße mit Custom Ranges](images/balken-warenkorbgroesse.png)
 
 ### Schritt 2.5: Preisanalyse - Pie-Chart
 
@@ -206,11 +209,11 @@ Erstelle ein Kuchen-Diagramm, das die Verteilung der Produktpreise zeigt:
     - $0-$10
     - $10-25
     - $25-$100
-    - $100-Unendlich
+    - $100 und mehr
 3. Metrik: **Count**
 4. Speichere als: `Preisverteilung`
 
-![Kreisdiagramm -- Preisverteilung nach Bereichen](images/pie-preisverteilung.png)
+![Kreisdiagramm - Preisverteilung nach Bereichen](images/pie-preisverteilung.png)
 
 ### Schritt 2.6: Wochentag-Analyse (Heatmap)
 
@@ -219,14 +222,14 @@ Erstelle eine Heatmap, die zeigt, an welchen
 
 1. Neue Visualisierung, Typ **Heat map**
 2. Horizontale Achse: `day_of_week` (Top values, 7)
-3. Vertikale Achse: `category` (Top values, 6)
+3. Vertikale Achse: `category.keyword` (Top values, 6)
 4. Cell Value: **Count** (Farbskala)
 5. Speichere als: `Bestellungen Wochentag x Kategorie`
 
 **Erwartetes Ergebnis:** Eine farbige Matrix, die zeigt, welche Kategorien an
 welchen Tagen besonders gefragt sind. Dunklere Farben = mehr Bestellungen.
 
-![Heatmap -- Bestellungen nach Wochentag und Kategorie](images/heatmap-wochentag.png)
+![Heatmap - Bestellungen nach Wochentag und Kategorie](images/heatmap-wochentag.png)
 
 ### Schritt 2.7: Herstellerverteilung pro Kategorie
 
@@ -234,7 +237,7 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 **Bestellungen nach Kategorie, aufgeteilt nach Hersteller** zeigt:
 
 1. Neue Visualisierung, Typ **Bar vertical stacked**
-2. Horizontale Achse: `category` (Top values, 8)
+2. Horizontale Achse: `category.keyword` (Top values, 8)
 3. Vertikale Achse: **Count**
 4. Ziehe `manufacturer.keyword` auf **Breakdown**
 5. Speichere als: `Kategorie nach Hersteller`
@@ -266,9 +269,9 @@ Erstelle ein gestapeltes Balkendiagramm, das die
 1. Titel: `Produktmanagement - Sortimentsanalyse`
 2. Beschreibung: "Hersteller-Performance, Preise, Warenkörbe und Kundenstruktur"
 
-![Produktmanagement-Dashboard -- obere Hälfte](images/produktmanagement-dashboard.png)
+![Produktmanagement-Dashboard - obere Hälfte](images/produktmanagement-dashboard.png)
 
-![Produktmanagement-Dashboard -- untere Hälfte](images/produktmanagement-dashboard-unten.png)
+![Produktmanagement-Dashboard - untere Hälfte](images/produktmanagement-dashboard-unten.png)
 
 ---
 
@@ -294,7 +297,7 @@ sum(taxful_total_price) / sum(total_quantity)
 5. Speichere als: `Durchschn. Artikelpreis`
 6. Füge die Metrik zum Controlling-Dashboard hinzu
 
-![Formel -- Durchschnittlicher Artikelpreis](images/formel-artikelpreis.png)
+![Formel - Durchschnittlicher Artikelpreis](images/formel-artikelpreis.png)
 
 > **Hinweis:** Dieser Wert unterscheidet sich vom
 > durchschnittlichen Bestellwert (Aufgabe 3.2), weil
@@ -316,7 +319,7 @@ sum(taxful_total_price) / count()
 3. Formatiere als **Number** mit 2 Dezimalstellen
 4. Speichere als: `Umsatz pro Bestellung (Formel)`
 
-![Formel -- Umsatz pro Bestellung](images/formel-umsatz-pro-bestellung.png)
+![Formel - Umsatz pro Bestellung](images/formel-umsatz-pro-bestellung.png)
 
 ### Aufgabe 3.3: Referenzlinie im Umsatzverlauf
 
@@ -327,7 +330,7 @@ Füge dem Liniendiagramm "Umsatz über Zeit" eine
 2. Im rechten Konfigurationspanel, klicke **+** und dann **Reference lines**
 3. Klicke auf **Static value**, um ihn zu ersetzen
 4. Klicke auf **Quick function** -> **Average**
-5. Gebe der Linie weiter unten unter **Appearance** den Namen "Durchschnitt"
+5. Gib der Linie weiter unten unter **Appearance** den Namen "Durchschnitt"
 6. Wähle eine gestrichelte Linie in einer auffälligen Farbe (z.B. blau)
 7. Speichere die Änderung
 
@@ -347,7 +350,7 @@ zeigt:
 6. Speichere als: `Umsatzvergleich Woche`
 7. Füge die Visualisierung zum Controlling-Dashboard hinzu
 
-![Liniendiagramm -- Umsatzvergleich aktuelle Woche vs. Vorwoche](images/linie-umsatzvergleich-woche.png)
+![Liniendiagramm - Umsatzvergleich aktuelle Woche vs. Vorwoche](images/linie-umsatzvergleich-woche.png)
 
 ### Aufgabe 3.5: Top-Kunden-Tabelle
 
@@ -355,7 +358,8 @@ Erstelle eine detaillierte Tabelle der
 **wertvollsten Kunden**:
 
 1. Neue Visualisierung, Typ **Table**
-2. Konfiguriere als **Rows** das Feld `customer_full_name`
+2. Konfiguriere als **Rows** das Feld `customer_full_name.keyword`
+   (das aggregierbare Keyword-Feld, du erinnerst dich an Lab 01)
 3. Konfiguriere die Spalten (**Metrics**) wie folgt:
 
 | Feld                 | Funktion        | Anzeigename    |
@@ -369,7 +373,7 @@ Erstelle eine detaillierte Tabelle der
 5. Speichere als: `Top Kunden`
 6. Füge die Tabelle zum Controlling-Dashboard hinzu
 
-![Tabelle -- Top 15 Kunden nach Gesamtumsatz](images/tabelle-top-kunden.png)
+![Tabelle - Top 15 Kunden nach Gesamtumsatz](images/tabelle-top-kunden.png)
 
 ### Aufgabe 3.6: Formel - Umsatzveränderung zum Vorberichtszeitraum
 
@@ -414,8 +418,8 @@ count(kql='taxful_total_price > 100') / count()
 5. Speichere als: `Anteil hochwertige Bestellungen`
 6. Füge die Metrik zum Controlling-Dashboard hinzu
 
-**Erwartetes Ergebnis:** Die Metrik zeigt z.B. `68,4%`. Das bedeutet,
-dass rund zwei Drittel aller Bestellungen einen Wert über 100 EUR haben.
+**Erwartetes Ergebnis:** Die Metrik zeigt rund `20%`. Nur etwa jede
+fünfte Bestellung liegt über 100 EUR.
 
 > **Hinweis:** Die Funktion `count(kql='...')` filtert die Zählung
 > per KQL-Ausdruck. So lassen sich Teilmengen in Formeln verwenden,
@@ -440,7 +444,7 @@ Verbinde die drei Dashboards miteinander, sodass Nutzer per Klick zwischen
 6. Speichere
 
 **Test:** Klicke im Überblick-Dashboard auf einen Datenpunkt im Liniendiagramm.
-Du solltest zum Controlling-Dashboard navigiert werden.
+Du landest im Controlling-Dashboard.
 
 ### Aufgabe 4.2: Drilldown vom Überblick zum Produktmanagement
 
@@ -449,8 +453,8 @@ Du solltest zum Controlling-Dashboard navigiert werden.
 2. **Create drilldown > Go to dashboard**
 3. Ziel: `Produktmanagement - Sortimentsanalyse`
 
-**Test:** Klicke im Balkendiagramm auf eine Kategorie. Du solltest zum
-Produktmanagement-Dashboard navigiert werden, gefiltert auf diese Kategorie.
+**Test:** Klicke im Balkendiagramm auf eine Kategorie. Du landest im
+Produktmanagement-Dashboard, gefiltert auf diese Kategorie.
 
 ### Aufgabe 4.3: Navigation testen
 
@@ -501,8 +505,8 @@ Teste den kompletten Navigationsfluss:
 Du hast erfolgreich:
 
 - [x] Ein **Controlling-Dashboard** mit Trendvergleichen (Time Shift) erstellt
-- [x] Ein **Produktmanagement-Dashboard** mit Hersteller-Analyse, Heatmap,
-  Geschlechterverteilung und Rabattanalyse gebaut
+- [x] Ein **Produktmanagement-Dashboard** mit Hersteller-Analyse, Heatmap
+  und Preisverteilung gebaut
 - [x] **Formeln** in Lens verwendet
   (Artikelpreis, Umsatz pro Bestellung, Umsatzveränderung)
 - [x] **Referenzlinien** und **Vorwochenvergleiche**

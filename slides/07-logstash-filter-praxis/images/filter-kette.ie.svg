@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Rohzeile -->
+  <g filter="url(#ieShadow)"><rect x="330" y="24" width="340" height="66" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="52" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">Rohzeile</text>
+  <text x="500" y="74" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">message (eine Zeile)</text>
+
+  <line x1="500" y1="90" x2="500.0" y2="105.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,105.0 L507.0,105.0 L500,118 z" fill="#5B6675"/>
+
+  <!-- grok -->
+  <g filter="url(#ieShadow)"><rect x="330" y="120" width="340" height="66" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="148" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">grok</text>
+  <text x="500" y="170" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">Felder aus der Zeile</text>
+
+  <line x1="500" y1="186" x2="500.0" y2="201.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,201.0 L507.0,201.0 L500,214 z" fill="#5B6675"/>
+
+  <!-- date -->
+  <g filter="url(#ieShadow)"><rect x="330" y="216" width="340" height="66" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="244" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">date</text>
+  <text x="500" y="266" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">@timestamp korrekt setzen</text>
+
+  <line x1="500" y1="282" x2="500.0" y2="297.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,297.0 L507.0,297.0 L500,310 z" fill="#5B6675"/>
+
+  <!-- geoip -->
+  <g filter="url(#ieShadow)"><rect x="330" y="312" width="340" height="66" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="340" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">geoip</text>
+  <text x="500" y="362" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">source.geo.* aus der IP</text>
+
+  <line x1="500" y1="378" x2="500.0" y2="393.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,393.0 L507.0,393.0 L500,406 z" fill="#5B6675"/>
+
+  <!-- useragent -->
+  <g filter="url(#ieShadow)"><rect x="330" y="408" width="340" height="66" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="436" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">useragent</text>
+  <text x="500" y="458" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">Browser, OS, Gerät</text>
+
+  <line x1="500" y1="474" x2="500.0" y2="489.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,489.0 L507.0,489.0 L500,502 z" fill="#5B6675"/>
+
+  <!-- Elasticsearch (Blau-Hero, Ziel) -->
+  <g filter="url(#ieShadow)"><rect x="330" y="504" width="340" height="66" rx="16" fill="#1B4FD8"/></g>
+  <text x="500" y="544" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="700">Elasticsearch</text>
+</svg>

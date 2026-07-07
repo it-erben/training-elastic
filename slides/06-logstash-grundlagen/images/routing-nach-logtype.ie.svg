@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 370"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Quelle: Event [logtype] (Akzent, blau) -->
+  <g filter="url(#ieShadow)"><rect x="40" y="140" width="220" height="100" rx="16" fill="#1B4FD8"/></g>
+  <text x="150" y="182" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="700">Event</text>
+  <text x="150" y="212" text-anchor="middle" fill="#FFFFFF" font-size="19" font-weight="400">if [logtype]</text>
+
+  <!-- Arrows fan-out -->
+  <line x1="260" y1="178" x2="565.5" y2="88.6" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M567.5,95.4 L563.6,81.9 L578,85 z" fill="#5B6675"/>
+  <line x1="260" y1="190" x2="565.0" y2="194.8" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M564.9,201.8 L565.1,187.8 L578,195 z" fill="#5B6675"/>
+  <line x1="260" y1="202" x2="565.6" y2="301.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M563.5,307.7 L567.8,294.3 L578,305 z" fill="#5B6675"/>
+
+  <!-- Arrow-Labels (logtype-Wert) -->
+  <text x="360" y="128" text-anchor="middle" fill="#5B6675" font-size="17" font-weight="600">java</text>
+  <text x="360" y="182" text-anchor="middle" fill="#5B6675" font-size="17" font-weight="600">apache</text>
+  <text x="360" y="270" text-anchor="middle" fill="#5B6675" font-size="17" font-weight="600">app</text>
+
+  <!-- Ziel oben: java -> ES -->
+  <g filter="url(#ieShadow)"><rect x="580" y="40" width="380" height="90" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="770" y="75" text-anchor="middle" fill="#172033" font-size="23" font-weight="700">ES-Index</text>
+  <text x="770" y="102" text-anchor="middle" fill="#5B6675" font-size="16" font-weight="400">javalogs</text>
+
+  <!-- Ziel mitte: apache -> Modul 07 -->
+  <g filter="url(#ieShadow)"><rect x="580" y="150" width="380" height="90" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="770" y="185" text-anchor="middle" fill="#172033" font-size="23" font-weight="700">Modul 07</text>
+  <text x="770" y="212" text-anchor="middle" fill="#5B6675" font-size="16" font-weight="400">Apache folgt</text>
+
+  <!-- Ziel unten: app -> stdout -->
+  <g filter="url(#ieShadow)"><rect x="580" y="260" width="380" height="90" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="770" y="295" text-anchor="middle" fill="#172033" font-size="23" font-weight="700">stdout</text>
+  <text x="770" y="322" text-anchor="middle" fill="#5B6675" font-size="16" font-weight="400">noch nicht ES</text>
+</svg>

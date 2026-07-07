@@ -1,0 +1,40 @@
+# Musterlösung Lab 06: wie Lab 05, aber Output auf Logstash umgestellt.
+
+filebeat.inputs:
+  - type: filestream
+    id: apache-access
+    paths:
+      - /data/apache-access.log
+    fields:
+      logtype: apache
+    fields_under_root: true
+
+  - type: filestream
+    id: app-json
+    paths:
+      - /data/app-json.log
+    fields:
+      logtype: app
+    fields_under_root: true
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+          add_error_key: true
+
+  - type: filestream
+    id: java-app
+    paths:
+      - /data/java-app.log
+    fields:
+      logtype: java
+    fields_under_root: true
+    parsers:
+      - multiline:
+          type: pattern
+          pattern: '^\d{4}-\d{2}-\d{2} '
+          negate: true
+          match: after
+
+output.logstash:
+  hosts: ["logstash:5044"]

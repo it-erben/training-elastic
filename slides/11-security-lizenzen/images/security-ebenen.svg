@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 530" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <!-- Ebene 4: Audit Logging -->
+  <rect x="20" y="20" width="960" height="110" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="60" y="85" font-size="30" font-weight="700" fill="#172033">4. Audit Logging</text>
+  <text x="940" y="84" font-size="21" fill="#5B6675" text-anchor="end">Wer hat was getan?</text>
+
+  <!-- Ebene 3: Autorisierung -->
+  <rect x="20" y="150" width="960" height="110" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="60" y="198" font-size="30" font-weight="700" fill="#172033">3. Autorisierung</text>
+  <text x="60" y="232" font-size="21" fill="#5B6675">(Rollen, RBAC)</text>
+  <text x="940" y="214" font-size="21" fill="#5B6675" text-anchor="end">Was darf der User?</text>
+
+  <!-- Ebene 2: Authentifizierung -->
+  <rect x="20" y="280" width="960" height="110" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="60" y="328" font-size="30" font-weight="700" fill="#172033">2. Authentifizierung</text>
+  <text x="60" y="362" font-size="21" fill="#5B6675">(Realms, API Keys)</text>
+  <text x="940" y="344" font-size="21" fill="#5B6675" text-anchor="end">Wer bist du?</text>
+
+  <!-- Ebene 1: Verschlüsselung (Fundament, Akzent) -->
+  <rect x="20" y="410" width="960" height="110" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="60" y="475" font-size="30" font-weight="700" fill="#FFFFFF">1. Verschlüsselung</text>
+  <text x="940" y="474" font-size="21" fill="#DDE6FB" text-anchor="end">TLS: Transport + HTTP</text>
+</svg>

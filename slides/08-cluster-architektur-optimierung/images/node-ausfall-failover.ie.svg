@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 440"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Group tints -->
+  <rect x="20" y="70" width="440" height="270" rx="20" fill="#EEF1F8"/>
+  <rect x="540" y="70" width="440" height="270" rx="20" fill="#EEF1F8"/>
+
+  <!-- Group labels -->
+  <text x="240" y="100" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">VORHER &#8212; green</text>
+  <text x="760" y="100" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es02 f&#228;llt aus &#8212; Recovery</text>
+
+  <!-- ===== LEFT GROUP ===== -->
+  <!-- es01 -->
+  <g filter="url(#ieShadow)"><rect x="35" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="100" y="150" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es01</text>
+  <rect x="58" y="170" width="84" height="34" rx="8" fill="#E3E9F6"/><text x="100" y="187" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="18" font-weight="700">P0</text>
+  <rect x="58" y="214" width="84" height="34" rx="8" fill="#EEF1F8"/><text x="100" y="231" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="18" font-weight="700">R2</text>
+  <!-- es02 -->
+  <g filter="url(#ieShadow)"><rect x="180" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="245" y="150" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es02</text>
+  <rect x="203" y="170" width="84" height="34" rx="8" fill="#E3E9F6"/><text x="245" y="187" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="18" font-weight="700">P1</text>
+  <rect x="203" y="214" width="84" height="34" rx="8" fill="#EEF1F8"/><text x="245" y="231" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="18" font-weight="700">R0</text>
+  <!-- es03 -->
+  <g filter="url(#ieShadow)"><rect x="325" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="390" y="150" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es03</text>
+  <rect x="348" y="170" width="84" height="34" rx="8" fill="#E3E9F6"/><text x="390" y="187" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="18" font-weight="700">P2</text>
+  <rect x="348" y="214" width="84" height="34" rx="8" fill="#EEF1F8"/><text x="390" y="231" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="18" font-weight="700">R1</text>
+
+  <!-- transition arrow -->
+  <text x="500" y="185" text-anchor="middle" fill="#5B6675" font-size="13">es02 stirbt</text>
+  <line x1="468" y1="210" x2="532" y2="210" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- ===== RIGHT GROUP ===== -->
+  <!-- es01 -->
+  <g filter="url(#ieShadow)"><rect x="555" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="620" y="150" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es01</text>
+  <rect x="578" y="170" width="84" height="34" rx="8" fill="#E3E9F6"/><text x="620" y="187" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="18" font-weight="700">P0</text>
+  <rect x="578" y="214" width="84" height="34" rx="8" fill="#EEF1F8"/><text x="620" y="231" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="18" font-weight="700">R2</text>
+  <!-- es02 FAILED -->
+  <rect x="700" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#C4453D" stroke-width="2" stroke-dasharray="7 5"/>
+  <line x1="712" y1="132" x2="818" y2="288" stroke="#C4453D" stroke-width="2" opacity="0.55"/>
+  <line x1="818" y1="132" x2="712" y2="288" stroke="#C4453D" stroke-width="2" opacity="0.55"/>
+  <text x="765" y="150" text-anchor="middle" fill="#C4453D" font-size="22" font-weight="700">es02</text>
+  <text x="765" y="215" text-anchor="middle" fill="#C4453D" font-size="17" font-weight="600">ausgefallen</text>
+  <!-- es03 with promoted primary -->
+  <g filter="url(#ieShadow)"><rect x="845" y="120" width="130" height="180" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="910" y="150" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">es03</text>
+  <rect x="868" y="170" width="84" height="34" rx="8" fill="#E3E9F6"/><text x="910" y="187" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="18" font-weight="700">P2</text>
+  <rect x="868" y="214" width="84" height="34" rx="8" fill="#FFFFFF" stroke="#2E7D5B" stroke-width="1.5"/><text x="910" y="231" text-anchor="middle" dominant-baseline="middle" fill="#2E7D5B" font-size="18" font-weight="700">P1</text>
+  <text x="910" y="268" text-anchor="middle" fill="#2E7D5B" font-size="13" font-weight="600">R1 &#8594; Primary</text>
+
+  <!-- Blue outcome banner -->
+  <g filter="url(#ieShadow)"><rect x="185" y="358" width="630" height="66" rx="16" fill="#1B4FD8"/></g>
+  <text x="500" y="384" text-anchor="middle" fill="#FFFFFF" font-size="19" font-weight="700">Replica &#252;bernimmt als neue Primary</text>
+  <text x="500" y="408" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="400">fehlende Kopien neu verteilt &#8594; Cluster wieder green</text>
+</svg>

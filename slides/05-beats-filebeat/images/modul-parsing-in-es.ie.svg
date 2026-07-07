@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 250"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Filebeat -->
+  <text x="255" y="52" text-anchor="middle" fill="#5B6675" font-size="20" font-weight="600">Filebeat</text>
+  <g filter="url(#ieShadow)"><rect x="70" y="70" width="370" height="120" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="255" y="118" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">rohe Log-Zeile</text>
+  <text x="255" y="150" text-anchor="middle" fill="#5B6675" font-size="18" font-weight="400">+ Hinweis: welche Pipeline?</text>
+
+  <line x1="440" y1="130" x2="562" y2="130" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="501" y="118" text-anchor="middle" fill="#5B6675" font-size="16" font-weight="400">sendet an ES</text>
+
+  <!-- Elasticsearch (Hero) -->
+  <text x="748" y="52" text-anchor="middle" fill="#5B6675" font-size="20" font-weight="600">Elasticsearch</text>
+  <g filter="url(#ieShadow)"><rect x="562" y="70" width="370" height="120" rx="16" fill="#1B4FD8"/></g>
+  <text x="747" y="118" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="700">Ingest Pipeline</text>
+  <text x="747" y="150" text-anchor="middle" fill="#FFFFFF" fill-opacity="0.9" font-size="18" font-weight="400">zerlegt in ECS-Felder</text>
+</svg>

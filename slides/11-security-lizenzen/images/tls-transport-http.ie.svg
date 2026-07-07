@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 420"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Client -->
+  <g filter="url(#ieShadow)"><rect x="350" y="30" width="300" height="82" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="62" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="26" font-weight="700">Clients</text>
+  <text x="500" y="88" text-anchor="middle" dominant-baseline="middle" fill="#5B6675" font-size="19" font-weight="400">Kibana, curl, App</text>
+
+  <!-- HTTP arrow -->
+  <line x1="500" y1="112" x2="500.0" y2="215.0" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M493.0,215.0 L507.0,215.0 L500,228 z" fill="#5B6675"/>
+  <text x="518" y="176" text-anchor="start" fill="#5B6675" font-size="19" font-weight="600">HTTP 9200 &#183; TLS</text>
+
+  <!-- Cluster tint group -->
+  <rect x="60" y="240" width="880" height="150" rx="20" fill="#EEF1F8"/>
+
+  <!-- Node A -->
+  <g filter="url(#ieShadow)"><rect x="90" y="262" width="220" height="86" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="200" y="305" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="25" font-weight="700">Node A</text>
+
+  <!-- Node B (Kontakt-Node, blau) -->
+  <g filter="url(#ieShadow)"><rect x="390" y="262" width="220" height="86" rx="16" fill="#1B4FD8"/></g>
+  <text x="500" y="305" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="25" font-weight="700">Node B</text>
+
+  <!-- Node C -->
+  <g filter="url(#ieShadow)"><rect x="690" y="262" width="220" height="86" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="800" y="305" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="25" font-weight="700">Node C</text>
+
+  <!-- Transport links -->
+  <line x1="315" y1="305" x2="385" y2="305" stroke="#5B6675" stroke-width="2.5" marker-start="url(#ieArrow)" marker-end="url(#ieArrow)"/>
+  <line x1="615" y1="305" x2="685" y2="305" stroke="#5B6675" stroke-width="2.5" marker-start="url(#ieArrow)" marker-end="url(#ieArrow)"/>
+  <text x="500" y="374" text-anchor="middle" fill="#5B6675" font-size="19" font-weight="600">Transport 9300 &#183; TLS</text>
+</svg>

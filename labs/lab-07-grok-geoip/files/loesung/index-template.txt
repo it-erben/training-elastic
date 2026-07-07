@@ -1,0 +1,41 @@
+# Musterlösung Lab 07, Teil 3: Index-Template für weblogs,
+# damit source.geo.location als geo_point gemappt wird (Voraussetzung
+# für Kibana Maps). In den Kibana Dev Tools ausführen, BEVOR der
+# weblogs-Index erstellt wird (sonst: Index löschen und neu befüllen).
+
+PUT _index_template/weblogs
+{
+  "index_patterns": ["weblogs*"],
+  "template": {
+    "mappings": {
+      "properties": {
+        "source": {
+          "properties": {
+            "address": { "type": "keyword" },
+            "geo": {
+              "properties": {
+                "location": { "type": "geo_point" },
+                "country_iso_code": { "type": "keyword" },
+                "city_name": { "type": "keyword" }
+              }
+            }
+          }
+        },
+        "url": {
+          "properties": {
+            "original": { "type": "keyword" }
+          }
+        },
+        "http": {
+          "properties": {
+            "response": {
+              "properties": {
+                "status_code": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

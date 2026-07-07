@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 215" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+
+  <rect x="20" y="20" width="260" height="160" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="150" y="82" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">node-1</text>
+  <text x="150" y="118" font-size="21" fill="#5B6675" text-anchor="middle">master</text>
+  <text x="150" y="148" font-size="21" fill="#5B6675" text-anchor="middle">data</text>
+
+  <rect x="340" y="20" width="260" height="160" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="470" y="82" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">node-2</text>
+  <text x="470" y="118" font-size="21" fill="#5B6675" text-anchor="middle">master</text>
+  <text x="470" y="148" font-size="21" fill="#5B6675" text-anchor="middle">data</text>
+
+  <rect x="660" y="20" width="260" height="160" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="790" y="82" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">node-3</text>
+  <text x="790" y="118" font-size="21" fill="#5B6675" text-anchor="middle">master</text>
+  <text x="790" y="148" font-size="21" fill="#5B6675" text-anchor="middle">data</text>
+</svg>

@@ -1,0 +1,88 @@
+---
+# Tag 2: Elasticsearch + Kibana + Logstash + Filebeat (Security deaktiviert)
+#
+# Starten:   docker compose up -d --wait
+# Stoppen:   docker compose down          (Daten bleiben erhalten)
+# Reset:     ./reset.sh                   (löscht alle Daten)
+#
+# Filebeat liest die Beispiel-Logs aus ../data (im Container: /data).
+# Die Konfigurationen in filebeat/ und logstash/pipeline/ werden in den
+# Labs 05-07 schrittweise erweitert (Logstash lädt Änderungen automatisch,
+# Filebeat braucht ein `docker compose restart filebeat`).
+name: elastic-training-day2
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    environment:
+      - cluster.name=training-day2
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - TELEMETRY_ENABLED=false
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:5601/api/status | grep -q '\"overall\"' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  logstash:
+    image: docker.elastic.co/logstash/logstash:${STACK_VERSION}
+    environment:
+      - LS_JAVA_OPTS=-Xms512m -Xmx512m
+      - CONFIG_RELOAD_AUTOMATIC=true
+      - XPACK_MONITORING_ENABLED=false
+    ports:
+      - "9600:9600"   # Monitoring-API (GET http://localhost:9600/_node/stats)
+    volumes:
+      - ./logstash/pipeline:/usr/share/logstash/pipeline:ro
+      - ../data:/data:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9600/?pretty || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 90s
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:${STACK_VERSION}
+    command: ["-e", "--strict.perms=false"]
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - ../data:/data:ro
+      - filebeat-registry:/usr/share/filebeat/data
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    mem_limit: 256m
+
+volumes:
+  esdata:
+  filebeat-registry:

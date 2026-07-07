@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Dashboard-Flaeche -->
+  <rect x="60" y="40" width="880" height="390" rx="20" fill="#EEF1F8"/>
+
+  <!-- Gemeinsamer Zeitfilter (Hero) -->
+  <g filter="url(#ieShadow)"><rect x="90" y="62" width="820" height="52" rx="12" fill="#1B4FD8"/></g>
+  <text x="500" y="82" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="22" font-weight="700">Gemeinsamer Zeitfilter</text>
+  <text x="500" y="103" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" fill-opacity="0.85" font-size="13" font-weight="400">ein Klick filtert alle Panels</text>
+
+  <!-- KPI-Kacheln -->
+  <g filter="url(#ieShadow)"><rect x="90" y="134" width="260" height="58" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="220" y="164" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">Umsatz</text>
+  <g filter="url(#ieShadow)"><rect x="370" y="134" width="260" height="58" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="164" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">Bestellungen</text>
+  <g filter="url(#ieShadow)"><rect x="650" y="134" width="260" height="58" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="780" y="164" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="21" font-weight="700">&#216; Bestellwert</text>
+
+  <!-- Panel-Reihe 1 -->
+  <g filter="url(#ieShadow)"><rect x="90" y="208" width="390" height="96" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="285" y="256" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Umsatz &#252;ber Zeit (Linie)</text>
+  <g filter="url(#ieShadow)"><rect x="520" y="208" width="390" height="96" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="715" y="256" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Top-Kategorien (Balken)</text>
+
+  <!-- Panel-Reihe 2 -->
+  <g filter="url(#ieShadow)"><rect x="90" y="316" width="390" height="96" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="285" y="364" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Region (Kreis)</text>
+  <g filter="url(#ieShadow)"><rect x="520" y="316" width="390" height="96" rx="14" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="715" y="364" text-anchor="middle" dominant-baseline="middle" fill="#172033" font-size="22" font-weight="700">Bestelldetails (Tabelle)</text>
+</svg>

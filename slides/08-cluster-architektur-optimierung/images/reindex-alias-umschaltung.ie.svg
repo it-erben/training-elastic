@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- OLD index -->
+  <g filter="url(#ieShadow)"><rect x="55" y="70" width="360" height="120" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="235" y="112" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">alt: demo-&#8230;</text>
+  <text x="235" y="146" text-anchor="middle" fill="#5B6675" font-size="18">Dynamic Mapping</text>
+  <text x="235" y="170" text-anchor="middle" fill="#5B6675" font-size="18">&#8776; 150 Felder</text>
+
+  <!-- reindex arrow -->
+  <text x="500" y="112" text-anchor="middle" fill="#172033" font-size="18" font-weight="700">POST _reindex</text>
+  <line x1="415" y1="130" x2="585" y2="130" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="500" y="156" text-anchor="middle" fill="#5B6675" font-size="16">Dokumente kopieren</text>
+
+  <!-- NEW index (blue hero) -->
+  <g filter="url(#ieShadow)"><rect x="585" y="70" width="360" height="120" rx="16" fill="#1B4FD8"/></g>
+  <text x="765" y="112" text-anchor="middle" fill="#FFFFFF" font-size="24" font-weight="700">neu: &#8230;-optimized</text>
+  <text x="765" y="146" text-anchor="middle" fill="#FFFFFF" font-size="18">explizites Mapping</text>
+  <text x="765" y="170" text-anchor="middle" fill="#FFFFFF" font-size="18">&#8776; 100 Felder</text>
+
+  <!-- Alias switch -->
+  <g filter="url(#ieShadow)"><rect x="410" y="255" width="180" height="56" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="500" y="288" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">Alias</text>
+
+  <!-- alias to old (was) dashed -->
+  <line x1="435" y1="255" x2="290" y2="195" stroke="#5B6675" stroke-width="2" stroke-dasharray="6 5"/>
+  <text x="330" y="240" text-anchor="middle" fill="#5B6675" font-size="15">vorher</text>
+  <!-- alias to new (now) solid arrow -->
+  <line x1="565" y1="253" x2="697.9" y2="199.8" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M700.5,206.3 L695.3,193.3 L710,195 z" fill="#5B6675"/>
+  <text x="668" y="240" text-anchor="middle" fill="#172033" font-size="15" font-weight="700">jetzt aktiv</text>
+</svg>

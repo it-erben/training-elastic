@@ -1,0 +1,47 @@
+# Musterlösung Lab 05 (Endzustand nach Teil 3).
+# Output zeigt noch direkt auf Elasticsearch -- die Umstellung auf
+# Logstash passiert in Lab 06.
+
+filebeat.inputs:
+  # Teil 1: Apache-Access-Logs, Zeile für Zeile
+  - type: filestream
+    id: apache-access
+    paths:
+      - /data/apache-access.log
+    fields:
+      logtype: apache
+    fields_under_root: true
+
+  # Teil 2: Strukturierte JSON-Logs (NDJSON)
+  - type: filestream
+    id: app-json
+    paths:
+      - /data/app-json.log
+    fields:
+      logtype: app
+    fields_under_root: true
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+          add_error_key: true
+
+  # Teil 3: Java-Logs -- Stacktraces zu EINEM Event zusammenfassen.
+  # Jede neue Log-Zeile beginnt mit einem Datum (2026-06-30 ...);
+  # alles, was NICHT so beginnt, gehört zur vorherigen Zeile.
+  - type: filestream
+    id: java-app
+    paths:
+      - /data/java-app.log
+    fields:
+      logtype: java
+    fields_under_root: true
+    parsers:
+      - multiline:
+          type: pattern
+          pattern: '^\d{4}-\d{2}-\d{2} '
+          negate: true
+          match: after
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]

@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1150 570" font-family="Inter, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1B4FD8"/>
+    </marker>
+    <marker id="ieArrowGray" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Beats -->
+  <rect x="60" y="240" width="220" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="170" y="302" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Beats</text>
+
+  <!-- Elasticsearch (Akzent) -->
+  <rect x="470" y="80" width="320" height="104" rx="18" fill="#1B4FD8" filter="url(#ieShadow)"/>
+  <text x="630" y="142" font-size="30" font-weight="700" fill="#FFFFFF" text-anchor="middle">Elasticsearch</text>
+
+  <!-- Logstash -->
+  <rect x="470" y="400" width="320" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="630" y="462" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Logstash</text>
+
+  <!-- Kibana -->
+  <rect x="900" y="80" width="200" height="104" rx="18" fill="#FFFFFF" stroke="#D5DBEA" filter="url(#ieShadow)"/>
+  <text x="1000" y="142" font-size="30" font-weight="700" fill="#172033" text-anchor="middle">Kibana</text>
+
+  <!-- Beats -> Elasticsearch (direkt) -->
+  <path d="M 280 292 L 370 292 L 370 132 L 458 132" fill="none" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <!-- Beats -> Logstash -->
+  <path d="M 280 292 L 370 292 L 370 452 L 458 452" fill="none" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <!-- Logstash -> Elasticsearch -->
+  <line x1="630" y1="400" x2="630" y2="196" stroke="#1B4FD8" stroke-width="3" marker-end="url(#ieArrow)"/>
+  <!-- Kibana -> Elasticsearch -->
+  <line x1="900" y1="132" x2="802" y2="132" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrowGray)"/>
+</svg>

@@ -1,0 +1,194 @@
+# ============================================================
+# Lab 08, Teil 3: Mapping-Optimierung - Übungen
+# ============================================================
+#
+# Voraussetzung: Du hast in workshop-demo/ das Setup ausgeführt
+# (node setup.js). Es existieren die Indizes demo-* jeweils im
+# Original und als -optimized-Variante.
+#
+# So arbeitest du: Füge diese Datei komplett in Kibana Dev Tools
+# ein. Klicke in einen Befehl und führe ihn mit Ctrl+Enter aus.
+# Arbeite die vier Übungen der Reihe nach durch - die Fragen in
+# den Kommentaren beantwortest du anhand der Ausgaben.
+#
+
+
+# ============================================================
+# ÜBUNG 1: text vs. keyword - Warum der Feldtyp alles ändert
+# ============================================================
+#
+# Im Index demo-generalstores ist das Feld "category" als text
+# gemappt. Versuche, die Top-Kategorien zu aggregieren:
+
+GET demo-generalstores/_search
+{
+  "size": 0,
+  "aggs": {
+    "kategorien": {
+      "terms": { "field": "category" }
+    }
+  }
+}
+
+# Frage: Welche Fehlermeldung bekommst du? Was sagt sie über
+# text-Felder und Aggregationen aus?
+#
+# Jetzt dieselbe Aggregation auf dem optimierten Index --
+# dort ist "category" als keyword gemappt:
+
+GET demo-generalstores-optimized/_search
+{
+  "size": 0,
+  "aggs": {
+    "kategorien": {
+      "terms": { "field": "category" }
+    }
+  }
+}
+
+# Frage: Welche Kategorie ist am häufigsten?
+# Merke: Eine einzige Zeile im Mapping entscheidet, ob dein
+# Kibana-Dashboard funktioniert.
+
+
+# ============================================================
+# ÜBUNG 2: enabled:false - Felder raus, Daten bleiben
+# ============================================================
+#
+# Im Original-Index sind die Kassenbon-Felder (receipt.*)
+# indexiert. Prüfe, ob das Feld im Index existiert:
+
+GET demo-smarttransactions/_search
+{
+  "size": 1,
+  "query": {
+    "exists": { "field": "receipt.value.name" }
+  }
+}
+
+# Erwartung: Treffer - das Feld ist durchsuchbar.
+#
+# Im optimierten Index ist "receipt" auf enabled:false gesetzt.
+# Dieselbe Abfrage:
+
+GET demo-smarttransactions-optimized/_search
+{
+  "size": 1,
+  "query": {
+    "exists": { "field": "receipt.value.name" }
+  }
+}
+
+# Erwartung: 0 Treffer - das Feld ist NICHT im Index.
+#
+# Die entscheidende Frage: Sind die Daten verloren?
+# Rufe das Dokument direkt ab und sieh in _source nach:
+
+GET demo-smarttransactions-optimized/_doc/STX_000001
+
+# Frage: Ist das receipt-Objekt im Dokument enthalten?
+# Merke: enabled:false entfernt Felder aus dem Index, nicht aus
+# _source. Die Anwendung kann den Kassenbon weiterhin anzeigen --
+# nur suchen kann man nicht mehr danach. Gespart: ~40 Felder.
+
+
+# ============================================================
+# ÜBUNG 3: filter vs. must - Scoring bei Transaktionen
+# ============================================================
+#
+# Erst mit must (Query-Kontext) - berechnet einen Score:
+
+GET demo-smarttransactions/_search
+{
+  "size": 3,
+  "_source": ["id", "status", "basket_info.sum"],
+  "query": {
+    "bool": {
+      "must": [
+        { "term": { "status": "ok" } },
+        { "range": { "basket_info.sum": { "gte": 5000 } } }
+      ]
+    }
+  }
+}
+
+# Frage: Sieh dir _score der Treffer an - welchen Wert haben sie?
+# Wann hast du zuletzt nach der "relevantesten Transaktion" gesucht?
+#
+# Jetzt dieselben Bedingungen mit filter (Filter-Kontext):
+
+GET demo-smarttransactions/_search
+{
+  "size": 3,
+  "_source": ["id", "status", "basket_info.sum"],
+  "query": {
+    "bool": {
+      "filter": [
+        { "term": { "status": "ok" } },
+        { "range": { "basket_info.sum": { "gte": 5000 } } }
+      ]
+    }
+  }
+}
+
+# Frage: Was steht jetzt in _score? Vergleiche hits.total mit der
+# must-Variante - die Treffer sind identisch.
+# Merke: filter berechnet keinen Score und ist cachebar. Für exakte
+# Bedingungen (Status, Betrag, Zeitraum) ist filter fast immer
+# richtig. Kibana/KQL macht das automatisch - aufpassen musst du
+# beim Programmieren direkt gegen die API.
+#
+# Zusatz: Füge in beide Abfragen auf oberster Ebene
+#   "profile": true,
+# ein und vergleiche in der Antwort unter "profile" die
+# Query-Typen und Zeiten.
+
+
+# ============================================================
+# ÜBUNG 4: Strukturvergleich - Feldanzahl und Indexgröße
+# ============================================================
+#
+# Die Gesamtbilanz der Optimierungen. Vergleiche zuerst die
+# Indexgrößen:
+
+GET _cat/indices/demo-*?v&h=index,docs.count,store.size&s=index
+
+# Frage: Wie groß ist der Unterschied zwischen
+# demo-smarttransactions und demo-smarttransactions-optimized --
+# bei identischen Daten und nur 200 Dokumenten?
+#
+# Jetzt die Mappings - scrolle durch beide Antworten und
+# vergleiche die Menge der Felder:
+
+GET demo-smarttransactions/_mapping?filter_path=**.properties
+
+GET demo-smarttransactions-optimized/_mapping?filter_path=**.properties
+
+# Merke: Das Original hat über 150 Felder, das optimierte gut 100.
+# Jedes Feld kostet Cluster State, Heap und Indexierungszeit --
+# bei jedem einzelnen Dokument.
+
+
+# ============================================================
+# BONUS: Konstante Felder - index:false, doc_values:false
+# ============================================================
+#
+# Sieh dir an, welche Werte das Feld merchant.object im
+# Original-Index hat:
+
+GET demo-smarttransactions/_search
+{
+  "size": 0,
+  "aggs": {
+    "object_werte": {
+      "terms": { "field": "merchant.object" }
+    }
+  }
+}
+
+# Frage: Wie viele verschiedene Werte gibt es?
+# Merke: Immer derselbe Wert ("general.merchants" - der
+# API-Ressourcentyp). Danach filtert niemand, trotzdem pflegt
+# Elasticsearch Suchindex UND doc_values dafür. Mit index:false
+# und doc_values:false verschwindet dieser Overhead - das Feld
+# taucht in jeder Referenz des Mappings auf, geschätzt 20 Felder.

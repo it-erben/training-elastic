@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 280"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Pipeline-Gruppenflaeche -->
+  <rect x="270" y="72" width="470" height="175" rx="20" fill="#EEF1F8"/>
+  <text x="505" y="100" text-anchor="middle" fill="#5B6675" font-size="18" font-weight="600">Logstash-Pipeline</text>
+
+  <!-- Filebeat -->
+  <g filter="url(#ieShadow)"><rect x="30" y="118" width="160" height="94" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="110" y="160" text-anchor="middle" fill="#172033" font-size="24" font-weight="700">Filebeat</text>
+  <text x="110" y="186" text-anchor="middle" fill="#5B6675" font-size="16" font-weight="400">Java-Logzeile</text>
+
+  <!-- Arrow Filebeat -> Pipeline -->
+  <line x1="190" y1="165" x2="268" y2="165" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+  <text x="229" y="147" text-anchor="middle" fill="#5B6675" font-size="12">Port 5044</text>
+
+  <!-- input -->
+  <g filter="url(#ieShadow)"><rect x="285" y="125" width="125" height="80" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="347" y="160" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">input</text>
+  <text x="347" y="184" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">beats</text>
+
+  <line x1="410" y1="165" x2="426" y2="165" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- filter -->
+  <g filter="url(#ieShadow)"><rect x="428" y="125" width="125" height="80" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="490" y="160" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">filter</text>
+  <text x="490" y="184" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">date · mutate</text>
+
+  <line x1="553" y1="165" x2="569" y2="165" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- output -->
+  <g filter="url(#ieShadow)"><rect x="571" y="125" width="150" height="80" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="646" y="160" text-anchor="middle" fill="#172033" font-size="22" font-weight="700">output</text>
+  <text x="646" y="184" text-anchor="middle" fill="#5B6675" font-size="15" font-weight="400">elasticsearch</text>
+
+  <!-- Arrow Pipeline -> ES -->
+  <line x1="740" y1="165" x2="788" y2="165" stroke="#5B6675" stroke-width="2.5" marker-end="url(#ieArrow)"/>
+
+  <!-- Elasticsearch (Akzent, blau) -->
+  <g filter="url(#ieShadow)"><rect x="790" y="118" width="180" height="94" rx="16" fill="#1B4FD8"/></g>
+  <text x="880" y="158" text-anchor="middle" fill="#FFFFFF" font-size="22" font-weight="700">Elasticsearch</text>
+  <text x="880" y="184" text-anchor="middle" fill="#FFFFFF" font-size="16" font-weight="400">Index javalogs</text>
+</svg>

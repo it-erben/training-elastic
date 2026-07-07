@@ -11,6 +11,11 @@ Am Ende dieser Übung hast du:
 
 ---
 
+### Kibana öffnen
+
+Öffne Kibana in deiner lokalen Umgebung: <http://localhost:5601>
+(kein Login erforderlich).
+
 ### Zeitraum einstellen
 
 Stelle zu Beginn sicher, dass der Zeitfilter auf
@@ -21,30 +26,30 @@ nicht anders angegeben.
 
 Die folgenden Felder wirst du in den Übungen verwenden:
 
-| Feld                           | Typ       | Beschreibung             |
-|:-------------------------------|:----------|:-------------------------|
-| `order_date`                   | date      | Bestellzeitpunkt         |
-| `taxful_total_price`           | number    | Bestellwert (brutto)     |
-| `taxless_total_price`          | number    | Bestellwert (netto)      |
-| `total_quantity`               | number    | Anzahl Artikel           |
-| `total_unique_products`        | number    | Verschiedene Produkte    |
-| `products.discount_percentage` | number    | Rabatt in Prozent        |
-| `products.discount_amount`     | number    | Rabatt in EUR            |
-| `products.price`               | number    | Einzelpreis Produkt      |
-| `products.quantity`            | number    | Menge pro Produkt        |
-| `category`                     | keyword   | Produktkategorie(n)      |
-| `manufacturer`                 | keyword   | Hersteller               |
-| `customer_full_name`           | text      | Kundenname               |
-| `customer_gender`              | keyword   | Geschlecht (MALE/FEMALE) |
-| `customer_id`                  | keyword   | Kundennummer             |
-| `day_of_week`                  | keyword   | Wochentag (Monday...)    |
-| `day_of_week_i`                | number    | Wochentag als Zahl (0-6) |
-| `currency`                     | keyword   | Währung (EUR)            |
-| `geoip.city_name`              | keyword   | Stadt                    |
-| `geoip.region_name`            | keyword   | Region                   |
-| `geoip.country_iso_code`       | keyword   | Ländercode (DE, US...)   |
-| `geoip.continent_name`         | keyword   | Kontinent                |
-| `geoip.location`               | geo_point | Koordinaten              |
+| Feld                           | Typ                 | Beschreibung             |
+| :----------------------------- | :------------------ | :----------------------- |
+| `order_date`                   | date                | Bestellzeitpunkt         |
+| `taxful_total_price`           | number              | Bestellwert (brutto)     |
+| `taxless_total_price`          | number              | Bestellwert (netto)      |
+| `total_quantity`               | number              | Anzahl Artikel           |
+| `total_unique_products`        | number              | Verschiedene Produkte    |
+| `products.discount_percentage` | number              | Rabatt in Prozent        |
+| `products.discount_amount`     | number              | Rabatt in EUR            |
+| `products.price`               | number              | Einzelpreis Produkt      |
+| `products.quantity`            | number              | Menge pro Produkt        |
+| `category`                     | text (+ `.keyword`) | Produktkategorie(n)      |
+| `manufacturer`                 | text (+ `.keyword`) | Hersteller               |
+| `customer_full_name`           | text                | Kundenname               |
+| `customer_gender`              | keyword             | Geschlecht (MALE/FEMALE) |
+| `customer_id`                  | keyword             | Kundennummer             |
+| `day_of_week`                  | keyword             | Wochentag (Monday...)    |
+| `day_of_week_i`                | number              | Wochentag als Zahl (0-6) |
+| `currency`                     | keyword             | Währung (EUR)            |
+| `geoip.city_name`              | keyword             | Stadt                    |
+| `geoip.region_name`            | keyword             | Region                   |
+| `geoip.country_iso_code`       | keyword             | Ländercode (DE, US...)   |
+| `geoip.continent_name`         | keyword             | Kontinent                |
+| `geoip.location`               | geo_point           | Koordinaten              |
 
 ---
 
@@ -72,7 +77,7 @@ Bevor du Dashboards baust, erstellst du die wichtigsten Grundbausteine in der
 ### Aufgabe 1.2: Metrik - Anzahl Bestellungen
 
 1. Neue Visualisierung, Typ **Metric**
-2. Ziehe ein `order_id` Feld in **Primary metric**
+2. Ziehe das Feld `order_id` in **Primary metric**
 3. Ändere die Funktion auf **Count**
 4. Speichere als: `Anzahl Bestellungen`, mit "Add To Dashboard -> None".
 
@@ -166,8 +171,9 @@ Füge ein **Informationspanel** als Kontext hinzu:
 ```markdown
 ### E-Commerce Überblick
 
-Datenquelle: Mustertech Online-Shop Aktualisierung: Echtzeit Kontakt:
-controlling@mustertech.de
+- Datenquelle: Mustertech Online-Shop
+- Aktualisierung: Echtzeit
+- Kontakt: controlling@mustertech.de
 ```
 
 4. Platziere das Panel oben links oder als schmale Spalte am linken Rand
@@ -197,7 +203,8 @@ filtern können.
     - Bezeichnung: `Kategorie`
 3. Speichere
 
-**Test:** Wähle "Women's Clothing" aus dem Dropdown. Alle Visualisierungen sollten sich filtern.
+**Test:** Wähle "Women's Clothing" aus dem Dropdown. Alle Panels
+zeigen jetzt nur noch Bestellungen aus dieser Kategorie.
 
 ### Aufgabe 3.2: Hersteller-Filter hinzufügen
 
@@ -207,8 +214,8 @@ filtern können.
     - Typ: **Options list**
     - Bezeichnung: `Hersteller`
 
-**Test:** Wähle gleichzeitig eine Kategorie und einen Hersteller. Beobachte, wie
-die Kombination die Daten eingrenzt.
+**Test:** Wähle gleichzeitig eine Kategorie und einen Hersteller. Beide
+Filter greifen zusammen, die Trefferzahlen schrumpfen entsprechend.
 
 ### Aufgabe 3.3: Preisbereich-Filter hinzufügen
 
@@ -218,8 +225,8 @@ die Kombination die Daten eingrenzt.
     - Typ: **Range slider**
     - Bezeichnung: `Bestellwert`
 
-**Test:** Stelle den Bereich auf 100-500 ein und beobachte die Veränderungen
-im Dashboard.
+**Test:** Stelle den Bereich auf 100-500 ein. Übrig bleiben nur die
+teureren Bestellungen, alle Kennzahlen rechnen neu.
 
 ### Aufgabe 3.4: Cross-Filtering testen
 
@@ -227,12 +234,10 @@ im Dashboard.
 2. Klicke im Balkendiagramm auf den Balken "Women's Clothing"
 3. Wähle **Filter for value** (Plus-Symbol)
 
-**Beobachte:**
-
-- Alle Metriken zeigen nur Werte für diese Kategorie
-- Das Liniendiagramm zeigt den Umsatzverlauf nur für Women's Clothing
-- Das Kreisdiagramm zeigt die regionale Verteilung nur für diese Kategorie
-- In der Filterleiste erscheint ein neuer Filter
+**Was passiert:** In der Filterleiste erscheint ein neuer Filter, und das
+ganze Dashboard rechnet nur noch mit Women's Clothing: die Metriken, der
+Umsatzverlauf im Liniendiagramm und auch die regionale Verteilung im
+Kreisdiagramm.
 
 4. Entferne den Filter wieder über das **X** in der Filterleiste
 

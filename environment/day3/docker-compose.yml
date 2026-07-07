@@ -1,0 +1,279 @@
+---
+# Tag 3: 3-Node-Elasticsearch-Cluster + Kibana (Security AN, TLS)
+#
+# Starten:          docker compose up -d --wait
+# Mit Fleet:        docker compose --profile fleet up -d --wait
+# Mit MinIO (S3):   docker compose --profile s3 up -d --wait
+# Reset:            ./reset.sh
+#
+# Zugangsdaten: Benutzer "elastic", Passwort aus .env (ELASTIC_PASSWORD).
+# Der "setup"-Container erzeugt beim ersten Start eine CA und Zertifikate
+# für alle Nodes (TLS auf HTTP- und Transport-Ebene) und setzt das
+# Passwort für kibana_system.
+#
+# Node-Rollen und Attribute (für die Cluster- und ILM-Labs):
+#   es01  master,data,ingest   zone=a  temp=hot    (Port 9200 nach außen)
+#   es02  master,data          zone=b  temp=warm
+#   es03  master,data          zone=b  temp=warm
+name: elastic-training-day3
+
+services:
+  setup:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    user: "0"
+    command: |
+      bash -c '
+        set -e
+        if [ ! -f config/certs/ca.zip ]; then
+          echo "CA erzeugen..."
+          bin/elasticsearch-certutil ca --silent --pem -out config/certs/ca.zip
+          unzip -q config/certs/ca.zip -d config/certs
+        fi
+        if [ ! -f config/certs/certs.zip ]; then
+          echo "Node-Zertifikate erzeugen..."
+          printf "instances:\n" > config/certs/instances.yml
+          for node in es01 es02 es03 fleet-server; do
+            printf -- "  - name: %s\n    dns: [%s, localhost]\n    ip: [127.0.0.1]\n" "$$node" "$$node" >> config/certs/instances.yml
+          done
+          bin/elasticsearch-certutil cert --silent --pem -out config/certs/certs.zip \
+            --in config/certs/instances.yml \
+            --ca-cert config/certs/ca/ca.crt --ca-key config/certs/ca/ca.key
+          unzip -q config/certs/certs.zip -d config/certs
+        fi
+        chown -R root:root config/certs
+        find config/certs -type d -exec chmod 755 {} \;
+        find config/certs -type f -exec chmod 644 {} \;
+        chown -R 1000:1000 /snapshots
+        echo "Warte auf Elasticsearch..."
+        until curl -s --cacert config/certs/ca/ca.crt https://es01:9200 | grep -q "missing authentication credentials"; do sleep 5; done
+        echo "Setze kibana_system-Passwort..."
+        until curl -s -X POST --cacert config/certs/ca/ca.crt \
+          -u "elastic:$${ELASTIC_PASSWORD}" \
+          -H "Content-Type: application/json" \
+          https://es01:9200/_security/user/kibana_system/_password \
+          -d "{\"password\":\"$${KIBANA_PASSWORD}\"}" | grep -q "^{}"; do sleep 5; done
+        echo "Setup abgeschlossen."
+        sleep infinity
+      '
+    environment:
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs
+      - snapshots:/snapshots
+    healthcheck:
+      test: ["CMD-SHELL", "[ -f config/certs/es01/es01.crt ]"]
+      interval: 5s
+      timeout: 5s
+      retries: 60
+
+  es01:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    environment:
+      - cluster.name=training-cluster
+      - node.name=es01
+      - node.roles=master,data,ingest
+      - node.attr.zone=a
+      - node.attr.temp=hot
+      - discovery.seed_hosts=es02,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es01/es01.key
+      - xpack.security.http.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es01/es01.key
+      - xpack.security.transport.ssl.certificate=certs/es01/es01.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.ml.enabled=false
+      - path.repo=/usr/share/elasticsearch/snapshots
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs:ro
+      - esdata01:/usr/share/elasticsearch/data
+      - snapshots:/usr/share/elasticsearch/snapshots
+    depends_on:
+      setup:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} https://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  es02:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    environment:
+      - cluster.name=training-cluster
+      - node.name=es02
+      - node.roles=master,data
+      - node.attr.zone=b
+      - node.attr.temp=warm
+      - discovery.seed_hosts=es01,es03
+      - cluster.initial_master_nodes=es01,es02,es03
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es02/es02.key
+      - xpack.security.http.ssl.certificate=certs/es02/es02.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es02/es02.key
+      - xpack.security.transport.ssl.certificate=certs/es02/es02.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.ml.enabled=false
+      - path.repo=/usr/share/elasticsearch/snapshots
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs:ro
+      - esdata02:/usr/share/elasticsearch/data
+      - snapshots:/usr/share/elasticsearch/snapshots
+    depends_on:
+      setup:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} https://localhost:9200/_cluster/health?local=true || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  es03:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    environment:
+      - cluster.name=training-cluster
+      - node.name=es03
+      - node.roles=master,data
+      - node.attr.zone=b
+      - node.attr.temp=warm
+      - discovery.seed_hosts=es01,es02
+      - cluster.initial_master_nodes=es01,es02,es03
+      - ELASTIC_PASSWORD=${ELASTIC_PASSWORD}
+      - xpack.security.enabled=true
+      - xpack.security.http.ssl.enabled=true
+      - xpack.security.http.ssl.key=certs/es03/es03.key
+      - xpack.security.http.ssl.certificate=certs/es03/es03.crt
+      - xpack.security.http.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.enabled=true
+      - xpack.security.transport.ssl.key=certs/es03/es03.key
+      - xpack.security.transport.ssl.certificate=certs/es03/es03.crt
+      - xpack.security.transport.ssl.certificate_authorities=certs/ca/ca.crt
+      - xpack.security.transport.ssl.verification_mode=certificate
+      - xpack.ml.enabled=false
+      - path.repo=/usr/share/elasticsearch/snapshots
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    volumes:
+      - certs:/usr/share/elasticsearch/config/certs:ro
+      - esdata03:/usr/share/elasticsearch/data
+      - snapshots:/usr/share/elasticsearch/snapshots
+    depends_on:
+      setup:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs --cacert config/certs/ca/ca.crt -u elastic:${ELASTIC_PASSWORD} https://localhost:9200/_cluster/health?local=true || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    environment:
+      - KIBANA_PASSWORD=${KIBANA_PASSWORD}
+    ports:
+      - "5601:5601"
+    volumes:
+      - certs:/usr/share/kibana/config/certs:ro
+      - ./kibana/kibana.yml:/usr/share/kibana/config/kibana.yml:ro
+    depends_on:
+      es01:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:5601/api/status | grep -q '\"overall\"' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 90s
+
+  fleet-server:
+    image: docker.elastic.co/elastic-agent/elastic-agent:${STACK_VERSION}
+    profiles: ["fleet"]
+    environment:
+      - FLEET_SERVER_ENABLE=1
+      - FLEET_SERVER_POLICY_ID=fleet-server-policy
+      - FLEET_SERVER_ELASTICSEARCH_HOST=https://es01:9200
+      - FLEET_SERVER_ELASTICSEARCH_CA=/certs/ca/ca.crt
+      - FLEET_SERVER_CERT=/certs/fleet-server/fleet-server.crt
+      - FLEET_SERVER_CERT_KEY=/certs/fleet-server/fleet-server.key
+      - FLEET_URL=https://fleet-server:8220
+      - FLEET_CA=/certs/ca/ca.crt
+      - KIBANA_FLEET_SETUP=1
+      - KIBANA_HOST=http://kibana:5601
+      - KIBANA_USERNAME=elastic
+      - KIBANA_PASSWORD=${ELASTIC_PASSWORD}
+    ports:
+      - "8220:8220"
+    volumes:
+      - certs:/certs:ro
+    depends_on:
+      kibana:
+        condition: service_healthy
+    mem_limit: 512m
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fks https://localhost:8220/api/status | grep -q HEALTHY || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 120s
+
+  agent:
+    image: docker.elastic.co/elastic-agent/elastic-agent:${STACK_VERSION}
+    profiles: ["fleet"]
+    hostname: mustertech-agent-01
+    environment:
+      - FLEET_ENROLL=1
+      - FLEET_URL=https://fleet-server:8220
+      - FLEET_CA=/certs/ca/ca.crt
+      - FLEET_TOKEN_POLICY_NAME=Agent Policy Training
+      - KIBANA_HOST=http://kibana:5601
+      - KIBANA_USERNAME=elastic
+      - KIBANA_PASSWORD=${ELASTIC_PASSWORD}
+    volumes:
+      - certs:/certs:ro
+    depends_on:
+      fleet-server:
+        condition: service_healthy
+    mem_limit: 512m
+
+  minio:
+    image: minio/minio:latest
+    profiles: ["s3"]
+    command: server /data --console-address ":9001"
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - miniodata:/data
+    mem_limit: 256m
+
+volumes:
+  certs:
+  esdata01:
+  esdata02:
+  esdata03:
+  snapshots:
+  miniodata:

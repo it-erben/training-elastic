@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 474"
+     font-family="Inter, system-ui, -apple-system, 'Segoe UI', sans-serif">
+  <defs>
+    <filter id="ieShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#172033" flood-opacity="0.12"/>
+    </filter>
+    <marker id="ieArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-end">
+      <path d="M0,0 L10,5 L0,10 z" fill="#5B6675"/>
+    </marker>
+  </defs>
+
+  <!-- Hero: CRUD -->
+  <g filter="url(#ieShadow)"><rect x="70" y="182" width="210" height="110" rx="16" fill="#1B4FD8"/></g>
+  <text x="175" y="237" text-anchor="middle" dominant-baseline="middle" fill="#FFFFFF" font-size="30" font-weight="700">CRUD</text>
+
+  <!-- Arrows -->
+  <line x1="280" y1="237" x2="540.8" y2="84.6" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M544.3,90.6 L537.2,78.5 L552,78 z" fill="#5B6675"/>
+  <line x1="280" y1="237" x2="539.2" y2="186.5" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M540.6,193.4 L537.9,179.6 L552,184 z" fill="#5B6675"/>
+  <line x1="280" y1="237" x2="539.2" y2="287.5" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M537.9,294.4 L540.6,280.6 L552,290 z" fill="#5B6675"/>
+  <line x1="280" y1="237" x2="540.8" y2="389.4" stroke="#5B6675" stroke-width="2.5"/>
+  <path d="M537.2,395.5 L544.3,383.4 L552,396 z" fill="#5B6675"/>
+
+  <!-- Arrow labels -->
+  <text x="470" y="140" text-anchor="middle" fill="#172033" font-size="19" font-weight="600">Create</text>
+  <text x="470" y="203" text-anchor="middle" fill="#172033" font-size="19" font-weight="600">Read</text>
+  <text x="470" y="270" text-anchor="middle" fill="#172033" font-size="19" font-weight="600">Update</text>
+  <text x="470" y="330" text-anchor="middle" fill="#172033" font-size="19" font-weight="600">Delete</text>
+
+  <!-- Method + path boxes -->
+  <g filter="url(#ieShadow)"><rect x="560" y="40" width="380" height="76" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="600" y="82" fill="#172033" font-size="24" font-weight="700">PUT</text>
+  <text x="690" y="82" fill="#5B6675" font-size="20" font-weight="400">/index/_doc/id</text>
+
+  <g filter="url(#ieShadow)"><rect x="560" y="146" width="380" height="76" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="600" y="188" fill="#172033" font-size="24" font-weight="700">GET</text>
+  <text x="690" y="188" fill="#5B6675" font-size="20" font-weight="400">/index/_doc/id</text>
+
+  <g filter="url(#ieShadow)"><rect x="560" y="252" width="380" height="76" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="600" y="294" fill="#172033" font-size="24" font-weight="700">POST</text>
+  <text x="705" y="294" fill="#5B6675" font-size="20" font-weight="400">/index/_update/id</text>
+
+  <g filter="url(#ieShadow)"><rect x="560" y="358" width="380" height="76" rx="16" fill="#FFFFFF" stroke="#D5DBEA" stroke-width="1.5"/></g>
+  <text x="600" y="400" fill="#172033" font-size="24" font-weight="700">DELETE</text>
+  <text x="730" y="400" fill="#5B6675" font-size="20" font-weight="400">/index/_doc/id</text>
+</svg>

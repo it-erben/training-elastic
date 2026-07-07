@@ -1,0 +1,146 @@
+# ============================================================
+# Lab 09 - ILM Setup (Teil 1 + 2)
+# In Kibana Dev Tools ausführen, in dieser Reihenfolge.
+# ============================================================
+
+# Schritt 1.1: Poll-Intervall verkürzen (nur fürs Training!)
+PUT _cluster/settings
+{
+  "persistent": {
+    "indices.lifecycle.poll_interval": "10s"
+  }
+}
+
+# Schritt 1.2: ILM-Policy anlegen
+PUT _ilm/policy/transactions-policy
+{
+  "policy": {
+    "phases": {
+      "hot": {
+        "min_age": "0ms",
+        "actions": {
+          "rollover": {
+            "max_docs": 100
+          },
+          "set_priority": {
+            "priority": 100
+          }
+        }
+      },
+      "warm": {
+        "min_age": "0ms",
+        "actions": {
+          "allocate": {
+            "require": {
+              "temp": "warm"
+            }
+          },
+          "set_priority": {
+            "priority": 50
+          }
+        }
+      },
+      "delete": {
+        "min_age": "5m",
+        "actions": {
+          "delete": {}
+        }
+      }
+    }
+  }
+}
+
+# Schritt 1.3: Policy prüfen
+GET _ilm/policy/transactions-policy
+
+# Schritt 2.1: Index-Template erstellen
+PUT _index_template/transactions-template
+{
+  "index_patterns": ["transactions-*"],
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.lifecycle.name": "transactions-policy",
+      "index.lifecycle.rollover_alias": "transactions-live",
+      "index.routing.allocation.require.temp": "hot"
+    },
+    "mappings": {
+      "properties": {
+        "created":        { "type": "date" },
+        "status":         { "type": "keyword" },
+        "payment_method": { "type": "keyword" },
+        "amount":         { "type": "integer" }
+      }
+    }
+  }
+}
+
+# Schritt 2.2: Bootstrap-Index mit Write-Alias anlegen
+PUT transactions-000001
+{
+  "aliases": {
+    "transactions-live": {
+      "is_write_index": true
+    }
+  }
+}
+
+# Schritt 2.3: ILM-Zustand ansehen
+GET transactions-000001/_ilm/explain
+
+# --- Beobachtungs-Befehle (immer wieder ausführen) ---
+
+GET _cat/indices/transactions-*?v&h=index,docs.count,store.size,health
+
+GET _cat/shards/transactions-*?v&h=index,shard,prirep,node,state
+
+GET transactions-live/_alias
+
+# --- Bonus: Data-Stream-Template (Teil 4) ---
+
+PUT _index_template/logs-mustertech-template
+{
+  "index_patterns": ["logs-mustertech-*"],
+  "data_stream": {},
+  "priority": 500,
+  "template": {
+    "settings": {
+      "number_of_shards": 1,
+      "number_of_replicas": 0,
+      "index.lifecycle.name": "transactions-policy"
+    },
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "message":    { "type": "text" },
+        "service":    { "type": "keyword" }
+      }
+    }
+  }
+}
+
+POST logs-mustertech-default/_doc
+{
+  "@timestamp": "2026-07-02T10:30:00Z",
+  "message": "Checkout abgeschlossen",
+  "service": "shop-backend"
+}
+
+GET _data_stream/logs-mustertech-default
+
+# --- Aufräumen (nach dem Lab) ---
+
+DELETE _data_stream/logs-mustertech-default
+DELETE _index_template/logs-mustertech-template
+GET _cat/indices/transactions-*?v&h=index
+DELETE transactions-000002
+DELETE _index_template/transactions-template
+DELETE _ilm/policy/transactions-policy
+
+PUT _cluster/settings
+{
+  "persistent": {
+    "indices.lifecycle.poll_interval": null
+  }
+}
