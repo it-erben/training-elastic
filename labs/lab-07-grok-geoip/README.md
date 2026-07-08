@@ -38,7 +38,7 @@ Falls du Lab 06 nicht abgeschlossen hast: Kopiere
 
 Die Zugriffslogs des Mustertech-Webshops liegen im Apache Combined
 Log Format vor. Bevor wir die Pipeline anfassen, entwickeln wir das
-Pattern gefahrlos im Grok Debugger.
+Pattern im Grok Debugger.
 
 ### Schritt 1.1: Grok Debugger öffnen
 
@@ -178,7 +178,7 @@ docker compose logs -f logstash
 
 ---
 
-## Teil 2: Ein eigenes Pattern verstehen
+## Teil 2: Eigenes Pattern für Java
 
 Die Pipeline parst die Java-Logs seit Lab 06 mit einem
 selbstgebauten Pattern. Jetzt baust du es im Grok Debugger einmal
@@ -555,8 +555,9 @@ klassische Latenz-Panel.
 
 **Erwartetes Ergebnis:** Die meisten Services liegen stabil unter
 einer Sekunde. Während des Störungszeitraums schießt die p95-Latenz
-von `checkout-service` und `payment-service` auf zweistellige
-Sekundenwerte hoch. Die Web-Fehler aus Schritt 4.5 und die langsamen
+von `checkout-service` und `cart-service` auf über 20 Sekunden hoch.
+Auch `payment-service` wird spürbar langsamer, `product-service`
+dagegen bleibt ruhig. Die Web-Fehler aus Schritt 4.5 und die langsamen
 Backend-Antworten sind **derselbe Vorfall**, gesehen aus zwei
 verschiedenen Logquellen.
 
@@ -585,9 +586,11 @@ Shop massenhaft Serverfehler produziert.
    (500 vs. 503)
 
 **Erwartetes Ergebnis:** Wenige Stunden vor dem Ende des
-Log-Zeitraums häufen sich 500er und 503er massiv auf `/checkout`
-und den `/api/...`-Endpunkten. Der Rest der Website lief normal
-weiter. Ein klassischer Backend-Ausfall im Bestellprozess.
+Log-Zeitraums häufen sich 500er und 503er deutlich. Am stärksten
+trifft es den Warenkorb- und Bestell-Flow (`/warenkorb`, `/checkout`,
+`/checkout/zahlung`) und die zugehörigen `/api/...`-Endpunkte. Im
+übrigen Shop steigen die Fehler auch, aber weniger stark. Ein
+Backend-Ausfall, der im Bestellprozess am deutlichsten durchschlägt.
 
 > **Tipp:** Merke dir dieses Szenario: An Tag 3 bauen wir genau
 > dafür einen **Alert**, der solche Fehler-Bursts automatisch

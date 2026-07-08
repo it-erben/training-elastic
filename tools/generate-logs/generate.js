@@ -75,7 +75,7 @@ function timestamps(count) {
 // Treffer liefert (Doku-Bereiche wie 192.0.2.x haben KEINE Geo-Daten).
 // Letztes Oktett wird variiert, Region bleibt stabil.
 const IP_POOLS = [
-  // [Basis-Präfix, Gewicht] — DE/EU bewusst übergewichtet (deutscher Shop)
+  // [Basis-Präfix, Gewicht] - DE/EU bewusst übergewichtet (deutscher Shop)
   ["91.12.34.", 18],    // DE, Deutsche Telekom
   ["84.163.72.", 12],   // DE, Deutsche Telekom
   ["217.224.10.", 8],   // DE, Deutsche Telekom

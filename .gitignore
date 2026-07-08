@@ -85,3 +85,14 @@ Temporary Items
 node_modules
 # Gerenderte Slide-PDFs (CI baut sie via pdf-publisher)
 pdf/
+
+# Generierte Beispiel-Logs (via environment/gen-logs.sh, kein Host-Node)
+environment/data/*.log
+
+# Kundenspezifische BSD-Betriebslogs -- echte Kundendaten, NIE committen
+# (bereitgestellt via environment/prepare-bsd.sh)
+environment/data/bsd/*
+!environment/data/bsd/README.md
+!environment/data/bsd/.gitkeep
+
+kunden

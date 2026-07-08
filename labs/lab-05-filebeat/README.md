@@ -8,7 +8,7 @@ Am Ende dieser Übung hast du:
   gestartet
 - Eine Filebeat-Konfiguration gelesen und verstanden
 - Apache-Logs in Discover gefunden und das Problem unstrukturierter Logs
-  erlebt
+  gesehen
 - JSON-Logs mit dem ndjson-Parser eingelesen und nach strukturierten
   Feldern gefiltert
 - Java-Stacktraces mit dem multiline-Parser zu einem Event pro Fehler
@@ -123,11 +123,11 @@ Pattern mindestens eine Quelle matcht (`filebeat-9.3.0`).
 
 1. Navigiere zu **Analytics > Discover**
 2. Wähle oben links den Data View `filebeat-*`
-3. Stelle den Zeitfilter oben rechts auf **Last 3 days**
+3. Stelle den Zeitfilter oben rechts auf **Last 7 days**
 
 > **Tipp:** Die Beispiel-Logs decken die letzten 48 Stunden ab. Mit dem
 > Standard-Zeitfilter ("Last 15 minutes") siehst du mit der Zeit fast nichts mehr.
-> **Last 3 days** ist für alle Übungen an Tag 2 die richtige Wahl.
+> **Last 7 days** ist für alle Übungen an Tag 2 die richtige Wahl.
 
 **Erwartetes Ergebnis:** Rund **10.000 Treffer**: die Apache-Access-Logs
 des Mustertech-Shops.
@@ -139,7 +139,7 @@ sieh dir die Felder an:
 - `log.file.path` zeigt die Quelldatei
 - `@timestamp` ist der **Einlese-Zeitpunkt**, nicht die Zeit aus dem Log
 
-### Schritt 1.5: Das Problem erleben
+### Schritt 1.5: Ein Problem
 
 **Aufgabe:** Versuche, alle Requests mit HTTP-Status 404 zu finden.
 
@@ -227,7 +227,7 @@ neuen Harvester für `/data/app-json.log`. Beende die Log-Ansicht mit
 ### Schritt 2.4: Strukturierte Felder in Discover
 
 1. Wechsle zurück zu **Discover** (Data View `filebeat-*`,
-   Zeitfilter **Last 3 days**)
+   Zeitfilter **Last 7 days**)
 2. Lade die Seite neu, damit Kibana die neuen Felder kennt
 
 **Erwartetes Ergebnis:** Rund **5.000 zusätzliche Events**. In der
@@ -257,7 +257,7 @@ Feldliste links tauchen neue Felder auf: `service.name`, `log.level`,
 **Aufgabe:** Füge die Spalten `service.name`, `log.level`, `url.path` und
 `message` hinzu (Plus-Symbol in der Feldliste). Vergleiche ein
 JSON-Event mit einem Apache-Event: Der Unterschied zwischen
-strukturiert und unstrukturiert ist jetzt direkt sichtbar.
+strukturiert und unstrukturiert ist jetzt direkt erkennbar.
 
 **Aufgabe:** Klappe ein JSON-Event auf und prüfe `@timestamp`: Dank
 `overwrite_keys: true` steht hier der **echte Log-Zeitpunkt** aus der
@@ -295,7 +295,7 @@ docker compose restart filebeat
 
 ### Schritt 3.2: Das Problem live sehen
 
-1. Wechsle zu **Discover** (Zeitfilter **Last 3 days**)
+1. Wechsle zu **Discover** (Zeitfilter **Last 7 days**)
 2. Suche nach Stacktrace-Zeilen:
 
     ```
@@ -368,11 +368,11 @@ Das Skript löscht die indexierten Daten **und** die Filebeat-Registry
 danach alle drei Log-Dateien mit der aktuellen Konfiguration neu ein.
 Warte etwa 30 Sekunden.
 
-**Erwartetes Ergebnis:** In Discover (Zeitfilter **Last 3 days**) siehst
+**Erwartetes Ergebnis:** In Discover (Zeitfilter **Last 7 days**) siehst
 du insgesamt rund **17.000 Events** (10.000 Apache + 5.000 JSON +
 2.000 Java).
 
-### Schritt 3.5: Erfolg prüfen
+### Schritt 3.5: Ergebnis prüfen
 
 **Aufgabe:** Suche erneut nach:
 
@@ -397,7 +397,7 @@ Stacktrace-Zeilen.
 Im nächsten Lab schalten wir Logstash zwischen Filebeat und Elasticsearch. Damit
 Logstash weiß, welches Event aus welcher Quelle stammt, geben wir jedem
 Input ein eigenes Feld `logtype` mit. **Dieser Schritt ist Voraussetzung für
-Lab 06** — ohne `logtype` landet das Output-Routing dort im Leeren.
+Lab 06** - ohne `logtype` landet das Output-Routing dort im Leeren.
 
 ### Schritt 4.1: fields und fields_under_root ergänzen
 
@@ -432,7 +432,7 @@ kompletten Neueinlese-Lauf:
 ```
 
 **Aufgabe:** Prüfe in Discover (Seite neu laden, Zeitfilter
-**Last 3 days**):
+**Last 7 days**):
 
 ```
 logtype: java
@@ -459,7 +459,7 @@ der erwartete Endzustand dieses Labs und der Startpunkt für Lab 06.
 Du hast erfolgreich:
 
 - [x] Die Tag-2-Umgebung gestartet und die Filebeat-Konfiguration verstanden
-- [x] Apache-Logs in Discover gefunden - und erlebt, warum unstrukturierte
+- [x] Apache-Logs in Discover gefunden - und gesehen, warum unstrukturierte
   Logs unpraktisch sind
 - [x] JSON-Logs mit dem ndjson-Parser in strukturierte, filterbare Felder
   verwandelt

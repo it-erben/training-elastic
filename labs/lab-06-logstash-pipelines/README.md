@@ -84,6 +84,7 @@ output.elasticsearch:
 durch den Logstash-Output:
 
 > Achte darauf, dass sich nicht nur der Hostname ändert, sondern auch der Output-Typ
+
 ```yaml
 output.logstash:
   hosts: ["logstash:5044"]
@@ -94,7 +95,7 @@ Die drei `filebeat.inputs` aus Lab 05 bleiben unverändert.
 > **Hinweis:** Filebeat kann immer nur **einen** Output haben. Es darf
 > also kein `output.elasticsearch:` mehr in der Datei stehen.
 
-### Schritt 1.3: Filebeat neu starten - und stutzen
+### Schritt 1.3: Filebeat neu starten
 
 Starte Filebeat neu und beobachte die Logstash-Konsole:
 
@@ -120,6 +121,12 @@ Konfig-Änderungen bleiben erhalten:
 docker compose logs -f logstash
 ```
 
+> **Hinweis zur Wartezeit:** `reset.sh` löscht die Daten, startet Filebeat
+> neu und liest alle drei Logdateien komplett neu ein. Bis die ersten
+> Events durch die Pipeline laufen, vergehen etwa 30-60 Sekunden - da ist
+> nichts hängen geblieben. Den Reset brauchst du im Lab noch öfter (nach
+> jeder Filter-Änderung), die Wartezeit gehört also dazu.
+
 **Erwartetes Ergebnis:** Nach kurzer Zeit rauschen Events im
 `rubydebug`-Format durch die Konsole:
 
@@ -141,9 +148,14 @@ docker compose logs -f logstash
 3. Entspricht `@timestamp` der Zeit aus der Logzeile oder dem
    Einlese-Zeitpunkt?
 
-> **Tipp:** Lass das Fenster mit `docker compose logs -f logstash` für
-> den Rest des Labs offen. Dort siehst du sowohl deine Events als auch
-> Syntax-Fehler beim automatischen Config-Reload.
+> **Tipp:** Lass das Fenster mit `docker compose logs -f logstash` für den
+> Rest des Labs offen - dort siehst du deine Events und auch Syntax-Fehler
+> beim automatischen Config-Reload. Ein einzelnes Event findest du leichter
+> mit grep, z. B. ein Java-Event samt Feldern:
+>
+> ```bash
+> docker compose logs logstash | grep -A 25 '"logtype" => "java"' | head -30
+> ```
 
 ---
 
@@ -190,9 +202,21 @@ Speichere die Datei und beobachte die Logstash-Konsole: Dank
 `config.reload.automatic` lädt Logstash die Pipeline von selbst neu.
 
 **Erwartetes Ergebnis:** Im Logstash-Log erscheint eine Zeile wie
-`Pipeline started {"pipeline.id"=>"main"}`, ohne Fehlermeldung. Bei
-einem Tippfehler siehst du stattdessen einen Konfigurationsfehler und
-die alte Pipeline läuft weiter.
+`Pipeline started {"pipeline.id"=>"main"}`, ohne Fehlermeldung.
+
+> **Wichtig:** Prüfe, ob dein Reload wirklich gegriffen hat. Bei einem
+> Tippfehler (fehlende Klammer, `=>` vergessen) lädt Logstash die neue Pipeline
+> nicht: Es meldet einen Konfigurationsfehler und lässt die alte Pipeline
+> weiterlaufen. Tückisch daran: Die Events sehen unverändert aus, obwohl
+> deine Änderung nie aktiv wurde. So prüfst du das:
+>
+> ```bash
+> docker compose logs logstash | grep -E "Pipeline started|Failed to execute|Reason"
+> ```
+>
+> Steht ganz unten ein frisches `Pipeline started`, ist alles gut. Erscheint
+> stattdessen `Failed to execute action` mit einem `Reason:`, korrigiere den
+> Tippfehler und speichere erneut.
 
 ### Schritt 2.2: Daten neu einspielen und prüfen
 
@@ -224,7 +248,15 @@ einem mehrzeiligen Stacktrace im Feld `msg`. Filebeat hat die
 Stacktrace-Zeilen dank der Multiline-Konfiguration aus Lab 05 schon zu
 einem Event zusammengefasst.
 
-> **Tipp:** Apache- und JSON-Events laufen unverändert durch, denn der
+> **Tipp:** Bei tausenden durchlaufenden Events ein einzelnes ERROR-Event
+> zu erwischen ist mühsam. Filtere gezielt - das zeigt die ERROR-Events mit
+> den umliegenden Feldern (inklusive `msg` mit Stacktrace):
+>
+> ```bash
+> docker compose logs logstash | grep -B 10 -A 30 '"level" => "ERROR"'
+> ```
+>
+> Apache- und JSON-Events laufen übrigens unverändert durch, denn der
 > Filter greift wegen `if [logtype] == "java"` nur für Java-Logs.
 
 ### Schritt 2.3: date-Filter ergänzen
@@ -252,7 +284,8 @@ docker compose logs -f logstash
 ```
 
 Bei Java-Events entspricht `@timestamp` jetzt
-dem Wert aus `log_ts` (die Logs stammen aus den letzten 48 Stunden):
+dem Wert aus `log_ts` (die Logs decken die rund 48 Stunden vor dem
+Erzeugen der Beispieldaten ab):
 
 ```ruby
      "log_ts" => "2026-06-30 12:01:23,189",
@@ -349,8 +382,9 @@ curl "http://localhost:9200/javalogs/_search?size=1&pretty"
     - Timestamp field: `@timestamp`
 3. Wechsle zu **Analytics > Discover** und wähle den Data View
    `javalogs`
-4. Stelle den Zeitfilter auf **Last 7 days** (die Logs decken die
-   letzten 48 Stunden ab)
+4. Stelle den Zeitfilter auf **Last 7 days**. Die Java-Logs umfassen nur
+   rund 48 Stunden, aber die 7 Tage geben Puffer, falls die Umgebung schon
+   ein paar Tage läuft
 
 **Erwartetes Ergebnis:** Das Histogramm zeigt die Java-Events verteilt
 über zwei Tage, nicht als einen einzigen Balken zum Einlese-Zeitpunkt.
@@ -384,8 +418,7 @@ tags: "fehler"
 
 Du hast erfolgreich:
 
-- [x] Filebeat auf den Logstash-Output umgestellt und die
-      Registry-Falle kennengelernt (`./reset.sh`)
+- [x] Filebeat auf den Logstash-Output umgestellt
 - [x] Events im `rubydebug`-Format gelesen und die Event-Struktur
       verstanden
 - [x] Java-Logs mit `grok` in Felder zerlegt und mit `date` den echten
@@ -398,4 +431,4 @@ Die Musterlösung findest du unter
 `labs/lab-06-logstash-pipelines/files/loesung/`.
 
 **Nächstes Lab:** Grok & Geoip. Wir parsen die Apache-Logs selbst und
-reichern sie mit Geodaten an!
+reichern sie mit Geodaten an.

@@ -631,7 +631,7 @@ const SMART_MAPPING_OPTIMIZED = {
                 object: { type: "keyword", index: false, doc_values: false },
               }
             },
-            // customer data NOT indexed — stays in _source
+            // customer data NOT indexed - stays in _source
             customer: { type: "object", enabled: false },
           }
         }

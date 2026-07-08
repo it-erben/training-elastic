@@ -112,7 +112,7 @@ Details und Troubleshooting: README im jeweiligen Tagesverzeichnis.
 
 - Umgebungs-/Docker-Probleme: `environment/dayN/README.md` (Troubleshooting-Abschnitt)
 - Kibana zeigt keine Daten: Zeitfilter prüfen (Übungsdaten decken die
-  letzten 48 Stunden ab - ggf. „Last 3 days" wählen) und aktive Filter
+  letzten 48 Stunden ab - ggf. „Last 7 days" wählen) und aktive Filter
   kontrollieren
 - Beispieldaten fehlen an Tag 1: Kibana Home → **Try sample data** →
   **Sample eCommerce orders** → Add data

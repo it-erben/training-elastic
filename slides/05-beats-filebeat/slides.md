@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 05: Beats & Filebeat
 
 Logs einsammeln mit leichtgewichtigen Datensammlern
@@ -346,6 +345,7 @@ Output den Empfang **bestätigt** hat.
 
 **Die Kehrseite:** Stürzt Filebeat zwischen "senden" und "Registry
 aktualisieren" ab, werden Events nach dem Neustart **erneut gesendet**
+
 - Duplikate sind möglich.
 
 > At-least-once, nicht exactly-once: lieber ein Duplikat als ein
@@ -504,7 +504,7 @@ Die Struktur steckt in der Zeile - sie ist nur nicht extrahiert:
 section { font-size: 1.5em; }
 </style>
 
-# JSON-Logs: Struktur ab Werk
+# JSON-Logs
 
 Die Mustertech-Microservices loggen **NDJSON**, ein JSON-Objekt pro
 Zeile (*Newline Delimited JSON*):
@@ -769,7 +769,7 @@ section { font-size: 1.5em; }
 section { font-size: 1.5em; }
 </style>
 
-# Die Alternative: strukturiertes Logging
+# Alternative: strukturiertes Logging
 
 Statt Stacktraces mühsam wieder zusammenzusetzen: die Anwendung loggt
 **gleich JSON**, z. B. mit **ecs-logging-java**:

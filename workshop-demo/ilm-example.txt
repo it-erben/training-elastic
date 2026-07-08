@@ -1,5 +1,5 @@
 # ============================================================
-# ILM Setup für smarttransactions — Vollständiges Beispiel
+# ILM Setup für smarttransactions - Vollständiges Beispiel
 # ============================================================
 #
 # Diese Befehle in Kibana Dev Tools ausführen, in genau
@@ -18,7 +18,7 @@
 # ============================================================
 #
 # Diese Policy definiert den gesamten Lebenszyklus eines
-# Index — wann er überwechselt, wann er komprimiert wird,
+# Index - wann er überwechselt, wann er komprimiert wird,
 # und wann er gelöscht wird.
 
 PUT _ilm/policy/smarttransactions-lifecycle
@@ -443,7 +443,7 @@ GET smarttransactions-live/_search
 # Welcher Index steckt hinter dem Alias?
 GET smarttransactions-live/_alias
 
-# ILM-Status prüfen — zeigt aktuelle Phase und nächsten Übergang:
+# ILM-Status prüfen - zeigt aktuelle Phase und nächsten Übergang:
 GET smarttransactions-000001/_ilm/explain
 
 # Alle Indices mit dem Muster anzeigen:

@@ -11,13 +11,13 @@
 
 
 # ============================================================
-# DEMO 1: text vs. keyword — Warum der Feldtyp alles ändert
+# DEMO 1: text vs. keyword - Warum der Feldtyp alles ändert
 # ============================================================
 #
 # → "Wir fangen mit einem einfachen Beispiel an.
 #    Im generalstores-Index ist das Feld 'category' als text
 #    gemappt. Schauen wir mal, was passiert, wenn wir darauf
-#    eine Aggregation machen — also 'Top Kategorien'."
+#    eine Aggregation machen - also 'Top Kategorien'."
 
 GET demo-generalstores/_search
 {
@@ -30,7 +30,7 @@ GET demo-generalstores/_search
 }
 
 # → "Ihr seht: Elasticsearch weigert sich, oder liefert
-#    tokenisierte Fragmente — 'lebens', 'mittel' statt
+#    tokenisierte Fragmente - 'lebens', 'mittel' statt
 #    'Lebensmittel'. Das ist genau das Antipattern aus
 #    unserem Handout: Ein text-Feld zerlegt den Wert in
 #    einzelne Tokens. Für Aggregationen ist das unbrauchbar."
@@ -54,7 +54,7 @@ GET demo-generalstores-optimized/_search
 
 
 # ============================================================
-# DEMO 2: enabled:false — Felder raus, Daten bleiben
+# DEMO 2: enabled:false - Felder raus, Daten bleiben
 # ============================================================
 #
 # → "Die größte Angst bei Mapping-Änderungen ist: Verliere
@@ -71,7 +71,7 @@ GET demo-smarttransactions/_search
 }
 
 # → "Treffer. Das Feld existiert im Index.
-#    Jetzt der optimierte Index — dort ist receipt auf
+#    Jetzt der optimierte Index - dort ist receipt auf
 #    enabled:false gesetzt:"
 
 GET demo-smarttransactions-optimized/_search
@@ -83,21 +83,21 @@ GET demo-smarttransactions-optimized/_search
 }
 
 # → "Null Treffer. Das Feld ist nicht im Index.
-#    Aber jetzt die entscheidende Frage — sind die
+#    Aber jetzt die entscheidende Frage - sind die
 #    Daten weg? Schauen wir uns das Dokument direkt an:"
 
 GET demo-smarttransactions-optimized/_doc/STX_000001
 
-# → "Da ist es — das komplette Receipt-Objekt, alle Zeilen
+# → "Da ist es - das komplette Receipt-Objekt, alle Zeilen
 #    des Kassenbons. Die Daten liegen in _source, sie sind
 #    vollständig da. Eure Anwendung kann den Bon weiterhin
 #    anzeigen. Ihr könnt nur nicht mehr in Kibana danach
-#    suchen — und das wollte ohnehin niemand.
+#    suchen - und das wollte ohnehin niemand.
 #    Dafür spart ihr ca. 40 Felder im Mapping."
 
 
 # ============================================================
-# DEMO 3: filter vs. must — Scoring bei Transaktionen
+# DEMO 3: filter vs. must - Scoring bei Transaktionen
 # ============================================================
 #
 # → "Aus der Schulung kennt ihr KQL. Unter der Haube
@@ -105,7 +105,7 @@ GET demo-smarttransactions-optimized/_doc/STX_000001
 #    wichtigen Unterschied: must berechnet einen Relevanz-
 #    Score, filter nicht. Schauen wir uns das an."
 #
-# → "Erst mit must — berechnet einen Score:"
+# → "Erst mit must - berechnet einen Score:"
 
 GET demo-smarttransactions/_search
 {
@@ -121,12 +121,12 @@ GET demo-smarttransactions/_search
   }
 }
 
-# → "Schaut euch _score an — jeder Treffer hat einen Wert
+# → "Schaut euch _score an - jeder Treffer hat einen Wert
 #    größer als Null. Elasticsearch hat berechnet, wie
 #    'relevant' diese Transaktion ist. Aber: Wer von euch
 #    hat jemals nach der relevantesten Transaktion gesucht?"
 #
-# → "Jetzt mit filter — kein Score:"
+# → "Jetzt mit filter - kein Score:"
 
 GET demo-smarttransactions/_search
 {
@@ -151,7 +151,7 @@ GET demo-smarttransactions/_search
 
 
 # ============================================================
-# DEMO 4: Strukturvergleich — Feldanzahl und Indexgröße
+# DEMO 4: Strukturvergleich - Feldanzahl und Indexgröße
 # ============================================================
 #
 # → "Zum Schluss der Gesamtüberblick. Schauen wir uns an,
@@ -159,7 +159,7 @@ GET demo-smarttransactions/_search
 
 GET _cat/indices/demo-*?v&h=index,docs.count,store.size&s=index
 
-# → "Gleiche Daten, gleiches JSON — aber der optimierte
+# → "Gleiche Daten, gleiches JSON - aber der optimierte
 #    smarttransactions-Index ist deutlich kleiner. Und
 #    das bei nur 200 Dokumenten. Bei euren Millionen
 #    von Transaktionen reden wir über einen erheblichen
@@ -172,7 +172,7 @@ GET demo-smarttransactions-optimized/_mapping?filter_path=**.properties
 
 # → "Das Original hat über 150 Felder, der optimierte
 #    Index gut 100. In eurem echten Mapping mit 513 Feldern
-#    wäre die Einsparung noch drastischer — wir schätzen
+#    wäre die Einsparung noch drastischer - wir schätzen
 #    ungefähr 230 Felder weniger."
 #
 # → "Jedes dieser Felder verbraucht Ressourcen im Cluster-
@@ -198,11 +198,11 @@ GET demo-smarttransactions/_search
   }
 }
 
-# → "Immer derselbe Wert — 'general.merchants'. Das ist
+# → "Immer derselbe Wert - 'general.merchants'. Das ist
 #    der API-Ressourcentyp. Danach filtert niemand.
 #    Trotzdem legt Elasticsearch dafür einen Index UND
 #    doc_values an. Mit index:false und doc_values:false
-#    verschwindet dieser Overhead komplett — und das Feld
+#    verschwindet dieser Overhead komplett - und das Feld
 #    zieht sich durch jede einzelne Referenz in eurem
 #    Mapping. Das sind geschätzt 20 Felder, die man so
 #    aus dem Index entfernen kann."

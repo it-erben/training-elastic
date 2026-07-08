@@ -29,18 +29,15 @@ for image in \
   "docker.elastic.co/logstash/logstash:${STACK_VERSION}" \
   "docker.elastic.co/beats/filebeat:${STACK_VERSION}" \
   "docker.elastic.co/elastic-agent/elastic-agent:${STACK_VERSION}" \
-  "minio/minio:latest"; do
+  "minio/minio:latest" \
+  "node:22-alpine"; do
   echo "-> ${image}"
   docker pull -q "${image}" || { echo "✗ Pull fehlgeschlagen: ${image}"; FEHLER=1; }
 done
 
 schritt "3/5 Beispiel-Logs mit aktuellen Timestamps generieren"
-if command -v node > /dev/null 2>&1; then
-  node ../tools/generate-logs/generate.js
-else
-  echo "⚠ Node.js nicht gefunden -- überspringe. Die committeten Logdateien"
-  echo "  funktionieren trotzdem (ggf. Zeitfilter in Kibana anpassen)."
-fi
+# Generator laeuft im Node-Container -- kein Host-Node noetig (nur Docker).
+./gen-logs.sh
 
 schritt "4/5 Smoke-Test: Tag-1-Umgebung starten"
 (cd day1 && docker compose up -d --wait)

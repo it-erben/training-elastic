@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 06: Logstash-Grundlagen
 
 Datenpipelines bauen mit input, filter und output
@@ -32,7 +31,7 @@ Nach diesem Modul kannst du:
 ---
 
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.6em; }
 </style>
 
 # Was ist Logstash?
@@ -665,6 +664,7 @@ date {
 - `target`: Zielfeld - Standard ist `@timestamp`
 
 **Beispiel:** `2026-06-30 12:01:23,189`
+
 - Muster: `yyyy-MM-dd HH:mm:ss,SSS`
 
 ---

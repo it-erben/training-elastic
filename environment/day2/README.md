@@ -11,11 +11,11 @@ Labs 05--07 verwendet (Filebeat, Logstash-Pipelines, Grok/Geoip).
 docker compose up -d --wait
 ```
 
-| Dienst        | URL / Port                                           |
-| :------------ | :--------------------------------------------------- |
-| Elasticsearch | `http://localhost:9200`                              |
-| Kibana        | `http://localhost:5601`                              |
-| Logstash      | Monitoring-API `http://localhost:9600`               |
+| Dienst        | URL / Port                                          |
+| :------------ | :-------------------------------------------------- |
+| Elasticsearch | `http://localhost:9200`                             |
+| Kibana        | `http://localhost:5601`                             |
+| Logstash      | Monitoring-API `http://localhost:9600`              |
 | Filebeat      | kein Port - Logs: `docker compose logs -f filebeat` |
 
 ## Beispieldaten
@@ -30,8 +30,8 @@ Filebeat und Logstash sehen das Verzeichnis [`../data`](../data) als `/data`:
 
 > **Hinweis:** Die Logs decken 48 Stunden bis zum Generierungszeitpunkt ab.
 > Falls in Kibana nichts zu sehen ist: Zeitfilter vergrößern oder die Logs
-> mit `node ../../tools/generate-logs/generate.js` neu generieren
-> (danach `./reset.sh`, damit Filebeat alles neu einliest).
+> mit `../gen-logs.sh` neu generieren (Node-Container, kein Host-Node nötig;
+> danach `./reset.sh`, damit Filebeat alles neu einliest).
 
 ## Konfiguration ändern
 

@@ -63,7 +63,11 @@ docker pull docker.elastic.co/logstash/logstash:9.3.0
 docker pull docker.elastic.co/beats/filebeat:9.3.0
 docker pull docker.elastic.co/elastic-agent/elastic-agent:9.3.0
 docker pull minio/minio:latest
-cd day1
+docker pull node:22-alpine
+# Beispiel-Logs mit frischen Timestamps erzeugen (aus dem Repo-Wurzelverzeichnis)
+cd ..
+docker run --rm -v "${PWD}:/repo" -w /repo node:22-alpine node tools/generate-logs/generate.js
+cd environment/day1
 docker compose up -d --wait
 # http://localhost:5601 im Browser öffnen - Kibana sollte laden
 docker compose down
@@ -71,12 +75,12 @@ docker compose down
 
 ## Fertig?
 
-**Wenn `prepare.sh` mit „Bereit für den Kurs!" endet, bist du fertig
+**Wenn `prepare.sh` mit "Bereit für den Kurs!" endet, bist du fertig
 vorbereitet.** Bei Problemen: Ausgabe kopieren und an den Trainer schicken.
 
 ## Optional
 
-- **Node.js** (LTS): wird nur für das Neu-Generieren der Übungsdaten und
-  die Demo-Skripte in `workshop-demo/` gebraucht - nice to have.
+- **Node.js** (LTS): nur für die Demo-Skripte in `workshop-demo/` - nice to
+  have. Die Übungsdaten werden im Node-Container erzeugt (kein Host-Node nötig).
 - Ein Editor mit YAML-Unterstützung (VS Code o.ä.) erleichtert die
   Konfigurationsübungen an Tag 2.
