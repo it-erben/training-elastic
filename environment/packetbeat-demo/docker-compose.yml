@@ -1,0 +1,101 @@
+---
+# Packetbeat-Demo: Elasticsearch + Kibana + interner Webserver + Traffic-
+# Generator + Packetbeat.
+#
+# Starten:   docker compose up -d --wait
+# Stoppen:   docker compose down          (Daten bleiben erhalten)
+# Reset:     ./reset.sh                   (löscht alle Daten)
+#
+# Idee: Packetbeat teilt den Netzwerk-Namespace des Traffic-Generators
+# (network_mode: "service:trafficgen") und sieht dadurch dessen kompletten
+# Netzwerkverkehr -- HTTP-Requests an den nginx und DNS-Abfragen. Kein
+# Host-Networking nötig, läuft daher identisch auf Mac, Windows und Linux.
+name: elastic-training-packetbeat
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:${STACK_VERSION}
+    environment:
+      - cluster.name=training-packetbeat
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - ES_JAVA_OPTS=-Xms1g -Xmx1g
+    ports:
+      - "9200:9200"
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    mem_limit: 2g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:${STACK_VERSION}
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+      - TELEMETRY_ENABLED=false
+    ports:
+      - "5601:5601"
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+    mem_limit: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fs http://localhost:5601/api/status | grep -q '\"overall\"' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+      start_period: 60s
+
+  # Ziel-Webserver. Liefert auf / eine Standardseite (HTTP 200), auf allem
+  # anderen einen 404 -- schön für die Status-Code-Aufschlüsselung im
+  # Packetbeat-HTTP-Dashboard.
+  webserver:
+    image: nginx:alpine
+    mem_limit: 64m
+
+  # Traffic-Generator: erzeugt im Sekundentakt HTTP- und DNS-Verkehr.
+  # busybox (in nginx:alpine enthalten) liefert wget und nslookup.
+  trafficgen:
+    image: nginx:alpine
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Traffic-Generator läuft -- erzeugt HTTP + DNS im 2s-Takt";
+        while true; do
+          wget -q -O /dev/null http://webserver/          || true;  # HTTP 200
+          wget -q -O /dev/null http://webserver/gibtsnicht || true;  # HTTP 404
+          nslookup webserver   > /dev/null 2>&1            || true;  # interner DNS
+          nslookup elastic.co  > /dev/null 2>&1            || true;  # externer DNS
+          sleep 2;
+        done
+    depends_on:
+      - webserver
+    mem_limit: 64m
+
+  # Packetbeat teilt den Netzwerk-Namespace von trafficgen und schnüffelt
+  # dort mit. NET_RAW/NET_ADMIN sind für den Paket-Mitschnitt nötig.
+  packetbeat:
+    image: docker.elastic.co/beats/packetbeat:${STACK_VERSION}
+    user: root
+    cap_add:
+      - NET_RAW
+      - NET_ADMIN
+    network_mode: "service:trafficgen"
+    command: ["-e", "--strict.perms=false"]
+    volumes:
+      - ./packetbeat.yml:/usr/share/packetbeat/packetbeat.yml:ro
+    depends_on:
+      elasticsearch:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
+      trafficgen:
+        condition: service_started
+    mem_limit: 256m
+
+volumes:
+  esdata:

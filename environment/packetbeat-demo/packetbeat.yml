@@ -1,0 +1,28 @@
+---
+packetbeat.interfaces:
+  device: any
+  type: af_packet
+
+packetbeat.protocols:
+  - type: dns
+    ports: [53]
+    include_authorities: true
+    include_additionals: true
+
+  - type: http
+    ports: [80, 8080]
+    send_request: true
+    send_response: true
+
+    include_body_for: ["text/html", "application/json", "text/plain"]
+    max_message_size: 10485760
+
+output.elasticsearch:
+  hosts: ["http://elasticsearch:9200"]
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+setup.dashboards.enabled: true
+
+logging.level: info
