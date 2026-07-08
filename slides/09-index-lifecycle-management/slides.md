@@ -10,10 +10,9 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 09: Index Lifecycle Management
 
-Indizes automatisiert verwalten - von der Entstehung bis zur Löschung
+Indizes automatisiert verwalten - vom Anlegen bis zum Löschen
 
 ---
 
@@ -103,10 +102,10 @@ transactions-2026.07   ← hier wird aktuell geschrieben
 - Alte Daten löschen = kompletten Index löschen (billig und sofort)
 - Jeder Index bleibt überschaubar groß
 
-**Aber:** Wer legt den neuen Index an? Wer löscht die alten? Wer verschiebt
-Daten auf günstigere Hardware?
+**Aber:** Wer legt den neuen Index an, wer löscht die alten - und wer
+verschiebt Daten auf günstigere Hardware?
 
-> Manuell ist das fehleranfällig. Genau hier setzt ILM an.
+> Von Hand ist das fehleranfällig. Diese Arbeit übernimmt ILM.
 
 ---
 
@@ -181,7 +180,7 @@ ILM führt jeden Index durch bis zu fünf Phasen:
 - Das Alter zählt ab dem **Rollover** (nicht ab Index-Erstellung)
 - Nur `hot` ist Pflicht - alle anderen Phasen sind optional
 
-> Nicht jede Policy braucht alle Phasen. Häufig reicht hot → warm → delete.
+> Nicht jede Policy braucht alle Phasen. Oft reicht hot → warm → delete.
 
 ---
 
@@ -334,7 +333,7 @@ section { font-size: 1.2em; }
 
 # Frozen-Phase und Searchable Snapshots
 
-Die Frozen-Phase geht noch einen Schritt weiter:
+Die Frozen-Phase treibt das Sparen auf die Spitze:
 
 - Der Index liegt als **Snapshot im Objektspeicher** (z. B. S3)
 - Lokal wird nur ein **kleiner Cache** vorgehalten
@@ -349,10 +348,9 @@ Die Frozen-Phase geht noch einen Schritt weiter:
 }
 ```
 
-**Wichtig zu wissen:**
-
-- Searchable Snapshots benötigen eine **Enterprise-Lizenz**
-- Ideal für Compliance-Daten: jahrelang aufbewahren, fast nie abfragen
+**Der Haken:** Searchable Snapshots benötigen eine **Enterprise-Lizenz**.
+Dafür sind sie ideal für Compliance-Daten: jahrelang aufbewahren, fast nie
+abfragen.
 
 > Frozen macht Langzeitaufbewahrung bezahlbar: Objektspeicher statt lokaler
 > Platten.
@@ -664,7 +662,7 @@ gehen.
 
 # Teil 4: Data Streams und Fehlerdiagnose
 
-Der moderne Standard - und was zu tun ist, wenn ILM hakt
+Weniger Handarbeit für Zeitreihen - und was zu tun ist, wenn ILM hakt
 
 ---
 
@@ -848,7 +846,7 @@ Alles aus diesem Modul geht auch über die Oberfläche:
 - Tab **Data Streams**: Backing-Indizes einsehen
 - Tab **Index Templates**: Templates verwalten
 
-> Die UI erzeugt intern dieselben APIs. Für Automatisierung und Versionierung
+> Die UI ruft intern dieselben APIs auf. Für Automatisierung und Versionierung
 > nimm trotzdem die APIs.
 
 ---
@@ -874,4 +872,4 @@ section { font-size: 1.3em; }
   `_ilm/retry` startet fehlgeschlagene Schritte neu;
   `indices.lifecycle.poll_interval` bestimmt den Prüf-Takt
 
-**Nächstes Modul:** Betrieb, Backup & Updates - Mustertech geht in Produktion!
+**Nächstes Modul:** Betrieb, Backup & Updates - Mustertech geht in Produktion.

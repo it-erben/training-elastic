@@ -29,7 +29,7 @@
   <text x="364" y="216" text-anchor="start" dominant-baseline="middle" fill="#172033" font-size="20" font-weight="500">.ds-logs-mustertech-default-2026.07.02-000002</text>
 
   <!-- backing index 3 = write index (hero) -->
-  <g filter="url(#ieShadow)"><rect x="340" y="262" width="560" height="48" rx="12" fill="#1B4FD8"/></g>
-  <text x="364" y="286" text-anchor="start" dominant-baseline="middle" fill="#FFFFFF" font-size="20" font-weight="600">.ds-logs-mustertech-default-2026.07.02-000003</text>
-  <text x="884" y="286" text-anchor="end" dominant-baseline="middle" fill="#FFFFFF" font-size="16" font-weight="700" letter-spacing="1">WRITE-INDEX</text>
+  <g filter="url(#ieShadow)"><rect x="340" y="256" width="560" height="60" rx="12" fill="#1B4FD8"/></g>
+  <text x="364" y="280" text-anchor="start" dominant-baseline="middle" fill="#FFFFFF" font-size="20" font-weight="600">.ds-logs-mustertech-default-2026.07.02-000003</text>
+  <text x="364" y="302" text-anchor="start" dominant-baseline="middle" fill="#BFD0F5" font-size="13" font-weight="700" letter-spacing="1.5">WRITE-INDEX</text>
 </svg>

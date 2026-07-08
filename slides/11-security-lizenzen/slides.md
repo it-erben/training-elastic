@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 11: Security & Lizenzen
 
 Cluster absichern, Zugriffe steuern und Lizenzmodelle verstehen
@@ -178,7 +177,7 @@ Username und Passwort:
 - Lassen sich einzeln widerrufen, ohne andere Zugänge zu stören
 - Werden im Header übertragen: `Authorization: ApiKey <base64-wert>`
 
-**Typische Einsatzszenarien bei Mustertech:**
+**Typische Fälle bei Mustertech:**
 
 - Der Webshop schreibt Bestellungen in den Cluster
 - Ein Reporting-Skript liest nachts Kennzahlen aus
@@ -442,8 +441,8 @@ getan?**
   verweigerte Anfragen (`access_denied`)
 - Aktivierung in `elasticsearch.yml`:
   `xpack.security.audit.enabled: true`
-- Ausgabe als JSON-Datei (`<cluster>_audit.json`), ideal, um sie
-  wiederum in Elasticsearch zu indexieren
+- Ausgabe als JSON-Datei (`<cluster>_audit.json`) - die kann man
+  wieder in Elasticsearch indexieren
 
 **Typische Fragen, die das Audit-Log beantwortet:**
 
@@ -457,7 +456,7 @@ getan?**
 
 # Teil 3: Live-Demo
 
-Wir setzen das Gelernte jetzt gemeinsam um - im Schulungscluster,
+Das bauen wir jetzt gemeinsam nach, im Schulungscluster,
 per Dev Tools:
 
 1. Rolle `mustertech-lesen` anlegen - Lesezugriff auf die
@@ -543,7 +542,7 @@ section { font-size: 1.35em; }
 2. Gehe auf `http://localhost:5601`
 3. Melde dich an als `analyst` / `analyst-geheim-123`
 
-**Was du beobachten wirst:**
+**Was du siehst:**
 
 - Das Menü ist stark reduziert: nur **Discover** ist sichtbar
 - Die Sample-Daten sind lesbar
@@ -716,7 +715,7 @@ section { font-size: 1.4em; }
 
 # Lizenzgeschichte: ELv2, SSPL und OpenSearch
 
-Die Historie hinter "free & open", kurz und sachlich:
+Wie es zu "free & open" kam:
 
 - **Bis 2021:** Elasticsearch und Kibana unter **Apache 2.0**
 - **2021:** Wechsel auf **SSPL / Elastic License v2 (ELv2)**.
@@ -753,7 +752,7 @@ POST /_license/start_trial?acknowledge=true
 GET /_license
 ```
 
-→ `"type": "trial"`, gültig 30 Tage, Feature-Umfang **Enterprise**.
+Ergebnis: `"type": "trial"`, gültig 30 Tage, Feature-Umfang **Enterprise**.
 
 **Was sich sofort ändert (in Kibana nachschauen):**
 
@@ -826,7 +825,7 @@ section { font-size: 1.3em; }
   Anwendungen, Service Accounts für Stack-Komponenten,
   SSO (LDAP/SAML/OIDC) nur mit Platinum
 - **Autorisierung:** Rollen bündeln Cluster-, Index- und
-  Kibana-Privilegien; Least Privilege ist die Leitlinie
+  Kibana-Privilegien; Least Privilege ist die Regel
 - **DLS/FLS** filtern Dokumente und Felder pro Rolle
   (Platinum-Feature)
 - **Lizenzen:** Basic deckt Security-Basis, ILM und Basis-Alerting ab;

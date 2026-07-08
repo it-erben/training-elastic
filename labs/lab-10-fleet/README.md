@@ -92,7 +92,17 @@ Zeitpunkt des letzten Check-ins (Spalte **Last activity**).
 In der Praxis würdest du sie hier per Klick hinzufügen.
 
 **Aufgabe:** Gehe zurück zur Policy-Liste. Wie viele Agents hängen an
-welcher Policy (Spalte **Agents**)?
+welcher Policy? Kibana 9.3 zeigt die Zahl in der Spalte
+**Unprivileged / Privileged** im Format `unprivilegiert / privilegiert
+(gesamt)` - für beide Policies also `1 / 0 (1)`. Auf der Policy-Detailseite
+steht sie zusätzlich oben als **1 agent**.
+
+> **Tipp:** Das ⚠️ neben der Zahl der **Agent Policy Training** ist nur ein
+> Hinweis: Der Agent ist **unprivilegiert** enrollt (der Container-Agent
+> läuft ohne dedizierten `elastic-agent`-Benutzer), während die
+> System-Integration teils Root-Rechte nutzen könnte. Fürs Lab ist das ohne
+> Belang, die System-Metriken fließen trotzdem. Die **Fleet Server Policy**
+> zeigt das ⚠️ nicht.
 
 Öffne anschließend kurz die **Fleet Server Policy**: Sie enthält nur die
 Integration `fleet_server-1`, mehr braucht ein Fleet Server nicht.

@@ -47,14 +47,14 @@ PUT _cluster/settings
 **Erwartetes Ergebnis:** `"acknowledged": true`. In der Antwort erscheint
 das Setting unter `persistent`.
 
-> **Tipp:** Das ist ein reiner Trainings-Trick. In Produktion bleibt der
+> **Tipp:** Das machen wir nur für das Training so. In Produktion bleibt der
 > Default von 10 Minuten: Bei Phasen, die Tage dauern, spielt das keine
 > Rolle, und häufigeres Prüfen kostet unnötig Ressourcen.
 
 ### Schritt 1.2: ILM-Policy anlegen
 
-Die Policy für die Mustertech-Transaktionsdaten, mit Lab-tauglichen
-Grenzwerten:
+Die Policy für die Mustertech-Transaktionsdaten mit Grenzwerten, die für
+eine Übungsaufgabe sinnvoll sind:
 
 ```
 PUT _ilm/policy/transactions-policy

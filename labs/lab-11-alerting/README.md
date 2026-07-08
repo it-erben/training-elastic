@@ -65,8 +65,6 @@ geschrieben wird.
 4. Konfiguriere:
     - **Connector name:** `alerts-uebung`
     - **Index:** `alerts-uebung`
-    - **Refresh index:** aktivieren (damit du Ergebnisse sofort
-      siehst)
 5. Klicke auf **Save**
 
 **Erwartetes Ergebnis:** Der Connector `alerts-uebung` erscheint in

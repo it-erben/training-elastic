@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 04: Machine Learning in Kibana
 
 Anomalien automatisch erkennen. Auch mit wenig Vorkenntnissen.
@@ -197,7 +196,7 @@ für "gut" und "schlecht" liefern:
 3. Für jeden neuen Bucket berechnet es einen **erwarteten Wertebereich**
 4. Weicht der tatsächliche Wert stark ab, entsteht eine **Anomalie**
 
-**Wichtig zu wissen:**
+**In der Praxis heißt das:**
 
 - Das Modell braucht **Anlaufzeit**: Die ersten Tage sind wenig aussagekräftig
 - Saisonale Muster (z. B. Wochenende) erkennt es automatisch,

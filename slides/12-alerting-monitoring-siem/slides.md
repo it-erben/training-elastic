@@ -10,11 +10,9 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 12: Alerting, Monitoring & SIEM
 
-Vom passiven Dashboard zum aktiven System: Alarme, Cluster-Gesundheit
-und Security-Analysen
+Alarme, Cluster-Gesundheit und Security-Analysen
 
 ---
 
@@ -65,10 +63,10 @@ stundenlang HTTP 503. Die Logs sind alle da - in Elasticsearch.
 - Dashboards sind **passiv** - sie beantworten Fragen, die du stellst
 - Alerting ist **aktiv** - das System meldet sich, wenn etwas
   passiert
-- Montagmorgen-Forensik wird zu Sonntagabend-Reaktion
+- So erfährst du Sonntagabend vom Ausfall und nicht erst Montagmorgen
 
-> Daten sammeln ist die halbe Miete. Der Wert entsteht, wenn das System
-> von selbst Alarm schlägt.
+> Daten sammeln ist die halbe Miete. Nützlich wird es erst, wenn das
+> System von selbst Alarm schlägt.
 
 ---
 
@@ -269,8 +267,8 @@ section { font-size: 1.5em; }
 - **Flapping:** Ein Alert, der schnell zwischen Active und Recovered
   pendelt. Kibana erkennt das und dämpft die Benachrichtigungen
 
-> Ein Alert ist kein Ereignis, sondern ein **Zustand**: er beginnt,
-> dauert an und endet.
+> Ein Alert ist ein **Zustand**, kein einzelnes Ereignis: er hat einen
+> Anfang und ein Ende.
 
 ---
 <style scoped>
@@ -311,7 +309,7 @@ Das größte Risiko eines Alerting-Systems: **Es wird ignoriert.**
 - **"On status changes"** statt "bei jedem Check": eine Störung,
   eine Nachricht
 - **Recovered-Actions** nutzen: Entwarnung spart Nachfragen
-- Schwere und Routing trennen: kritisch → Pager,
+- Nach Schweregrad routen: kritisch → Pager,
   informativ → Index/Dashboard
 
 > Wenn das Team anfängt, Alerts wegzuklicken, ist das System
@@ -497,7 +495,7 @@ section { font-size: 1.5em; }
 sicherheitsrelevante Ereignisse zentral sammeln, korrelieren
 und erkennen.
 
-**Die zentrale Einordnung:**
+**Einordnung:**
 
 ![h:250 center](images/siem-einordnung.svg)
 
@@ -560,7 +558,7 @@ section { font-size: 1.5em; }
 
 # Timelines: Vorfälle rekonstruieren
 
-Ein Alert ist nur der Anfang. Die **Timeline** ist der
+Ein Alert allein sagt noch nicht viel. Die **Timeline** ist der
 Arbeitsbereich für die Analyse:
 
 - Events aus beliebigen Indizes chronologisch **nebeneinanderlegen**
@@ -650,7 +648,7 @@ So wird der komplette Workflow sichtbar (alles mit Basic-Lizenz):
 section { font-size: 1.6em; }
 </style>
 
-# Ehrlicher Hinweis: Die Grenzen der Demo
+# Die Grenzen der Demo
 
 Die Sample-Daten sind Web-Logs, **keine echten Security-Events**:
 

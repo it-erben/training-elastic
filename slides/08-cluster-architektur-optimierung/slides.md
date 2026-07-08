@@ -10,10 +10,9 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 08: Cluster-Architektur & Optimierung
 
-Wie Elasticsearch skaliert - und wie du deinen Cluster gesund hältst
+Wie Elasticsearch skaliert
 
 ---
 
@@ -40,17 +39,14 @@ section { font-size: 1.7em; }
 Die Elastic-Plattform ist inzwischen geschäftskritisch: Bestellungen, Logs,
 Transaktionen - alles landet dort.
 
-**Bisher: ein einzelner Node. Jetzt drängen drei Fragen:**
+**Bisher: ein einzelner Node. Das verursacht Probleme:**
 
 - Node fällt aus - was dann?
 - Datenmenge wächst - wie skalieren?
 - Manche Abfragen kriechen - woran liegt's?
 
-**Heute bauen wir die Antwort:** ein 3-Node-Cluster - verstehen, gezielt
-kaputt machen, optimieren.
-
-> Ab heute betreibt Mustertech einen echten Produktions-Cluster, mit
-> Security, TLS und drei Nodes.
+**Heute bauen wir:** ein 3-Node-Cluster, der auch den Ausfall eines Knotens
+aushält.
 
 ---
 
@@ -66,7 +62,7 @@ section { font-size: 1.5em; }
 
 # Warum überhaupt ein Cluster?
 
-Ein einzelner Node stößt zwangsläufig an Grenzen:
+Ein einzelner Node stößt irgendwann an Grenzen:
 
 | Problem                     | Lösung im Cluster                   |
 | --------------------------- | ----------------------------------- |
@@ -125,7 +121,7 @@ Der Index `kunden` mit 3 Primary Shards und 1 Replica pro Primary:
 - Elasticsearch verteilt Shards automatisch möglichst gleichmäßig
 - Fällt ein Node aus, werden fehlende Kopien auf den übrigen Nodes neu erstellt
 
-> 3 Primaries + 1 Replica = 6 Shards. Jeder Node trägt einen fairen Anteil.
+> 3 Primaries + 1 Replica = 6 Shards. Jeder Node bekommt ungefähr gleich viel ab.
 
 ---
 <style scoped>
@@ -162,9 +158,6 @@ section { font-size: 1.4em; }
 - Für **jede** verlorene Primary springt eine Replica ein
 - Der Master verteilt die fehlenden Kopien auf die übrigen Nodes neu
 
-> Ein Node darf sterben, ohne dass jemand etwas merkt. Genau das probierst
-> du im Lab aus.
-
 ---
 <style scoped>
 code { font-size: 0.9em; }
@@ -173,7 +166,7 @@ section { font-size: 1.6em; }
 
 # Routing - Welcher Shard bekommt das Dokument?
 
-Elasticsearch berechnet den Ziel-Shard deterministisch (vereinfacht):
+Elasticsearch berechnet den Ziel-Shard deterministisch. Vereinfacht:
 
 ```
 shard_nr = hash(_routing) % anzahl_primary_shards
@@ -200,7 +193,7 @@ section { font-size: 1.5em; }
 
 ![h:310 center](images/schreibpfad.svg)
 
-- Der Node, der die Anfrage annimmt, **koordiniert** - das kann jeder Node
+- Der Node, der die Anfrage annimmt, **koordiniert**. Das kann jeder Node machen
 - Die Antwort kommt erst, wenn Primary **und** aktive Replicas geschrieben haben
 
 > Schreiben ist im Cluster teurer als auf einem Einzel-Node: jede Replica
@@ -311,7 +304,7 @@ Quorum = (Anzahl master-eligible Nodes / 2) + 1
 section { font-size: 1.35em; }
 </style>
 
-# Split-Brain - Das Horrorszenario
+# Split-Brain
 
 Was, wenn das Netzwerk den Cluster in zwei Hälften teilt?
 
@@ -402,8 +395,8 @@ node.roles: [ master, data, ingest ]
 
 ---
 <style scoped>
-table { font-size: 0.72em; }
-section { font-size: 0.82em; }
+table { font-size: 0.9em; }
+section { font-size: 1em; }
 </style>
 
 # Data-Tiers: hot, warm, cold, frozen
@@ -423,8 +416,6 @@ Data-Rollen, die **Tiers**:
 automatisch von hot nach warm nach cold.
 
 ![h:96 center](images/data-tiers-flow.ie.svg)
-
-> Neue Daten auf teurer Hardware, alte auf billiger - ohne Löschen.
 
 ---
 <style scoped>
@@ -465,8 +456,8 @@ section { font-size: 1.6em; }
 - **Kein** Failover, **keine** Replicas erzeugbar (Health: yellow)
 - Völlig in Ordnung für: Entwicklung, Tests, Demos
 
-> Für Produktion ungeeignet: ein Ausfall bedeutet Stillstand und
-> potenziell Datenverlust.
+> Für Produktion ungeeignet: ein Ausfall bedeutet Stillstand, im
+> schlimmsten Fall auch Datenverlust.
 
 ---
 <style scoped>
@@ -504,8 +495,8 @@ Ab ~10 Nodes trennt man die Rollen:
 - Tiers: Hardware passend zur Datennutzung
 - Coordinating: schützt Data Nodes vor teuren Merge-Operationen
 
-> Rollentrennung ist Skalierungs-Werkzeug, nicht Selbstzweck. Erst messen,
-> dann trennen.
+> Rollen trennt man, weil die Messwerte dafür sprechen - nicht auf Vorrat.
+> Erst messen, dann trennen.
 
 ---
 <style scoped>
@@ -782,7 +773,7 @@ code { font-size: 0.78em; }
 section { font-size: 1.25em; }
 </style>
 
-# _cluster/allocation/explain: Warum liegt der Shard nicht?
+# _cluster/allocation/explain
 
 Wenn ein Shard `UNASSIGNED` ist, sagt dir diese API **warum**:
 
@@ -875,7 +866,7 @@ Jedes Feld kostet also: Plattenplatz, Heap, Indexierungszeit -
 3. Der richtige Query-Kontext: `filter` vs. `must`
 4. Feldanzahl reduzieren → kleinerer Index
 
-> Das beste Mapping ist das, das nur enthält, was du wirklich brauchst.
+> Ins Mapping gehört nur, was du wirklich brauchst - alles andere kostet bloß.
 
 ---
 <style scoped>
@@ -996,8 +987,8 @@ Das Dynamic Mapping legt Strings standardmäßig **doppelt** an:
 - Nie Volltextsuche auf dem Feld? → nur `keyword` mappen
 - Nie Aggregation? → nur `text` mappen
 
-> Dynamic Mapping ist ein bequemer Start, ein explizites Mapping die
-> bewusste Entscheidung.
+> Dynamic Mapping ist bequem zum Starten. Spätestens im Produktivbetrieb
+> schreibst du das Mapping besser selbst.
 
 ---
 <style scoped>
@@ -1206,8 +1197,8 @@ demo-smarttransactions-optimized          200      0.6mb
 ```
 
 Gleiche Daten, gleiches JSON - der optimierte Index ist **deutlich
-kleiner**. Bei 200 Dokumenten. Bei Millionen Transaktionen reden wir über
-erhebliche Unterschiede.
+kleiner**. Bei 200 Dokumenten. Bei Millionen Transaktionen macht das
+richtig was aus.
 
 ```
 GET demo-smarttransactions/_mapping?filter_path=**.properties
@@ -1269,7 +1260,7 @@ code { font-size: 0.85em; }
 section { font-size: 1.4em; }
 </style>
 
-# refresh_interval: Wie schnell wird Sichtbares sichtbar?
+# refresh_interval: Wie schnell wird Neues sichtbar?
 
 Neue Dokumente sind erst nach einem **Refresh** durchsuchbar,
 standardmäßig **jede Sekunde** ("near real-time").
@@ -1343,8 +1334,8 @@ PUT transaktionen
   deutlich schneller
 - Preis: langsamere Indexierung (Sortieren beim Schreiben)
 
-> Ein Spezialwerkzeug: erst einsetzen, wenn ein klares, dominantes
-> Sortiermuster existiert.
+> Ein Spezialwerkzeug: erst einsetzen, wenn ein Sortiermuster eindeutig
+> dominiert.
 
 ---
 <style scoped>

@@ -274,8 +274,6 @@ filebeat.inputs:
       - /var/log/apache2/*.log # Globs erlaubt
 ```
 
-**Wichtig zu wissen:**
-
 - Die **`id` ist Pflicht** und muss pro Input eindeutig sein: sie
   identifiziert den Input in der Registry
 - Mehrere Inputs = mehrere `- type: filestream`-Blöcke
@@ -344,9 +342,8 @@ Output den Empfang **bestätigt** hat.
 ![h:120 center](images/at-least-once-ablauf.svg)
 
 **Die Kehrseite:** Stürzt Filebeat zwischen "senden" und "Registry
-aktualisieren" ab, werden Events nach dem Neustart **erneut gesendet**
-
-- Duplikate sind möglich.
+aktualisieren" ab, werden Events nach dem Neustart **erneut gesendet** -
+Duplikate sind möglich.
 
 > At-least-once, nicht exactly-once: lieber ein Duplikat als ein
 > verlorenes Log.
@@ -808,7 +805,7 @@ section { font-size: 1.7em; }
 
 **Bei Mustertech:**
 
-- Die neuen Microservices loggen schon ECS-JSON ✓
+- Die neuen Microservices loggen schon ECS-JSON
 - Das alte Java-Monolith-Backend bekommt den multiline-Parser
 
 > Strukturiertes Logging an der Quelle schlägt jedes nachträgliche

@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 07: Logstash Filter-Praxis
 
 Grok, Geoip und Betrieb
@@ -706,7 +705,7 @@ dissect {
 
 **Standort deiner Nutzer:**
 
-- Weisst du, aus welchen Ländern euer Traffic kommt?
+- Weißt du, aus welchen Ländern euer Traffic kommt?
 - Wo wäre eine Karte im Dashboard hilfreich - Angriffe,
   Kundenverteilung, CDN-Planung?
 
@@ -730,7 +729,7 @@ Der Geoip-Filter schlägt IP-Adressen in der
                   lat 50.11, lon 8.68
 ```
 
-**Wichtig zu wissen:**
+**Ein paar Eigenheiten:**
 
 - Logstash lädt die GeoLite2-City-Datenbank beim ersten
   Einsatz **automatisch herunter** - einmalig Internetzugang nötig

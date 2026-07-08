@@ -10,10 +10,9 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 13: Fleet & Elastic Agent
 
-Zentrale Agent-Verwaltung: ein Agent für Logs, Metriken und mehr
+Zentrale Agent-Verwaltung: ein Agent für Logs, Metriken & Co.
 
 ---
 
@@ -116,8 +115,8 @@ zusammenfasst:
 - **Eine Policy** statt vieler YAML-Dateien
 - **Ein Update** statt vieler Einzel-Updates
 
-Unter der Haube steuert der Agent weiter Beats-Komponenten - dieselbe
-erprobte Sammel-Technik.
+Unter der Haube steuert der Agent weiter Beats-Komponenten - die
+Sammel-Technik bleibt also dieselbe.
 
 ![w:649 center](images/beats-vs-elastic-agent.ie.svg)
 
@@ -573,8 +572,8 @@ section { font-size: 1.5em; }
 
 - **Elastic Agent** ersetzt die Beats-Familie: ein Binary, eine
   Konfiguration, ein Update; unter der Haube weiterhin Beats-Technologie
-- **Integrationen** (über 300) liefern Inputs, Ingest Pipelines, Mappings
-  und Dashboards schlüsselfertig
+- **Integrationen** (über 300) bringen Inputs, Ingest Pipelines, Mappings
+  und Dashboards fertig mit
 - **Fleet** verwaltet Agents zentral: Policies in Kibana definieren, der
   **Fleet Server** verteilt sie beim Checkin; die Daten fließen direkt
   an den Output (Elasticsearch)

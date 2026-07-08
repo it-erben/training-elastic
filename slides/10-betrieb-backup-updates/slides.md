@@ -10,7 +10,6 @@ footer: "CC BY-NC-SA 4.0, Alexander Erben"
 section blockquote { font-size: 0.8em; line-height: 1.3; margin-top: 0.25em; }
 </style>
 
-
 # Modul 10: Betrieb, Backup & Updates
 
 Elasticsearch produktionsreif betreiben: Sizing, Konfiguration, Snapshots
@@ -19,7 +18,7 @@ und Rolling Upgrades
 ---
 
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.2em; }
 </style>
 
 # Lernziele
@@ -70,7 +69,7 @@ section { font-size: 1.2em; }
 
 # Sizing: Arbeitsspeicher und die 50%-Regel
 
-Die wichtigste Ressource für Elasticsearch ist **RAM** - und der wird geteilt:
+Die wichtigste Ressource für Elasticsearch ist **RAM**:
 
 ![h:160 center](images/ram-heap-aufteilung.svg)
 
@@ -137,8 +136,8 @@ section { font-size: 1.4em; }
 **ECK** = Elastic Cloud on Kubernetes, der offizielle Operator: verwaltet
 Zertifikate, Konfiguration, Rolling Upgrades als Kubernetes-Ressourcen.
 
-> Es gibt keine pauschal richtige Antwort. Entscheidend sind vorhandenes
-> Know-how, Compliance-Anforderungen und Budget.
+> Welche Variante passt, hängt am vorhandenen Know-how, den
+> Compliance-Anforderungen und am Budget - eine Patentantwort gibt es nicht.
 
 ---
 
@@ -312,7 +311,7 @@ Elasticsearch prüft beim Start eine Reihe von Bedingungen, die
 - Memory Lock erfolgreich (falls konfiguriert)?
 - Kein Swap-begünstigendes Setup?
 
-> Das ist ein Feature, kein Ärgernis: Elasticsearch verweigert lieber den
+> Klingt nervig, ist aber Absicht: Elasticsearch verweigert lieber den
 > Start, als mit einer Konfiguration zu laufen, die unter Last umfällt.
 
 ---
@@ -708,8 +707,8 @@ section { font-size: 1.4em; }
 
 # Upgrade Assistant in Kibana
 
-**Stack Management > Upgrade Assistant**, die Vorbereitung jedes
-Major-Upgrades:
+**Stack Management > Upgrade Assistant** - hier beginnt jedes
+Major-Upgrade:
 
 - Zeigt **Deprecation Warnings**: Einstellungen, Mappings und Features,
   die in der nächsten Major entfallen
@@ -856,8 +855,8 @@ section { font-size: 1.22em; }
 - **ECK**: Image-Tag in der Ressource ändern → Operator rollt
 - **Elastic Cloud**: Klick auf "Upgrade"
 
-> Der Ablauf ist immer derselbe Rolling-Upgrade - nur wer ihn ausführt,
-> unterscheidet sich.
+> Der Ablauf bleibt immer derselbe Rolling-Upgrade - die Frage ist nur,
+> wer ihn ausführt.
 
 ---
 
@@ -883,4 +882,4 @@ section { font-size: 1.15em; }
   Rolling Upgrade: Allocation auf `primaries` → Node upgraden →
   Allocation zurück → warten auf **grün** → nächster Node
 
-**Damit ist Mustertech bereit für den Produktivbetrieb!**
+**Damit kann Mustertech in den Produktivbetrieb gehen.**
