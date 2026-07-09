@@ -35,11 +35,9 @@ cd environment/day3
 docker compose --profile fleet up -d --wait
 ```
 
-Das startet zwei neue Container:
-
-- **fleet-server** - Elastic Agent im Fleet-Server-Modus (Port 8220)
-- **agent** - ein normaler Elastic Agent mit dem Hostnamen
-  `mustertech-agent-01`
+Das startet zwei neue Container: `fleet-server` ist ein Elastic Agent im
+Fleet-Server-Modus (Port 8220), `agent` ein ganz normaler Elastic Agent
+mit dem Hostnamen `mustertech-agent-01`.
 
 > **Tipp:** Geduld! Der erste Start dauert einige Minuten: Kibana lädt
 > zunächst die Packages `fleet_server` und `system` vom Elastic Package
@@ -100,8 +98,8 @@ steht sie zusätzlich oben als **1 agent**.
 > **Tipp:** Das ⚠️ neben der Zahl der **Agent Policy Training** ist nur ein
 > Hinweis: Der Agent ist **unprivilegiert** enrollt (der Container-Agent
 > läuft ohne dedizierten `elastic-agent`-Benutzer), während die
-> System-Integration teils Root-Rechte nutzen könnte. Fürs Lab ist das ohne
-> Belang, die System-Metriken fließen trotzdem. Die **Fleet Server Policy**
+> System-Integration teils Root-Rechte nutzen könnte. Fürs Lab ist das
+> egal, die System-Metriken fließen trotzdem. Die **Fleet Server Policy**
 > zeigt das ⚠️ nicht.
 
 Öffne anschließend kurz die **Fleet Server Policy**: Sie enthält nur die
@@ -283,10 +281,10 @@ Du hast erfolgreich:
 
 - [x] Fleet Server und Elastic Agent per Compose-Profil gestartet
 - [x] Beide Agents in der Fleet-UI als "Healthy" gesehen
-- [x] Agent Policies und Enrollment-Tokens in der UI nachvollzogen
-- [x] System-Metriken des Agents in Discover analysiert
-- [x] Die Inputs und Datasets der System-Integration untersucht
-- [x] (Bonus) Eine Integration zentral ausgerollt und wieder entfernt
+- [x] Nachvollzogen, wie Enrollment-Tokens Agents ihrer Policy zuordnen
+- [x] System-Metriken (`system.cpu` & Co.) in Discover analysiert
+- [x] Die laufenden Inputs auf der Agent-Detailseite untersucht
+- [x] (Bonus) Die Docker-Integration zentral ausgerollt und wieder entfernt
 
 **Geschafft!** Damit endet der dreitägige Kurs: Du kannst Daten
 analysieren (Tag 1), Logs einsammeln (Tag 2) und die Plattform betreiben

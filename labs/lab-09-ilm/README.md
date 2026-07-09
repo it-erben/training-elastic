@@ -53,8 +53,8 @@ das Setting unter `persistent`.
 
 ### Schritt 1.2: ILM-Policy anlegen
 
-Die Policy für die Mustertech-Transaktionsdaten mit Grenzwerten, die für
-eine Übungsaufgabe sinnvoll sind:
+Jetzt legst du die Policy für die Mustertech-Transaktionsdaten an, mit den
+verkürzten Grenzwerten von oben:
 
 ```
 PUT _ilm/policy/transactions-policy
@@ -508,4 +508,4 @@ Du hast erfolgreich:
 - [x] (Bonus) Denselben Lebenszyklus mit einem Data Stream aufgebaut
 
 **Nächstes Kapitel:** Betrieb & Backup - der Trainer sichert den Cluster mit Snapshots
-und stellen gelöschte Daten wieder her!
+und stellt gelöschte Daten wieder her!

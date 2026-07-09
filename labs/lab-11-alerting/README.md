@@ -1,7 +1,6 @@
 # Lab 11: Alerting (Bonus)
 
-> **Mini-Lab (ca. 15 Minuten):** Diese Übung ist als kompakte
-> Bonus-Übung angelegt. Du baust eine vollständige Alerting-Kette:
+> **Mini-Lab (ca. 15 Minuten):** Du baust die komplette Alerting-Kette
 > Rule > Condition > Action > Connector - und löst den Alarm
 > anschließend selbst aus.
 
@@ -277,14 +276,13 @@ oder löschen.
 Du hast erfolgreich:
 
 - [x] Die Sample Web Logs als Datenbasis bereitgestellt
-- [x] Einen Index-Connector als Alarm-Ziel angelegt
-- [x] Eine Elasticsearch-Query-Rule mit Schwellwert und
-  1-Minuten-Schedule erstellt
-- [x] Den Alarm durch nachindexierte 503-Dokumente ausgelöst
-- [x] Den Alert in den Rule-Details und als Dokument im Ziel-Index
-  nachvollzogen
+- [x] Einen Index-Connector angelegt und eine Elasticsearch-Query-Rule
+  mit Schwellwert und 1-Minuten-Schedule darauf verdrahtet
+- [x] Den Alarm mit selbst nachindexierten 503-Dokumenten ausgelöst
+  und in den Rule-Details beobachtet
+- [x] Das Alert-Dokument im Ziel-Index wiedergefunden
 
-> **Ausblick:** Mit einer Trial- oder Platinum-Lizenz stünden an
-> Stelle des Index-Connectors auch Slack, E-Mail, PagerDuty oder
-> Webhooks bereit; die Rule selbst bliebe exakt gleich. Wie du die
+> **Ausblick:** Mit einer Trial- oder Platinum-Lizenz könntest du
+> statt des Index-Connectors auch Slack, E-Mail, PagerDuty oder
+> Webhooks anbinden - die Rule selbst bliebe genau gleich. Wie du die
 > Trial aktivierst, hast du in Modul 11 gesehen.
