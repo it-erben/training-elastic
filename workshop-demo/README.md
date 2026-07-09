@@ -4,7 +4,7 @@
 
 - Node.js installiert
 - Elastic Cloud Serverless Projekt angelegt
-- API Key erstellt (in Kibana: Management → API Keys → Create API Key)
+- API Key erstellt (in Kibana unter Stack Management > API Keys)
 
 ## Konfiguration
 
@@ -17,8 +17,7 @@ cp .env.example .env
 # ELASTIC_API_KEY=dein-api-key
 ```
 
-Die URL findest du in der Elastic Cloud Console unter "Endpoints".
-Den API Key erstellst du in Kibana unter Stack Management → API Keys.
+Die URL steht in der Elastic Cloud Console unter "Endpoints".
 
 ## Setup ausführen
 
@@ -27,18 +26,7 @@ npm install
 node setup.js
 ```
 
-Das Skript legt an:
-
-| Index                                | Beschreibung                     |
-|--------------------------------------|----------------------------------|
-| `demo-smarttransactions`             | Original-Mapping (alle Probleme) |
-| `demo-smarttransactions-optimized`   | Optimiertes Mapping              |
-| `demo-loyaltytransactions`           | Original-Mapping                 |
-| `demo-loyaltytransactions-optimized` | Optimiertes Mapping              |
-| `demo-generalstores`                 | Original-Mapping                 |
-| `demo-generalstores-optimized`       | Optimiertes Mapping              |
-
-Jeder Index bekommt 200 realistische Testdokumente.
+Das Skript legt sechs Indizes an: `demo-smarttransactions`, `demo-loyaltytransactions` und `demo-generalstores`, jeweils einmal mit dem Original-Mapping samt aller Probleme und einmal als `-optimized`-Variante mit aufgeräumtem Mapping. In jeden Index kommen 200 realistische Testdokumente.
 
 ## Im Workshop zeigen
 
