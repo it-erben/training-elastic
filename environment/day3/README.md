@@ -114,3 +114,18 @@ curl --cacert ca.crt -u elastic:changeme https://localhost:9200
 3. Internetzugang nötig (Integrations-Pakete werden vom Elastic Package
    Registry geladen)
 4. Im Zweifel: `./reset.sh` und Fleet-Profil neu starten
+
+### Dev Tools melden "502 Bad Gateway"
+
+Der Cluster ist grün, aber jeder Befehl in den Dev Tools läuft in einen
+502? Dann probiert die Console noch einen alten Elasticsearch-Host aus.
+Sie speichert die Host-Wahl im Browser (localStorage, Schlüssel
+`sense:selected_host`), und weil Kibana an allen drei Tagen unter
+`localhost:5601` erreichbar ist, bleibt der Tag-1/2-Host
+`http://elasticsearch:9200` hängen. Der Tag-3-Cluster akzeptiert nur noch
+HTTPS - die Console schickt http an einen https-Port, Kibana antwortet mit
+502.
+
+Lösung: Console → Reiter **Config** → Feld **Elasticsearch host** leeren →
+Seite neu laden. Alternativ im Browser die Website-Daten für
+`localhost:5601` löschen.

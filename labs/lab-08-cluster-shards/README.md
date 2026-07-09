@@ -53,6 +53,15 @@ curl -k -u elastic:changeme https://localhost:9200/
 **Erwartetes Ergebnis:** Eine JSON-Antwort mit
 `"cluster_name" : "training-cluster"`.
 
+> **Wenn die Dev Tools gleich beim ersten Befehl "502 Bad Gateway"
+> melden:** Die Console merkt sich ihren Elasticsearch-Host im Browser.
+> An Tag 1 und 2 lief Elasticsearch unter `http://elasticsearch:9200`, und
+> weil Kibana an allen Tagen unter `localhost:5601` läuft, probiert die
+> Console diesen alten Host weiter - der Tag-3-Cluster spricht aber nur
+> noch HTTPS. Lösung: in der Console auf den Reiter **Config**, das Feld
+> **Elasticsearch host** leeren und die Seite neu laden. Danach nutzt die
+> Console wieder den in Kibana hinterlegten Host `https://es01:9200`.
+
 ---
 
 ## Teil 1: Cluster erkunden
