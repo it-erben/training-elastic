@@ -233,28 +233,3 @@ GET _cluster/health
 
 **Erwartetes Ergebnis:** `"status": "green"`, `"number_of_nodes": 3`. Der
 Cluster hat sich vollständig selbst geheilt.
-
-### Schritt 2.5 (Bonus): Master-Ausfall und Neuwahl
-
-Finde zuerst heraus, wer aktuell Master ist:
-
-```
-GET _cat/nodes?v&h=name,node.role,master&s=name
-```
-
-**Fall A - Master ist `es02` oder `es03`:** Stoppe genau diesen Node
-(`docker compose stop es02` bzw. `es03`), führe den `_cat/nodes`-Befehl
-erneut aus und beobachte, dass sofort ein anderer Node den Stern trägt.
-Starte den Node danach wieder.
-
-**Fall B - Master ist `es01`:** Achtung: `es01` ist unser einziger
-Zugangspunkt (Port 9200 und Kibana hängen an ihm). Du kannst ihn trotzdem
-stoppen: Kibana ist dann kurz nicht erreichbar. Warte etwa 30 Sekunden,
-starte `es01` wieder (`docker compose start es01`), lade Kibana neu und
-prüfe mit `_cat/nodes`: Der Stern ist zu `es02` oder `es03` gewandert.
-Die beiden hatten mit 2 von 3 master-eligible Nodes das Quorum und haben
-neu gewählt. `es01` ist als normales Cluster-Mitglied zurückgekehrt.
-
-**Aufgabe:** Warum durften die zwei verbliebenen Nodes einen neuen Master
-wählen? Was wäre bei einem Cluster mit nur zwei master-eligible Nodes
-passiert?
