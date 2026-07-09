@@ -78,7 +78,8 @@ der Connector-Liste.
 1. Navigiere zu **Stack Management > Rules**
 2. Klicke auf **Create rule**
 3. Wähle den Rule-Typ **Elasticsearch query**
-4. Vergib den Namen: `Fehlerrate Webshop`
+4. Der Name steht zunächst auf **Elasticsearch query rule**. Klicke oben auf
+   das Stift-Symbol neben diesem Titel und trage `Fehlerrate Webshop` ein.
 
 ### Schritt 2.3: Query und Bedingung definieren
 
@@ -116,7 +117,7 @@ selbst nachhelfen.
     }
     ```
 
-3. Speichere die Rule mit **Save**
+3. Speichere die Rule mit **Create rule**
 
 **Erwartetes Ergebnis:** Die Rule `Fehlerrate Webshop` erscheint in
 der Rule-Liste mit Status **Enabled** und wird ab jetzt jede Minute
