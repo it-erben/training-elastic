@@ -966,7 +966,7 @@ code { font-size: 0.85em; }
 section { font-size: 1.4em; }
 </style>
 
-# Beides brauchen? Multi-Fields
+# Wir brauchen Beides? Multi-Fields.
 
 Das Dynamic Mapping legt Strings standardmäßig **doppelt** an:
 

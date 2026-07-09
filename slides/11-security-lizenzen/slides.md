@@ -119,7 +119,7 @@ curl -k -u elastic:changeme https://localhost:9200/_cluster/health
 ---
 
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.2em; }
 </style>
 
 # Authentifizierung: Die Realms
@@ -189,7 +189,7 @@ Username und Passwort:
 ---
 
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.2em; }
 </style>
 
 # Service Accounts
@@ -272,7 +272,7 @@ Erst wer, dann was - beide müssen passen.
 ---
 
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.2em; }
 </style>
 
 # Cluster-Privilegien
@@ -292,7 +292,7 @@ Cluster-Privileg, höchstens `monitor`.
 
 ---
 <style scoped>
-section { font-size: 0.85em; }
+section { font-size: 1em; }
 </style>
 
 # Index-Privilegien
@@ -790,7 +790,7 @@ Dort siehst und machst du:
 
 ---
 <style scoped>
-section { font-size: 0.9em; }
+section { font-size: 1.1em; }
 </style>
 
 # Nach der Trial

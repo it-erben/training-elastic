@@ -144,8 +144,8 @@ section { font-size: 1.5em; }
 ---
 
 <style scoped>
-section { font-size: 0.85em; }
-table { font-size: 0.85em; }
+section { font-size: 1.1em; }
+table { font-size: 1em; }
 </style>
 
 # Rule-Typen im Überblick
