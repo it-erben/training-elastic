@@ -1,0 +1,4 @@
+# Kibana-Dev-Tools-Copy-Paste-Vorlagen müssen LF behalten.
+# Windows-Checkout mit CRLF (core.autocrlf=true) bricht sonst das
+# _bulk-Parsing (strikte NDJSON) und wirft Parse-Fehler beim Einfügen.
+labs/**/files/*.txt text eol=lf
