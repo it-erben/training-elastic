@@ -153,3 +153,8 @@ von Tag zu Inhalten steht in der Wurzel-`README.md`.
   der Oberfläche unübersetzt lassen; ändert Elastic eine Beschriftung, stimmen
   Klickpfad und Screenshot nicht mehr überein und müssen zusammen
   aktualisiert werden.
+- **Die CI läuft auf zwei Plattformen.** `.gitlab-ci.yml` bindet die
+  GitLab-Komponenten ein, `.github/workflows/ci.yml` ruft `lint.yml`,
+  `slides.yml`, `release.yml` und `pages.yml` aus
+  `it-erben/ci`. Die PDFs gehen dort auf
+  GitHub Pages, ein Deployment gibt es auf GitHub nicht.
